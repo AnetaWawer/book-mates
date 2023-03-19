@@ -1,18 +1,28 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import "../navbar.css"
+
 
 function Navbar() {
     return (
-        <nav>
+        <nav className="nav">
+                <Link className="site-logo" to="/">Logo</Link>
+
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">Konto</Link>
                 </li>
                 <li>
-                    <Link to="/books">Books</Link>
+                    <Link to="/">Książki</Link>
                 </li>
                 <li>
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/">Wydarzenia</Link>
+                </li>
+                <li>
+                    <Link to="/">Kontakt</Link>
+                </li>
+                <li>
+                    <Link to="/">Lupa</Link>
                 </li>
             </ul>
         </nav>
