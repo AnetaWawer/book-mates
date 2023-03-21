@@ -27,6 +27,7 @@ function Navbar() {
                                                 className="icon icon-user"></i>Konto</a>
                                             <li className="menu-item "><Link to="/books" className="nav-link" data-effect="Books">Książki</Link></li>
                                             <li className="menu-item "><Link to="/" className="nav-link" data-effect="Wydarzenia">Wydarzenia</Link></li>
+                                            <li className="menu-item "><Link to="/" className="nav-link" data-effect="Kontakt">Kontakt</Link></li>
                                             <div className="action-menu">
 
                                                 <div className="search-bar">
