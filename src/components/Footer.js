@@ -30,7 +30,7 @@ function Footer() {
                             <h5>O nas</h5>
                             <ul className="menu-list">
                                 <li className="menu-item">
-                                    <a href="#">Zespół</a>
+                                    <a href="components#">Zespół</a>
                                 </li>
                             </ul>
                         </div>
@@ -42,13 +42,13 @@ function Footer() {
                             <h5>Odwiedź</h5>
                             <ul className="menu-list">
                                 <li className="menu-item">
-                                    <a href="#">Strona Główna</a>
+                                    <a href="components#">Strona Główna</a>
                                 </li>
                                 <li className="menu-item">
-                                    <a href="#">Książki</a>
+                                    <a href="components#">Książki</a>
                                 </li>
                                 <li className="menu-item">
-                                    <a href="#">Wydarzenia</a>
+                                    <a href="components#">Wydarzenia</a>
                                 </li>
                             </ul>
                         </div>
@@ -60,10 +60,10 @@ function Footer() {
                             <h5>Moje konto</h5>
                             <ul className="menu-list">
                                 <li className="menu-item">
-                                    <a href="#">Logowanie</a>
+                                    <a href="components#">Logowanie</a>
                                 </li>
                                 <li className="menu-item">
-                                    <a href="#">Mój profil</a>
+                                    <a href="components#">Mój profil</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +75,7 @@ function Footer() {
                             <h5>Pomoc</h5>
                             <ul className="menu-list">
                                 <li className="menu-item">
-                                    <a href="#">Kontakt</a>
+                                    <a href="components#">Kontakt</a>
                                 </li>
                             </ul>
                         </div>
