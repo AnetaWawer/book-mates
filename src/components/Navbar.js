@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import "../style.css"
 import "../normalize.css"
-import "../navbar.css"
+// import "../navbar.css"
 
 
 function Navbar() {
