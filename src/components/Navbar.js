@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import "../style.css"
+import "../normalize.css"
 import "../navbar.css"
 
 
@@ -19,7 +21,7 @@ function Navbar() {
                     <Link to="/">Wydarzenia</Link>
                 </li>
                 <li>
-                    <Link to="/">Kontakt</Link>
+                    <Link to="/contact">Kontakt</Link>
                 </li>
                 <li>
                     <Link to="/">Lupa</Link>
