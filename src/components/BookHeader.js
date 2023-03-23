@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 
 
 const BookHeader = ({ book }) => {
-    console.log(book.rating);
     return (
         <Paper>
             <Grid container spacing={2}>
@@ -16,6 +15,7 @@ const BookHeader = ({ book }) => {
                 <Grid item xs={8}>
                     <h1 className="book-title">{book.title}</h1>
                     <p className="book-author">{book.author}</p>
+                    <p className="number-pages">Liczba stron: {book.pages}</p>
                     <Typography component="legend">Ocena</Typography>
                     <Rating name="customized-10" value={Math.round(book.rating)} max={10} />
                 </Grid>
