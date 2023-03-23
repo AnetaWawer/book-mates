@@ -1,5 +1,7 @@
 .img {
+    width: 180px;
     margin: 24px;
+    border-radius: 5px;
 }
 
 .book-description {
