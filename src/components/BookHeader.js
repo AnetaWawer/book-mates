@@ -11,12 +11,12 @@ const BookHeader = ({ book }) => {
         <Paper>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
-                    <img className="img" src="http://books.google.com/books/content?id=_i6bDeoCQzsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt={`Cover for ${book.title}`} />
+                    <img className="img" src="http://books.google.com/books/content?id=Ii4xwxU2PYsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt={`Cover for ${book.title}`} />
                 </Grid>
                 <Grid item xs={8}>
                     <h1 className="book-title">{book.title}</h1>
-                    <p className="book-author">by {book.author}</p>
-                    <Typography component="legend">Rating</Typography>
+                    <p className="book-author">{book.author}</p>
+                    <Typography component="legend">Ocena</Typography>
                     <Rating name="customized-10" value={Math.round(book.rating)} max={10} />
                 </Grid>
             </Grid>

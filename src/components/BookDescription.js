@@ -7,7 +7,7 @@ const BookDescription = ({ description }) => {
     return (
         <Paper>
             <p className="book-description">
-                <h2>Description</h2>
+                <h2>Opis</h2>
                 {description}
             </p>
         </ Paper>
