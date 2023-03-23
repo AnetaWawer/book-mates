@@ -1,14 +1,18 @@
 import React from 'react';
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {useNavigate, useRoutes} from "react-router-dom";
 
 const BookCard = ({ book }) => {
+
+    const navigate = useNavigate();
+
     return (
         <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
+            <CardActionArea onClick={() => navigate("/books/" + book.id)}>
                 <CardMedia
                     component="img"
                     // height="140"
-                    image= { book.url }
+                    image= { book.pictureUrl }
                     alt={ book.title }
                 />
                 <CardContent>

@@ -14,7 +14,9 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="books" element={<Books />} />
-            <Route path="book" element={<Book />} />
+            <Route path="books" >
+              <Route path=":bookId" element={<Book />} />
+            </Route>
             <Route path="contact" element={<Contact />} />
             <Route path="*" element={<NoPage />} />
             <Route path="event" element={<Event />} />
