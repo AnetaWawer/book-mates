@@ -5,6 +5,7 @@ import Books from "./pages/Books";
 import Book from "./pages/Book";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
+import Event from "./pages/Event";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="book" element={<Book />} />
             <Route path="contact" element={<Contact />} />
             <Route path="*" element={<NoPage />} />
+            <Route path="event" element={<Event />} />
           </Route>
         </Routes>
       </BrowserRouter>
