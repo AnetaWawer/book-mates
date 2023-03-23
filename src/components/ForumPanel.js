@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './logo.jpg';
+// import logo from './logo.jpg';
 import SectionHeader from "./SectionHeader";
 import SeeMoreButton from "./SeeMoreButton";
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
@@ -21,7 +21,7 @@ const ForumPanel =({forum}) =>{
                 <Grid container spacing={2}>
                     <Grid item xs={1}>
                         <ButtonBase sx={{ width: 96, height: 128 }}>
-                            <Img alt="book-cover" src={logo} />
+                            {/*<Img alt="book-cover" src={logo} />*/}
                         </ButtonBase>
                     </Grid>
                     <Grid  item xs={12} sm container>
