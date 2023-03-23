@@ -4,7 +4,7 @@ import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/mat
 const BookCard = ({ book }) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
-            {/*<CardActionArea>*/}
+            <CardActionArea>
                 <CardMedia
                     component="img"
                     // height="140"
@@ -19,7 +19,7 @@ const BookCard = ({ book }) => {
                         { book.author }
                     </Typography>
                 </CardContent>
-            {/*</CardActionArea>*/}
+            </CardActionArea>
         </Card>
     );
 };
