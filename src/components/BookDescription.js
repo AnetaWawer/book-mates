@@ -1,14 +1,16 @@
 import './styles.css';
+import Paper from '@mui/material/Paper'
+
 
 
 const BookDescription = ({ description }) => {
     return (
-        <div className="book-description">
-            <p>
-                <h2>Description</h2>
+        <Paper>
+            <p className="book-description">
+                <h2>Opis</h2>
                 {description}
             </p>
-        </div>
+        </ Paper>
     );
 };
 
