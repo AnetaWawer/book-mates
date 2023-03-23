@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from './logo.jpg';
 import SectionHeader from "./SectionHeader";
 import SeeMoreButton from "./SeeMoreButton";
@@ -14,19 +14,19 @@ const Img = styled('img')({
 });
 
 
-const ForumPanel =({forum}) =>{
+const ForumPanel =() =>{
     return (
         <Container maxWidth="lg" >
             <SectionHeader header={"Forum"}></SectionHeader>
-                <Grid container spacing={2}>
-                    <Grid item xs={1}>
+                <Grid container columnSpacing={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid item md={1}>
                         <ButtonBase sx={{ width: 96, height: 128 }}>
                             <Img alt="book-cover" src={logo} />
                         </ButtonBase>
                     </Grid>
-                    <Grid  item xs={12} sm container>
+                    <Grid  item xs={5} md={9} lg={11} sm container>
                         <Grid item xs container direction="column" spacing={2}>
-                            <Grid item xs={5}>
+                            <Grid item xs={5} md={10} lg={12}>
                                 <Typography component="h5" >
                                     Simple Way of Piece Life
                                 </Typography>
@@ -46,7 +46,7 @@ const ForumPanel =({forum}) =>{
                                     </Typography>
                                 </Grid>
                             </Grid>
-                        <Grid item>
+                        <Grid item >
                             <Typography variant="subtitle1" paragraph>
                                 <ChatOutlinedIcon sx={{ fontSize: 20, textAlign:'right' }} />
                                 <span> 90 Odpowiedzi</span>
