@@ -1,59 +1,108 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import "../style.css"
-// import "../normalize.css"
-// import "../vendor.css"
-// import "../icomoon.css"
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import logo from './mainLogo.png'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Grid from '@mui/material/Grid'
+import { styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import {NavbarContainer} from "./Container.styles";
+
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#f2f1eb',
+    '&:hover': {
+        backgroundColor: '#eeede7',
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'black',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
+    },
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+    color:"inherit",
+    fontSize:'16px'
+}));
+
+const Img = styled('img')({
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+});
 
 function Navbar() {
     return (
-        <div id="header-wrap">
-            {/*<header id="header">*/}
-            {/*    <div className="container">*/}
-            {/*        <div className="row">*/}
-
-            {/*            <div className="col-md-2">*/}
-            {/*                <div className="main-logo">*/}
-            {/*                    <p>BOOKMATES</p>*/}
-            {/*                </div>*/}
-
-            {/*            </div>*/}
-
-            {/*            <div className="col-md-10">*/}
-            {/*                <nav id="navbar">*/}
-            {/*                    <div className="main-menu stellarnav">*/}
-            {/*                        <ul className="menu-list">*/}
-            {/*                            <li className="menu-item active"></li><a href="#" className="user-account for-buy"><i*/}
-            {/*                                    className="icon icon-user"></i>Konto</a>*/}
-            {/*                                <li className="menu-item "><Link to="/books" className="nav-link" data-effect="Books">Książki</Link></li>*/}
-            {/*                                <li className="menu-item "><Link to="/" className="nav-link" data-effect="Wydarzenia">Wydarzenia</Link></li>*/}
-            {/*                                <li className="menu-item "><Link to="/" className="nav-link" data-effect="Kontakt">Kontakt</Link></li>*/}
-            {/*                                <div className="action-menu">*/}
-
-            {/*                                    <div className="search-bar">*/}
-            {/*                                        <a href="#" className="search-button search-toggle"*/}
-            {/*                                           data-selector="#header-wrap">*/}
-            {/*                                            <i className="icon icon-search"></i>*/}
-            {/*                                        </a>*/}
-            {/*                                        <form role="search" method="get" className="search-box">*/}
-            {/*                                            <input className="search-field text search-input"*/}
-            {/*                                                   placeholder="Search" type="search"></input>*/}
-            {/*                                        </form>*/}
-            {/*                                    </div>*/}
-            {/*                                </div>*/}
-            {/*                                </ul>*/}
-            {/*                                <div className="hamburger">*/}
-            {/*                                    <span className="bar"></span>*/}
-            {/*                                    <span className="bar"></span>*/}
-            {/*                                    <span className="bar"></span>*/}
-            {/*                                </div>*/}
-            {/*                    </div>*/}
-            {/*                </nav>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</header>*/}
-        </div>
+        <NavbarContainer >
+            <Toolbar>
+                <Grid container spacing={2}>
+                    <Grid item xs={5} md={3} lg={2} >
+                        <Button sx={{marginTop:'-6%'}} >
+                            <Img alt="book-cover" src={logo} />
+                        </Button>
+                    </Grid>
+                    <Grid  item xs={10} md={9} lg={10} sm container>
+                        <Grid item xs container direction="column" >
+                            <StyledButton ><PersonOutlineOutlinedIcon sx={{ fontSize: 18}} />Konto</StyledButton>
+                        </Grid>
+                        <Grid item xs container direction="column" >
+                            <StyledButton >Książki</StyledButton>
+                        </Grid>
+                        <Grid item xs container direction="column">
+                            <StyledButton>Wydarzenia</StyledButton>
+                        </Grid>
+                        <Grid item xs container direction="column" >
+                            <StyledButton>Kontakt</StyledButton>
+                        </Grid>
+                        <Grid item xs container direction="column" >
+                            <Search>
+                                <SearchIconWrapper>
+                                    <SearchIcon sx={{ color: '#afafaf'}} />
+                                </SearchIconWrapper>
+                                <StyledInputBase
+                                    placeholder="Szukaj…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </Search>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Toolbar>
+        </NavbarContainer>
     );
 }
 
