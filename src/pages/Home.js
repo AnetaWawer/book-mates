@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import ForumPanel from "../components/ForumPanel";
 import {Container, Typography} from "@mui/material";
 import BooksBar from "../components/BooksBar";
+import SectionHeader from "../components/SectionHeader";
+import {ContainerSize, ContainerStyles} from "../components/Container.styles";
 
 function Home() {
     const [books, setBooks] = useState(
@@ -34,11 +36,10 @@ function Home() {
     )
 
     return (
-        <Container>
-            <Typography variant="h3" sx={{textAlign: "center"}}>Polecane książki</Typography>
+        <ContainerSize>
             <BooksBar books={books}> </BooksBar>
             <ForumPanel />
-        </Container>
+        </ContainerSize>
     );
 }
 
