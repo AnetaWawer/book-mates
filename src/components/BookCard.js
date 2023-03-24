@@ -5,7 +5,6 @@ import {useNavigate, useRoutes} from "react-router-dom";
 const BookCard = ({ book }) => {
 
     const navigate = useNavigate();
-    console.log(book.id);
     return (
         <Card sx={{ maxWidth: 360, height: 480 }}>
             <CardActionArea onClick={() => navigate("/books/" + book.id)}>
