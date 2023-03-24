@@ -4,7 +4,8 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 
 function SeeMoreButton(){
     return (
-        <Button className="more-button align-right" href="#" color="inherit" underline="none">
+        <Button sx={{ mt: 1 }} className="more-button align-right" href="#" color="inherit" underline="none">
+            {/* dodałam sx={{ mt: 1 }} bo stylowanie w css nie pomagało nie wiem czemu */}
             Zobacz Więcej
             <KeyboardDoubleArrowRightIcon sx={{ fontSize: 20, textAlign:'right' }} />
         </Button>

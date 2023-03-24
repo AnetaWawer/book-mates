@@ -1,26 +1,18 @@
 import React, {useState} from 'react';
 import {Grid} from "@mui/material";
 import BookCard from "./BookCard";
-import {ContainerStyles} from "./Container.styles";
-import SectionHeader from "./SectionHeader";
 
-
-
-const BooksBar = ( {books} ) => {
+const BooksBar = ( {books, header} ) => {
     return (
-        <ContainerStyles>
-            <SectionHeader header={"Polecane książki"}></SectionHeader>
-            <Grid sx={{my: 2}} container spacing={2}>
+            <Grid container direction={'row'} spacing={4}>
                 {books.map((book) => (
-                    <Grid item xs={12} sm={6} xl={3} >
+                    <Grid item xs={12} sm={6} xl={3} key={book.id}>
                         <BookCard
-                            key={book.id}
                             book={book}>
                         </BookCard>
                     </Grid>
                 ))}
             </Grid>
-        </ContainerStyles>
     );
 };
 

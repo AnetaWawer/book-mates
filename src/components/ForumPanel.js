@@ -15,10 +15,10 @@ const Img = styled('img')({
 });
 
 
-const ForumPanel =() =>{
+const ForumPanel =( {header} ) =>{
     return (
         <ContainerStyles maxWidth="lg" >
-            <SectionHeader header={"Forum"}></SectionHeader>
+            <SectionHeader header={header} />
                 <Grid container columnSpacing={{ xs: 4, sm: 8, md: 12 }}>
                     <Grid item md={1}>
                         <ButtonBase sx={{ width: 96, height: 128 }}>

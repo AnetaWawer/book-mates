@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import BookHeader from '../components/BookHeader';
 import BookDescription from '../components/BookDescription';
 import axios from 'axios';
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 
 
 const Book = () => {
     const [book, setBook] = useState({});
     const location = useLocation();
-
-    const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
+    let { bookId } = useParams();
+    console.log(bookId);
+    // const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
 
 
     useEffect(() => {

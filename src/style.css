@@ -257,6 +257,10 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 .check-next-button {
     color: #111;
 }
+/* code below doesn't work */
+/*.more-button {*/
+/*    margin-top: 10px;*/
+/*}*/
 
 .more-button a {
     text-decoration: none;

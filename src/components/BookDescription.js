@@ -6,10 +6,10 @@ import Paper from '@mui/material/Paper'
 const BookDescription = ({ description }) => {
     return (
         <Paper>
-            <p className="book-description">
+            <div className="book-description">
                 <h2>Opis</h2>
                 {description}
-            </p>
+            </div>
         </ Paper>
     );
 };

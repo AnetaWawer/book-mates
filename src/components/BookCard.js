@@ -1,11 +1,11 @@
 import React from 'react';
-import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
 import {useNavigate, useRoutes} from "react-router-dom";
 
 const BookCard = ({ book }) => {
 
     const navigate = useNavigate();
-
+    console.log(book.id);
     return (
         <Card sx={{ maxWidth: 360, height: 480 }}>
             <CardActionArea onClick={() => navigate("/books/" + book.id)}>
@@ -20,12 +20,16 @@ const BookCard = ({ book }) => {
                     }}
                 />
                 <CardContent >
-                    <Typography gutterBottom variant="h5" component="div" sx={{textAlign: "center"}}>
-                        { book.title }
-                    </Typography>
-                    <Typography variant="h6" color="black" component="div" sx={{textAlign: "center"}}>
-                        { book.author }
-                    </Typography>
+                    <Box>
+                        <Typography gutterBottom variant="h5" sx={{textAlign: "center"}}>
+                            { book.title }
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography variant="h6" color="black" sx={{textAlign: "center"}}>
+                            { book.author }
+                        </Typography>
+                    </Box>
                 </CardContent>
             </CardActionArea>
         </Card>
