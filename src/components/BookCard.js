@@ -7,19 +7,23 @@ const BookCard = ({ book }) => {
     const navigate = useNavigate();
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 360, height: 480 }}>
             <CardActionArea onClick={() => navigate("/books/" + book.id)}>
                 <CardMedia
                     component="img"
-                    // height="140"
                     image= { book.pictureUrl }
                     alt={ book.title }
+                    sx={{
+                        p: 1,
+                        height: 346,
+                        width: 400
+                    }}
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                <CardContent >
+                    <Typography gutterBottom variant="h5" component="div" sx={{textAlign: "center"}}>
                         { book.title }
                     </Typography>
-                    <Typography variant="h6" color="black" component="div">
+                    <Typography variant="h6" color="black" component="div" sx={{textAlign: "center"}}>
                         { book.author }
                     </Typography>
                 </CardContent>
