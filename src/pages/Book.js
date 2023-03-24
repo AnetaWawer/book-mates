@@ -21,6 +21,7 @@ const Book = () => {
             .catch(error => console.log(error));
     }, [bookId]);
 
+
     return (
         <div>
             <div>
