@@ -6,16 +6,17 @@ const BookCard = ({ book }) => {
 
     const navigate = useNavigate();
     return (
-        <Card sx={{ maxWidth: 360, height: 480 }}>
+        <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
             <CardActionArea onClick={() => navigate("/books/" + book.id)}>
                 <CardMedia
                     component="img"
                     image= { book.pictureUrl }
                     alt={ book.title }
                     sx={{
-                        p: 1,
-                        height: 346,
-                        width: 400
+                        p: 4,
+                        height: 340,
+                        width: 400,
+                        backgroundColor:'#eeede7',
                     }}
                 />
                 <CardContent >
