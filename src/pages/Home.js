@@ -10,6 +10,7 @@ function Home() {
     const [events, setEvents] = useState([]);
     const eventsHeader = "Polecane wydarzenia";
     const forumHeader = "Forum";
+    const [topics, setTopics] = useState([]);
 
     useEffect(() => {
         if (!books.length) {
@@ -33,11 +34,22 @@ function Home() {
         }
     }, [events]);
 
+    useEffect(() => {
+        if (!topics.length) {
+            axios.get('http://localhost:8080/api/topics?amount=4')
+                .then(response => {
+                        setTopics(response.data);
+                    }
+                )
+                .catch(error => console.log(error));
+        }
+    }, [topics]);
+
     return (
         <ContainerSize>
             <CardsPanel elements={books} header={booksHeader}/>
             <CardsPanel elements={events} header={eventsHeader}/>
-            <ForumPanel header={forumHeader} />
+            <ForumPanel topics={topics} header={forumHeader} />
         </ContainerSize>
     );
 }
