@@ -25,7 +25,7 @@ function Home() {
 
     useEffect(() => {
         if (!events.length) {
-            axios.get('http://localhost:8080/api/events?amount=4')
+            axios.get('http://localhost:8080/api/events/top_4')
                 .then(response => {
                     setEvents(response.data);
                     }
@@ -36,7 +36,7 @@ function Home() {
 
     useEffect(() => {
         if (!topics.length) {
-            axios.get('http://localhost:8080/api/topics?amount=4')
+            axios.get('http://localhost:8080/api/topics/top_4')
                 .then(response => {
                         setTopics(response.data);
                     }
