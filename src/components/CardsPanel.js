@@ -1,17 +1,17 @@
 import React from 'react';
 import SectionHeader from "./SectionHeader";
-import BooksBar from "./BooksBar";
+import CardsBar from "./CardsBar";
 import SeeMoreButton from "./SeeMoreButton";
 import {ContainerStyles} from "./Container.styles";
 
-const BooksPanel = ({ books, header }) => {
+const CardsPanel = ({ elements, header }) => {
     return (
         <ContainerStyles>
             <SectionHeader header={header} />
-            <BooksBar books = {books} />
+            <CardsBar elements = {elements} />
             <SeeMoreButton />
         </ContainerStyles>
     );
 };
 
-export default BooksPanel;
+export default CardsPanel;

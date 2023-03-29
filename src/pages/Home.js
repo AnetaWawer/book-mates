@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import ForumPanel from "../components/ForumPanel";
 import axios from "axios";
-import {ContainerSize, ContainerStyles} from "../components/Container.styles";
-import BooksPanel from "../components/BooksPanel";
-import EventsPanel from "../components/EventsPanel";
+import {ContainerSize} from "../components/Container.styles";
+import CardsPanel from "../components/CardsPanel";
 
 function Home() {
     const [books, setBooks] = useState([]);
@@ -36,8 +35,8 @@ function Home() {
 
     return (
         <ContainerSize>
-            <BooksPanel books={books} header={booksHeader}/>
-            <EventsPanel events={events} header={eventsHeader}/>
+            <CardsPanel elements={books} header={booksHeader}/>
+            <CardsPanel elements={events} header={eventsHeader}/>
             <ForumPanel header={forumHeader} />
         </ContainerSize>
     );
