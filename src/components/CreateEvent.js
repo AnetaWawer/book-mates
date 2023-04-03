@@ -33,8 +33,8 @@ const CreateEvent = () => {
             title:data.get('title'),
             eventDate:selectedDateTime,
             description: data.get('description'),
-            maxParticipants: data.get('max-participants'),
-            url: data.get('event-url'),
+            maxParticipants: data.get('maxParticipants'),
+            url: data.get('url'),
         })
             .then(response => {
                 handleClose();
@@ -77,20 +77,10 @@ const CreateEvent = () => {
                             required
                             fullWidth
                             type="number"
-                            id="max-participants"
+                            id="maxParticipants"
                             label="Ilość uczestników"
-                            name="max-participants"
+                            name="maxParticipants"
                         />
-                        {/*<TextField*/}
-                        {/*    margin="normal"*/}
-                        {/*    required*/}
-                        {/*    fullWidth*/}
-                        {/*    id="event-url"*/}
-                        {/*    label="Link do wydarzenia"*/}
-                        {/*    name="event-url"*/}
-                        {/*    autoComplete="event-url"*/}
-                        {/*    autoFocus*/}
-                        {/*/>*/}
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DateTimePicker
                                 label='Data i godzina rozpoczęcia wydarzenia'
