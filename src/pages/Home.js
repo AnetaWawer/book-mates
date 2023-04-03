@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import ForumPanel from "../components/ForumPanel";
-import {Container, Typography} from "@mui/material";
-import BooksBar from "../components/BooksBar";
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import SectionHeader from "../components/SectionHeader";
-import {ContainerSize, ContainerStyles} from "../components/Container.styles";
-import BooksPanel from "../components/BooksPanel";
-import SeeMoreButton from "../components/SeeMoreButton";
+import {ContainerSize} from "../components/Container.styles";
+import CardsPanel from "../components/CardsPanel";
 
 function Home() {
     const [books, setBooks] = useState([]);
     const booksHeader = "Polecane książki";
+    const [events, setEvents] = useState([]);
+    const eventsHeader = "Polecane wydarzenia";
     const forumHeader = "Forum";
+    const [topics, setTopics] = useState([]);
 
     useEffect(() => {
         if (!books.length) {
@@ -25,10 +23,33 @@ function Home() {
         }
     }, [books]);
 
+    useEffect(() => {
+        if (!events.length) {
+            axios.get('http://localhost:8080/api/events/top_4')
+                .then(response => {
+                    setEvents(response.data);
+                    }
+                )
+                .catch(error => console.log(error));
+        }
+    }, [events]);
+
+    useEffect(() => {
+        if (!topics.length) {
+            axios.get('http://localhost:8080/api/topics/top_4')
+                .then(response => {
+                        setTopics(response.data);
+                    }
+                )
+                .catch(error => console.log(error));
+        }
+    }, [topics]);
+
     return (
         <ContainerSize>
-            <BooksPanel books={books} header={booksHeader}/>
-            <ForumPanel header={forumHeader} />
+            <CardsPanel elements={books} header={booksHeader}/>
+            <CardsPanel elements={events} header={eventsHeader}/>
+            <ForumPanel topics={topics} header={forumHeader} />
         </ContainerSize>
     );
 }
