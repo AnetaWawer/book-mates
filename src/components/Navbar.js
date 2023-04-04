@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import "../style.css"
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -87,7 +87,7 @@ function Navbar() {
                             <StyledButton >Książki</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column">
-                            <StyledButton>Wydarzenia</StyledButton>
+                            <StyledButton onClick={ () => navigate("/events")}>Wydarzenia</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
                             <StyledButton>Kontakt</StyledButton>
