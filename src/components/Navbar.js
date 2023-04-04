@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import {BrowserRouter, Route, Link, useNavigate} from "react-router-dom";
 import "../style.css"
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -66,6 +66,8 @@ const Img = styled('img')({
 });
 
 function Navbar() {
+    const navigate = useNavigate();
+
     return (
         <NavbarContainer >
             <Toolbar>
@@ -76,8 +78,10 @@ function Navbar() {
                         </Button>
                     </Grid>
                     <Grid  item xs={10} md={9} lg={10} sm container>
-                        <Grid item xs container direction="column" >
-                            <StyledButton ><PersonOutlineOutlinedIcon sx={{ fontSize: 18}} />Konto</StyledButton>
+                        <Grid item xs container direction="column">
+                            <StyledButton  onClick={ () => navigate("/account")} >
+                                <PersonOutlineOutlinedIcon sx={{ fontSize: 18}} />Konto
+                            </StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
                             <StyledButton >Książki</StyledButton>
