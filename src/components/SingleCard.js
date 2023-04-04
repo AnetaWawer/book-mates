@@ -11,7 +11,7 @@ const SingleCard = ({ element }) => {
             <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
                 <CardMedia
                     component="img"
-                    image= { element.book ? element.url: element.pictureUrl }
+                    image= { element.book ? element.book.pictureUrl: element.pictureUrl }
                     alt={ element.title }
                     sx={{
                         p: 4,
