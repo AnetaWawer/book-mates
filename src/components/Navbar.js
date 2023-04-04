@@ -74,7 +74,7 @@ function Navbar() {
                 <Grid container spacing={2}>
                     <Grid item xs={5} md={3} lg={2} >
                         <Button sx={{marginTop:'-6%'}} >
-                            <Img alt="book-cover" src={logo} />
+                            <Img alt="book-cover" src={logo} onClick={ () => navigate("/")}/>
                         </Button>
                     </Grid>
                     <Grid  item xs={10} md={9} lg={10} sm container>
