@@ -7,27 +7,24 @@ import CreateEvent from "../components/CreateEvent";
 
 
 const Book = () => {
-    const [book, setBook] = useState({});
-    const location = useLocation();
-    let { bookId } = useParams();
-    console.log(bookId);
-    // const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
-
+    const [search, setSearch] = useState("");
+    const [bookData, setData] = useState([]);
+    console.log("Starting rendering book page");
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/books/' + bookId)
-            .then(response => {
-                setBook(response.data);
-                }
-            )
-            .catch(error => console.log(error));
-    }, [bookId]);
+        console.log("Trying to call GAPI");
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=strange&maxResults=20')
+            .then(res => setData(res.data.items))
+            .catch(err => console.log("Error: " + err));
+    }, []);
+    console.log(bookData)
+
 
     return (
         <div>
             <div>
-                <BookHeader book={book} />
-                <BookDescription description={book.description} />
+                <BookHeader book={bookData && bookData[0]} />
+                <BookDescription description={bookData && bookData[0]} />
                 <CreateEvent />
             </div>
         </div>

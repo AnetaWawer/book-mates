@@ -3,12 +3,12 @@ import Paper from '@mui/material/Paper'
 
 
 
-const BookDescription = ({ description }) => {
+const BookDescription = ( {description} ) => {
     return (
         <Paper>
             <div className="book-description">
                 <h2>Opis</h2>
-                {description}
+                {description && description.volumeInfo.description}
             </div>
         </ Paper>
     );

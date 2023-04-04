@@ -16,9 +16,10 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="books" element={<Books />} />
-            <Route path="books" >
-              <Route path=":bookId" element={<Book />} />
-            </Route>
+            {/*<Route path="books" >*/}
+            {/*  <Route path=":bookId" element={<Book />} />*/}
+            {/*</Route>*/}
+            <Route path="book" element={<Book />} />
               <Route path="contact" element={<Contact />} />
               <Route path="account" element={<Account />} />
             <Route path="*" element={<NoPage />} />
