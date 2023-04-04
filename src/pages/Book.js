@@ -3,6 +3,8 @@ import BookHeader from '../components/BookHeader';
 import BookDescription from '../components/BookDescription';
 import axios from 'axios';
 import {useLocation, useParams} from "react-router-dom";
+import CreateEvent from "../components/CreateEvent";
+import CardsPanel from "../components/CardsPanel";
 
 
 const Book = () => {
@@ -22,12 +24,12 @@ const Book = () => {
             .catch(error => console.log(error));
     }, [bookId]);
 
-
     return (
         <div>
             <div>
                 <BookHeader book={book} />
                 <BookDescription description={book.description} />
+                <CreateEvent />
             </div>
         </div>
     );
