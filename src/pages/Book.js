@@ -4,6 +4,7 @@ import BookDescription from '../components/BookDescription';
 import axios from 'axios';
 import {useLocation, useParams} from "react-router-dom";
 import CreateEvent from "../components/CreateEvent";
+import CardsPanel from "../components/CardsPanel";
 
 
 const Book = () => {
