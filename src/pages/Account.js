@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 function Account() {
     const navigate = useNavigate();
 
+    const userId = 1;
     const [books, setBooks] = useState([]);
     const booksHeader = "Polecane książki";
     const [events, setEvents] = useState([]);
@@ -17,7 +18,7 @@ function Account() {
 
     useEffect(() => {
         if (!books.length) {
-            axios.get('http://localhost:8080/api/books?amount=4')
+            axios.get(`http://localhost:8080/api/users/1/books`)
                 .then(response => {
                         setBooks(response.data);
                     }
@@ -50,7 +51,26 @@ function Account() {
 
     return (
         <ContainerSize>
-            <CardsPanel elements={books} header={booksHeader}/>
+            <CardsPanel
+                elements={books.filter(book => book.shelf==="FAVORITE")}
+                header={booksHeader}
+            />
+            <CardsPanel
+                elements={books.filter(book => book.shelf==="READ")}
+                header={booksHeader}
+            />
+            <CardsPanel
+                elements={books.filter(book => book.shelf==="TO_READ")}
+                header={booksHeader}
+            />
+            <CardsPanel
+                elements={books.filter(book => book.shelf==="GIFT")}
+                header={booksHeader}
+            />
+            <CardsPanel
+            elements={books.filter(book => book.shelf==="SAVED")}
+            header={booksHeader}
+        />
             {/*<CardsPanel elements={events} header={eventsHeader}/>*/}
             {/*<ForumPanel topics={topics} header={forumHeader} />*/}
         </ContainerSize>
