@@ -50,7 +50,7 @@ const Events = () =>{
                 count={eventsCount}
                 rowsPerPage={page.rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                labelRowsPerPage='Ilość książek na stronie'
+                labelRowsPerPage='Ilość wydarzeń na stronie'
             />
         </ContainerSize>
     );
