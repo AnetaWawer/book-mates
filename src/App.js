@@ -8,6 +8,7 @@ import NoPage from "./pages/NoPage";
 import Event from "./pages/Event";
 import Profile from "./pages/Account";
 import Account from "./pages/Account";
+import Events from "./pages/Events";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
             <Route path="books" >
               <Route path=":bookId" element={<Book />} />
             </Route>
-              <Route path="contact" element={<Contact />} />
+            <Route path="events" element={<Events />} />
+            <Route path="contact" element={<Contact />} />
               <Route path="account" element={<Account />} />
             <Route path="*" element={<NoPage />} />
             <Route path="event" element={<Event />} />
