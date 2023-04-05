@@ -24,6 +24,7 @@ const Shelf = ({ books, header, numberOfCardsOnPage }) => {
                                 books={books}
                                 numberOfCardsOnPage={numberOfCardsOnPage}
                                 startIndex={i}
+                                key={i}
                             />
                         )
                     )
