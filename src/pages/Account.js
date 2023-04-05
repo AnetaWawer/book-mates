@@ -22,10 +22,10 @@ function Account() {
     const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(4);
     return (
         <Container
-            xs={setNumberOfCardsOnPage(1)}
-            sm={setNumberOfCardsOnPage(2)}
-            md={setNumberOfCardsOnPage(3)}
-            lg={setNumberOfCardsOnPage(4)}
+            // xs={setNumberOfCardsOnPage(1)}
+            // sm={setNumberOfCardsOnPage(2)}
+            // md={setNumberOfCardsOnPage(3)}
+            // lg={setNumberOfCardsOnPage(4)}
         >
             <Shelf
                 books={books.filter(book => book.shelf==="FAVORITE")}
@@ -60,28 +60,3 @@ function Account() {
 }
 
 export default Account;
-
-// <ContainerSize>
-//     <Shelf
-//         elements={books.filter(book => book.shelf==="FAVORITE")}
-//         header={"Ulubione"}
-//     />
-//     <Shelf
-//         elements={books.filter(book => book.shelf==="READ")}
-//         header={"Przecztane"}
-//     />
-//     <Shelf
-//         elements={books.filter(book => book.shelf==="TO_READ")}
-//         header={"Chcę przeczytać"}
-//     />
-//     <Shelf
-//         elements={books.filter(book => book.shelf==="GIFT")}
-//         header={"Na prezent"}
-//     />
-//     <Shelf
-//         elements={books.filter(book => book.shelf==="SAVED")}
-//         header={"Zapisane"}
-//     />
-//     <CardsPanel elements={events} header={eventsHeader}/>
-//     <ForumPanel topics={topics} header={forumHeader} />
-// </ContainerSize>
