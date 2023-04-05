@@ -1,21 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import ForumPanel from "../components/ForumPanel";
 import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
-import CardsPanel from "../components/CardsPanel";
-import {useNavigate} from "react-router-dom";
 import Shelf from "../components/Shelf";
+import {Container} from "@mui/material";
 
 function Account() {
-    const navigate = useNavigate();
 
-    const userId = 1;
     const [books, setBooks] = useState([]);
-    const booksHeader = "Książki użykownika";
-    const [events, setEvents] = useState([]);
-    const eventsHeader = "Polecane wydarzenia";
-    const forumHeader = "Forum";
-    const [topics, setTopics] = useState([]);
 
     useEffect(() => {
         if (!books.length) {
@@ -28,57 +19,69 @@ function Account() {
         }
     }, [books]);
 
-    // useEffect(() => {
-    //     if (!events.length) {
-    //         axios.get('http://localhost:8080/api/events/top_4')
-    //             .then(response => {
-    //                     setEvents(response.data);
-    //                 }
-    //             )
-    //             .catch(error => console.log(error));
-    //     }
-    // }, [events]);
-    //
-    // useEffect(() => {
-    //     if (!topics.length) {
-    //         axios.get('http://localhost:8080/api/topics/top_4')
-    //             .then(response => {
-    //                     setTopics(response.data);
-    //                 }
-    //             )
-    //             .catch(error => console.log(error));
-    //     }
-    // }, [topics]);
-
+    const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(4);
     return (
-        <ContainerSize>
+        <Container
+            xs={setNumberOfCardsOnPage(1)}
+            sm={setNumberOfCardsOnPage(2)}
+            md={setNumberOfCardsOnPage(3)}
+            lg={setNumberOfCardsOnPage(4)}
+        >
             <Shelf
-                books = { books.filter(book => book.shelf==="READ")}
-            />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="FAVORITE")}
+                books={books.filter(book => book.shelf==="FAVORITE")}
                 header={"Ulubione"}
+                numberOfCardsOnPage={numberOfCardsOnPage}
             />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="READ")}
+            <Shelf
+                books={books.filter(book => book.shelf==="READ")}
                 header={"Przecztane"}
+                numberOfCardsOnPage={numberOfCardsOnPage}
+
             />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="TO_READ")}
+            <Shelf
+                books={books.filter(book => book.shelf==="TO_READ")}
                 header={"Chcę przeczytać"}
+                numberOfCardsOnPage={numberOfCardsOnPage}
+
             />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="GIFT")}
+            <Shelf
+                books={books.filter(book => book.shelf==="GIFT")}
                 header={"Na prezent"}
+                numberOfCardsOnPage={numberOfCardsOnPage}
+
             />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="SAVED")}
+            <Shelf
+                books={books.filter(book => book.shelf==="SAVED")}
                 header={"Zapisane"}
+                numberOfCardsOnPage={numberOfCardsOnPage}
             />
-            {/*<CardsPanel elements={events} header={eventsHeader}/>*/}
-            {/*<ForumPanel topics={topics} header={forumHeader} />*/}
-        </ContainerSize>
+        </Container>
     );
 }
 
 export default Account;
+
+// <ContainerSize>
+//     <Shelf
+//         elements={books.filter(book => book.shelf==="FAVORITE")}
+//         header={"Ulubione"}
+//     />
+//     <Shelf
+//         elements={books.filter(book => book.shelf==="READ")}
+//         header={"Przecztane"}
+//     />
+//     <Shelf
+//         elements={books.filter(book => book.shelf==="TO_READ")}
+//         header={"Chcę przeczytać"}
+//     />
+//     <Shelf
+//         elements={books.filter(book => book.shelf==="GIFT")}
+//         header={"Na prezent"}
+//     />
+//     <Shelf
+//         elements={books.filter(book => book.shelf==="SAVED")}
+//         header={"Zapisane"}
+//     />
+//     <CardsPanel elements={events} header={eventsHeader}/>
+//     <ForumPanel topics={topics} header={forumHeader} />
+// </ContainerSize>
