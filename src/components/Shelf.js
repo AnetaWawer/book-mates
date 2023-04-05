@@ -1,10 +1,15 @@
 import React from 'react';
+import books from "../pages/Books";
+import SingleCard from "./SingleCard";
+import Carousel from "react-material-ui-carousel";
 
-const Shelf = () => {
+const Shelf = ({books}) => {
     return (
-        <div>
-            
-        </div>
+        <Carousel>
+            {
+                books.map( (book, i) => <SingleCard key={i} element={book} />)
+            }
+        </Carousel>
     );
 };
 
