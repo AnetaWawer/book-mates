@@ -10,7 +10,7 @@ function Account() {
 
     const userId = 1;
     const [books, setBooks] = useState([]);
-    const booksHeader = "Polecane książki";
+    const booksHeader = "Książki użykownika";
     const [events, setEvents] = useState([]);
     const eventsHeader = "Polecane wydarzenia";
     const forumHeader = "Forum";
@@ -53,7 +53,7 @@ function Account() {
         <ContainerSize>
             <CardsPanel
                 elements={books.filter(book => book.shelf==="FAVORITE")}
-                header={booksHeader}
+                header={"Favorite"}
             />
             <CardsPanel
                 elements={books.filter(book => book.shelf==="READ")}
@@ -68,8 +68,8 @@ function Account() {
                 header={booksHeader}
             />
             <CardsPanel
-            elements={books.filter(book => book.shelf==="SAVED")}
-            header={booksHeader}
+                elements={books.filter(book => book.shelf==="SAVED")}
+                header={booksHeader}
         />
             {/*<CardsPanel elements={events} header={eventsHeader}/>*/}
             {/*<ForumPanel topics={topics} header={forumHeader} />*/}
