@@ -4,6 +4,7 @@ import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
 import CardsPanel from "../components/CardsPanel";
 import {useNavigate} from "react-router-dom";
+import Shelf from "../components/Shelf";
 
 function Account() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Account() {
 
     useEffect(() => {
         if (!books.length) {
-            axios.get(`http://localhost:8080/api/users/1/books`)
+            axios.get(`http://localhost:8080/api/users/3/books`)
                 .then(response => {
                         setBooks(response.data);
                     }
@@ -51,26 +52,29 @@ function Account() {
 
     return (
         <ContainerSize>
+            <Shelf
+                books = { books.filter(book => book.shelf==="READ")}
+            />
             <CardsPanel
                 elements={books.filter(book => book.shelf==="FAVORITE")}
-                header={"Favorite"}
+                header={"Ulubione"}
             />
             <CardsPanel
                 elements={books.filter(book => book.shelf==="READ")}
-                header={booksHeader}
+                header={"Przecztane"}
             />
             <CardsPanel
                 elements={books.filter(book => book.shelf==="TO_READ")}
-                header={booksHeader}
+                header={"Chcę przeczytać"}
             />
             <CardsPanel
                 elements={books.filter(book => book.shelf==="GIFT")}
-                header={booksHeader}
+                header={"Na prezent"}
             />
             <CardsPanel
                 elements={books.filter(book => book.shelf==="SAVED")}
-                header={booksHeader}
-        />
+                header={"Zapisane"}
+            />
             {/*<CardsPanel elements={events} header={eventsHeader}/>*/}
             {/*<ForumPanel topics={topics} header={forumHeader} />*/}
         </ContainerSize>
