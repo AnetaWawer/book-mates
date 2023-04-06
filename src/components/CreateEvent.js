@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Box, Typography, Modal, Button, TextField } from "@mui/material";
+import {Box, Typography, Modal, Button, TextField,MenuItem, Select, InputLabel,FormControl } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
@@ -23,8 +23,24 @@ const CreateEvent = () => {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(dayjs);
     let { bookId } = useParams();
+    const [eventsType, setEventsType] = useState('');
+    const [openSelect, setOpenSelect] = useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
+
+    const handleChange = (event) => {
+        setEventsType(event.target.value);
+    };
+
+    const handleCloseSelect = () => {
+        setOpenSelect(false);
+    };
+
+    const handleOpenSelect = () => {
+        setOpenSelect(true);
+    };
+
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -35,6 +51,7 @@ const CreateEvent = () => {
             description: data.get('description'),
             maxParticipants: data.get('maxParticipants'),
             url: data.get('url'),
+            eventType:eventsType,
         })
             .then(response => {
                 handleClose();
@@ -55,6 +72,24 @@ const CreateEvent = () => {
                         Utwórz nowe wydarzenie
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <FormControl sx={{ width: 500}}>
+                            <InputLabel id="label">Typ wydarzenia</InputLabel>
+                            <Select
+                                labelId="open-select-label"
+                                id="eventType"
+                                open={openSelect}
+                                onClose={handleCloseSelect}
+                                onOpen={handleOpenSelect}
+                                value={eventsType}
+                                label="Typ wydarzenia"
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={0} >Wspólne czytanie</MenuItem>
+                                <MenuItem value={1}>Spotkanie autorskie</MenuItem>
+                                <MenuItem value={2}>Wydarzenie cykliczne</MenuItem>
+                                <MenuItem value={3}>Dyskusje</MenuItem>
+                            </Select>
+                        </FormControl>
                         <TextField
                             margin="normal"
                             required

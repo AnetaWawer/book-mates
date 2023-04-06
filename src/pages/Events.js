@@ -3,6 +3,16 @@ import axios from "axios";
 import CardsPanel from "../components/CardsPanel";
 import {ContainerSize} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
+import {Filter} from "@mui/icons-material";
+import DateSelector from "../components/DateSelector";
+import FirstComponent from "../components/DateSelector";
+import DateRangePickerValue from "../components/DateSelector";
+import BasicSelect from "../components/BasicSelect";
+import Grid from "@mui/material/Grid";
+import SectionHeader from "../components/SectionHeader";
+import CardsBar from "../components/CardsBar";
+import SeeMoreButton from "../components/SeeMoreButton";
+import BasicDatePicker from "../components/BasicDatePicker";
 
 const Events = () =>{
     const eventsHeader = "Wszystkie wydarzenia";
@@ -42,7 +52,22 @@ const Events = () =>{
 
     return (
         <ContainerSize>
-            <CardsPanel elements={events} header={eventsHeader}/>
+            <SectionHeader header={eventsHeader} />
+            <Grid container spacing={10} sx={{  marginBottom: 2 }} >
+                <Grid item sm={4}>
+                    <BasicDatePicker label="od" />
+                </Grid>
+                <Grid item sm={4}>
+                    <BasicDatePicker label="do"/>
+                </Grid>
+                <Grid item sm={4} >
+                    <BasicSelect />
+                </Grid>
+            </Grid>
+
+
+            <CardsBar elements = {events} />
+            <SeeMoreButton />
             <TablePagination
                 component="div"
                 rowsPerPageOptions={[12,24, 48, 96]}
@@ -53,6 +78,7 @@ const Events = () =>{
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
             />
+
         </ContainerSize>
     );
 };
