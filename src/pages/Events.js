@@ -44,6 +44,7 @@ const Events = () =>{
                 .then(response => {
                     setEvents(response.data.content);
                     setEventsCount(response.data.totalElements);
+                    console.log("pobralem wydarzenia");
                     }
                 )
                 .catch(error => console.log(error));
