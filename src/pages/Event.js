@@ -9,6 +9,7 @@ import BookDescription from "../components/BookDescription";
 
 
 function Event() {
+
     const [book, setBook] = useState({});
     const [event, setEvent] = useState({});
     let { bookId } = useParams();
@@ -32,6 +33,16 @@ function Event() {
                 .catch(error => console.log(error));
 
     }, [eventId]);
+
+    // useEffect(() => {
+    //     axios.get('http://localhost:8080/api/events/' + eventId )
+    //         .then(response => {
+    //                 setEvent(response.data);
+    //             }
+    //         )
+    //         .catch(error => console.log(error));
+    //
+    // }, [eventId]);
 
 
     return (
