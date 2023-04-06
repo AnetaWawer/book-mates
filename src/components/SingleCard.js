@@ -7,7 +7,7 @@ import moment from "moment";
 const SingleCard = ({ element }) => {
     const navigate = useNavigate();
     return (
-        <CardActionArea onClick={element.book ? () => navigate("/events/" + element.id) : () =>navigate("/books/" + element.id)}>
+        <CardActionArea onClick={element.book ? () => navigate("/books/" + element.book.id + "/events/" + element.id) : () =>navigate("/books/" + element.id)}>
             <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
                 <CardMedia
                     component="img"
