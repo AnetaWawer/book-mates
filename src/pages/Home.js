@@ -39,7 +39,6 @@ function Home() {
             axios.get('http://localhost:8080/api/topics/top_4')
                 .then(response => {
                         setTopics(response.data);
-                        console.log(response.data)
                     }
                 )
                 .catch(error => console.log(error));

@@ -1,38 +1,38 @@
 import React from 'react';
 import Carousel from "react-material-ui-carousel";
-import {Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import CardsBar from "./CardsBar";
 
 const Shelf = ({ header, booksSequences }) => {
 
     if ( !booksSequences.length && header!=="Pozostałe"){
         return (
-            <>
-                <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
+            <Box sx={{mt: 5}}>
+                <Typography variant="h4" >{header}</Typography>
                 <Typography>Ta półka jest na razie pusta</Typography>
-            </>
+            </Box>
         )
     }
     if ( booksSequences.length === 1) {
         return (
-            <>
-                <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
+            <Box sx={{mt: 5}}>
+                <Typography variant="h4">{header}</Typography>
                 <CardsBar elements={booksSequences[0]} />
-            </>
+            </Box>
         )
     }
     if ( booksSequences.length > 1) {
         return (
-            <>
-                <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
-                <Carousel>
+            <Box sx={{mt: 5}}>
+                <Typography variant="h4">{header}</Typography>
+                <Carousel animation="fade" duration={900} interval={3000}>
                     {
                         booksSequences.map((booksSequence, i) => (
                             <CardsBar elements={booksSequence} key={i}/>
                         ))
                     }
                 </Carousel>
-            </>
+            </Box>
         );
     }
 };
