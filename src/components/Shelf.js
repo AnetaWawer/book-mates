@@ -5,7 +5,7 @@ import CardsBar from "./CardsBar";
 
 const Shelf = ({ header, booksSequences }) => {
 
-    if ( !booksSequences.length && header!="Pozostałe"){
+    if ( !booksSequences.length && header!=="Pozostałe"){
         return (
             <>
                 <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
