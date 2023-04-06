@@ -3,6 +3,7 @@ import axios from "axios";
 import CardsPanel from "../components/CardsPanel";
 import {ContainerSize} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
+import SearchBar from "../components/SearchBar";
 
 const Events = () =>{
     const eventsHeader = "Wszystkie wydarzenia";
@@ -40,10 +41,39 @@ const Events = () =>{
                 .catch(error => console.log(error));
     }, [page]);
 
+
+    const [searchedEvents, setSearchedEvents] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        if (!searchedEvents.length) {
+            axios.get('http://localhost:8080/api/events/all')
+                .then(response => {
+                    setSearchedEvents(response.data)
+                })
+                .catch(error => console.log(error))
+        }
+    })
+
+    const handleSearch = (value) => {
+        setSearchQuery(value);
+        const searchedEvent = searchedEvents.filter(function (element)
+            {
+                return element.book.author.toLowerCase().includes(searchQuery) || element.book.title.toLowerCase().includes(searchQuery);
+            }
+        );
+        setEvents(searchedEvent);
+    };
+
+
     return (
         <ContainerSize>
-            <CardsPanel elements={events} header={eventsHeader}/>
-            <TablePagination
+            <SearchBar
+                placeholder="Szukaj wydarzeń według autora lub tytułu książki.."
+                onChange={(event) => handleSearch(event.target.value)}
+            />
+            <CardsPanel elements={events} header={eventsHeader} />
+            {searchQuery.length >0 ?null : <TablePagination
                 component="div"
                 rowsPerPageOptions={[12,24, 48, 96]}
                 onPageChange={handlePageChange}
@@ -52,7 +82,9 @@ const Events = () =>{
                 rowsPerPage={page.rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
-            />
+            />}
+
+
         </ContainerSize>
     );
 };
