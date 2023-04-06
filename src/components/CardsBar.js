@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid} from "@mui/material";
 import SingleCard from "./SingleCard";
 
-const CardsBar = ({elements} ) => {
+const CardsBar = ( {elements} ) => {
     console.log("jestem w cards bar");
     return (
             <Grid container direction={'row'} spacing={4}>
