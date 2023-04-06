@@ -3,8 +3,9 @@ import SingleCard from "./SingleCard";
 import Carousel from "react-material-ui-carousel";
 import {Typography} from "@mui/material";
 import BooksPanel from "./BooksPanel";
+import CardsBar from "./CardsBar";
 
-const Shelf = ({ books, header, numberOfCardsOnPage }) => {
+const Shelf = ({ books, header, numberOfCardsOnPage, booksSequences }) => {
     if ( !books.length ){
         return (
             <>
@@ -13,22 +14,30 @@ const Shelf = ({ books, header, numberOfCardsOnPage }) => {
             </>
         )
     }
+    console.log("books in shelf ");
+    console.log(books);
+    console.log("books sequences in shelf " + booksSequences)
     return (
         <>
             <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
             <Carousel>
                 {
+                    booksSequences.map((booksSequence, i) => (
+                        <CardsBar element={booksSequence} key={i} />
+                    ))
                     // books.map( book => <SingleCard key={book.id} element={book} />)
-                    books.map( (book, i) => (
-                            <BooksPanel
-                                books={books}
-                                numberOfCardsOnPage={numberOfCardsOnPage}
-                                startIndex={i}
-                                key={i}
-                            />
-                        )
-                    )
-                        // <SingleCard key={i} element={book} />)
+
+                    // books.map( (book, i) => (
+                    //         <BooksPanel
+                    //             books={books}
+                    //             numberOfCardsOnPage={numberOfCardsOnPage}
+                    //             startIndex={i}
+                    //             key={i}
+                    //         />
+                    //     )
+                    // )
+
+                    // <SingleCard key={i} element={book} />)
                 }
             </Carousel>
         </>
