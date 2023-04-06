@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {ContainerSize} from "../components/Container.styles";
 import Shelf from "../components/Shelf";
 import {Container} from "@mui/material";
 
