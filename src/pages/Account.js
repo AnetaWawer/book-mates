@@ -7,31 +7,50 @@ import {Container} from "@mui/material";
 function Account() {
 
     const [books, setBooks] = useState([]);
-    const [bookSequences, setBookSequences] = useState([])
+    const [readBooksSequences, setReadBooksSequences] = useState([])
 
     useEffect(() => {
         if (!books.length) {
             axios.get(`http://localhost:8080/api/users/3/books`)
                 .then(response => {
-                        console.log(response);
-                        setBooks(response.data);
-                    }
-                )
-                .then(() => {
-                        console.log("książki = ");
-                        console.log(books);
-                    }
-                )
-                .then(() => {
-                        for (let i = 0; i < books.length; i + 4) {
-                            setBookSequences([...bookSequences, [books[i], books[i + 1], books[i + 2], books[i + 3]]])
-                        }
-                        console.log(bookSequences);
-                    }
-                )
+                    console.log("response ");
+                    console.log(response);
+                    setBooks(response.data);
+                    console.log("books ");
+                    console.log(books);
+                    const readBooks = response.data.filter(book => book.shelf === "READ");
+                    console.log("read books ");
+                    console.log( readBooks);
+                    setReadBooksSequences([[readBooks[0], readBooks[1], readBooks[2], readBooks[3]], [readBooks[4], readBooks[5], readBooks[6], readBooks[7]]])
+                    console.log("read books sequences");
+                    console.log(readBooksSequences);
+                })
                 .catch(error => console.log(error));
         }
-    }, [books]);
+    }, []);
+
+    // useEffect(() => {
+    //     //if (books.length) {
+    //         console.log("books ");
+    //         console.log(books);
+    //         const readBooks = books.filter(book => book.shelf === "READ");
+    //         console.log("read books ");
+    //         console.log( readBooks);
+    //         setReadBooksSequences([[readBooks[0], readBooks[1], readBooks[2], readBooks[3]], [readBooks[4], readBooks[5], readBooks[6], readBooks[7]]])
+    //         console.log("read books sequences");
+    //         console.log(readBooksSequences);
+    //
+            // const readBooks = books.filter(book => book.shelf === "READ");
+            // console.log("read books ");
+            // console.log( readBooks);
+            // for (let i = 0; i < readBooks.length; i=i + 4) {
+            //     setReadBooksSequences([...readBooksSequences, readBooks[i], readBooks[i + 1], readBooks[i + 2], readBooks[i + 3]]);
+            // }
+            // console.log("read books sequences");
+            // console.log(readBooksSequences);
+        //}
+
+    // }, [books, readBooksSequences])
 
     const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(4);
     return (
@@ -42,14 +61,14 @@ function Account() {
             // lg={setNumberOfCardsOnPage(4)}
         >
             <Shelf
-                booksSequences={bookSequences}
+                // booksSequences={bookSequences}
                 books={books.filter(book => book.shelf==="FAVORITE")}
                 header={"Ulubione"}
                 numberOfCardsOnPage={numberOfCardsOnPage}
             />
             <Shelf
-                booksSequences={bookSequences}
-                books={books.filter(book => book.shelf==="READ")}
+                booksSequences={readBooksSequences}
+                //books={books.filter(book => book.shelf==="READ")}
                 header={"Przeczytane"}
                 numberOfCardsOnPage={numberOfCardsOnPage}
 
@@ -76,3 +95,9 @@ function Account() {
 }
 
 export default Account;
+
+// const divideSequence = (seq) => {
+//     for (let i = 0; i < readBooks; i + 4) {
+//         setReadBooksSequences([...readBooksSequences, readBooks[i], readBooks[i + 1], readBooks[i + 2], readBooks[i + 3]]);
+//     }
+// }

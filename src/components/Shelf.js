@@ -6,7 +6,8 @@ import BooksPanel from "./BooksPanel";
 import CardsBar from "./CardsBar";
 
 const Shelf = ({ books, header, numberOfCardsOnPage, booksSequences }) => {
-    if ( !books.length ){
+    //if ( !books.length ){
+    if ( !booksSequences){
         return (
             <>
                 <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
@@ -14,16 +15,17 @@ const Shelf = ({ books, header, numberOfCardsOnPage, booksSequences }) => {
             </>
         )
     }
-    console.log("books in shelf ");
-    console.log(books);
-    console.log("books sequences in shelf " + booksSequences)
+    // console.log("books in shelf ");
+    // console.log(books);
+    console.log("books sequences in shelf " );
+    console.log( booksSequences );
     return (
         <>
             <Typography variant="h4" sx={{mt: 3}}>{header}</Typography>
             <Carousel>
                 {
                     booksSequences.map((booksSequence, i) => (
-                        <CardsBar element={booksSequence} key={i} />
+                        <CardsBar elements={booksSequence} key={i} />
                     ))
                     // books.map( book => <SingleCard key={book.id} element={book} />)
 
