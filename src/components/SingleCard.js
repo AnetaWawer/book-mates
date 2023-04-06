@@ -22,12 +22,12 @@ const SingleCard = ({ element }) => {
                 />
                 <CardContent >
                     <Box>
-                        <Typography gutterBottom variant="h5" sx={{textAlign: "center"}}>
+                        <Typography gutterBottom variant="h6" sx={{textAlign: "center"}}>
                             { element.title}
                         </Typography>
                     </Box>
                     <Box>
-                        <Typography variant="h6" color="black" sx={{textAlign: "center"}}>
+                        <Typography  color="black" sx={{textAlign: "center"}}>
                             { element.book ? moment(element.eventDate).format('DD.MM.YYYY  HH:mm') : element.author }
                         </Typography>
                     </Box>
