@@ -7,7 +7,7 @@ import moment from "moment";
 const SingleCard = ({ element }) => {
     const navigate = useNavigate();
     return (
-        <CardActionArea onClick={element.book ? () => navigate("/events/" + element.id) : () =>navigate("/books/" + element.id)}>
+        <CardActionArea onClick={element.book ? () => navigate("/books/" + element.book.id + "/events/" + element.id) : () =>navigate("/books/" + element.id)}>
             <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
                 <CardMedia
                     component="img"
@@ -22,12 +22,12 @@ const SingleCard = ({ element }) => {
                 />
                 <CardContent >
                     <Box>
-                        <Typography gutterBottom variant="h6" sx={{textAlign: "center"}}>
+                        <Typography gutterBottom variant="h5" sx={{textAlign: "center"}}>
                             { element.title}
                         </Typography>
                     </Box>
                     <Box>
-                        <Typography  color="black" sx={{textAlign: "center"}}>
+                        <Typography variant="h6" color="black" sx={{textAlign: "center"}}>
                             { element.book ? moment(element.eventDate).format('DD.MM.YYYY  HH:mm') : element.author }
                         </Typography>
                     </Box>
