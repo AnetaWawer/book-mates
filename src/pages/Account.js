@@ -1,80 +1,64 @@
 import React, {useEffect, useState} from 'react';
-import ForumPanel from "../components/ForumPanel";
 import axios from "axios";
-import {ContainerSize} from "../components/Container.styles";
-import CardsPanel from "../components/CardsPanel";
-import {useNavigate} from "react-router-dom";
+import Shelf from "../components/Shelf";
+import {Container} from "@mui/material";
 
-function Account() {
-    const navigate = useNavigate();
+export default function Account() {
 
-    const userId = 1;
     const [books, setBooks] = useState([]);
-    const booksHeader = "Książki użykownika";
-    const [events, setEvents] = useState([]);
-    const eventsHeader = "Polecane wydarzenia";
-    const forumHeader = "Forum";
-    const [topics, setTopics] = useState([]);
+    const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(()=> computeNumber());
+    const [favoriteBooksSequences, setFavoriteBooksSequences] = useState([])
+    const [readBooksSequences, setReadBooksSequences] = useState([])
+    const [toReadBooksSequences, setToReadBooksSequences] = useState([])
+    const [giftBooksSequences, setGiftBooksSequences] = useState([])
+    const [savedBooksSequences, setSavedBooksSequences] = useState([])
 
     useEffect(() => {
         if (!books.length) {
-            axios.get(`http://localhost:8080/api/users/1/books`)
+            axios.get(`http://localhost:8080/api/users/3/books`)
                 .then(response => {
-                        setBooks(response.data);
-                    }
-                )
+                    setBooks(response.data);
+                    const favoriteBooks = response.data.filter(book => book.shelf === "FAVORITE");
+                    setFavoriteBooksSequences(divideSequence(favoriteBooks, numberOfCardsOnPage));
+                    const readBooks = response.data.filter(book => book.shelf === "READ");
+                    setReadBooksSequences(divideSequence(readBooks, numberOfCardsOnPage));
+                    const toReadBooks = response.data.filter(book => book.shelf === "TO_READ");
+                    setToReadBooksSequences(divideSequence(toReadBooks, numberOfCardsOnPage));
+                    const giftBooks = response.data.filter(book => book.shelf === "GIFT");
+                    setGiftBooksSequences(divideSequence(giftBooks, numberOfCardsOnPage));
+                    const savedBooks = response.data.filter(book => book.shelf === "SAVED");
+                    setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
+                })
                 .catch(error => console.log(error));
         }
-    }, [books]);
-
-    // useEffect(() => {
-    //     if (!events.length) {
-    //         axios.get('http://localhost:8080/api/events/top_4')
-    //             .then(response => {
-    //                     setEvents(response.data);
-    //                 }
-    //             )
-    //             .catch(error => console.log(error));
-    //     }
-    // }, [events]);
-    //
-    // useEffect(() => {
-    //     if (!topics.length) {
-    //         axios.get('http://localhost:8080/api/topics/top_4')
-    //             .then(response => {
-    //                     setTopics(response.data);
-    //                 }
-    //             )
-    //             .catch(error => console.log(error));
-    //     }
-    // }, [topics]);
+    }, []);
 
     return (
-        <ContainerSize>
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="FAVORITE")}
-                header={"Favorite"}
-            />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="READ")}
-                header={booksHeader}
-            />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="TO_READ")}
-                header={booksHeader}
-            />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="GIFT")}
-                header={booksHeader}
-            />
-            <CardsPanel
-                elements={books.filter(book => book.shelf==="SAVED")}
-                header={booksHeader}
-        />
-            {/*<CardsPanel elements={events} header={eventsHeader}/>*/}
-            {/*<ForumPanel topics={topics} header={forumHeader} />*/}
-        </ContainerSize>
+        <Container>
+            <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
+            <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
+            <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
+            <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
+            <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
+        </Container>
     );
 }
+function computeNumber() {
+    // eslint-disable-next-line
+    const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width >= 1200) return 4;
+    if (width >= 600 && width < 1200) return 2;
+    else return 1;
+}
 
-export default Account;
+const divideSequence = (sequence, maxSubsequenceLength) => {
+    let sequenceOfSubsequences = []
+    for (let i = 0; i < sequence.length; i = i + maxSubsequenceLength) {
+        let subsequence = [];
+        for (let j = i ; j < i + maxSubsequenceLength && j < sequence.length; j++) {
+            subsequence.push(sequence[j])
+        }
+        sequenceOfSubsequences.push(subsequence);//[sequence[i], sequence[i + 1], sequence[i + 2], sequence[i + 3]]);
+    }
+    return sequenceOfSubsequences;
+}

@@ -9,7 +9,6 @@ import CardsPanel from "../components/CardsPanel";
 
 const Book = () => {
     const [book, setBook] = useState({});
-    const location = useLocation();
     let { bookId } = useParams();
     console.log(bookId);
     // const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
