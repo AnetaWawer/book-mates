@@ -78,8 +78,9 @@ const Events = () =>{
                 onChange={(event) => handleSearch(event.target.value)}
             />
             <CardsPanel elements={events} header={eventsHeader} />
-            {searchQuery.length >0 ?null : <TablePagination
+            {/*{searchQuery.length >0 ?null : <TablePagination*/}
             <SectionHeader header={eventsHeader} />
+
             <Grid container spacing={10} sx={{  marginBottom: 2 }} >
                 <Grid item sm={4}>
                     <BasicDatePicker label="od" />
@@ -93,7 +94,7 @@ const Events = () =>{
             </Grid>
 
 
-            <CardsBar elements = {events} />
+            <CardsBar elements = {events} >
                 {searchQuery.length >0 ?null : <TablePagination
                 component="div"
                 rowsPerPageOptions={[12,24, 48, 96]}
@@ -103,8 +104,8 @@ const Events = () =>{
                 rowsPerPage={page.rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
-            />}
-
+                />}
+            </CardsBar>
         </ContainerSize>
     );
 };
