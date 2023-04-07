@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Shelf from "../components/Shelf";
-import {Container} from "@mui/material";
+import {Box, Container} from "@mui/material";
+import SectionHeader from "../components/SectionHeader";
+import {ContainerSize} from "../components/Container.styles";
 
 export default function Account() {
 
@@ -34,13 +36,22 @@ export default function Account() {
     }, []);
 
     return (
-        <Container>
-            <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
-            <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
-            <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
-            <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
-            <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
-        </Container>
+        <ContainerSize >
+            <Box sx={{mt: 8}}>
+                <SectionHeader header={"Moje książki"} />
+                <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
+                <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
+                <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
+                <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
+                <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
+            </Box>
+            <Box sx={{mt: 8}}>
+                <SectionHeader header={"Moje wydarzenia"} />
+            </Box>
+            <Box sx={{mt: 8}}>
+                <SectionHeader header={"Moje wątki"} />
+            </Box>
+        </ContainerSize>
     );
 }
 function computeNumber() {
@@ -58,7 +69,7 @@ const divideSequence = (sequence, maxSubsequenceLength) => {
         for (let j = i ; j < i + maxSubsequenceLength && j < sequence.length; j++) {
             subsequence.push(sequence[j])
         }
-        sequenceOfSubsequences.push(subsequence);//[sequence[i], sequence[i + 1], sequence[i + 2], sequence[i + 3]]);
+        sequenceOfSubsequences.push(subsequence);
     }
     return sequenceOfSubsequences;
 }
