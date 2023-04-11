@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Shelf from "../components/Shelf";
-import {Box, Container} from "@mui/material";
+import {Box} from "@mui/material";
 import SectionHeader from "../components/SectionHeader";
 import {ContainerSize} from "../components/Container.styles";
+import SubscribedEvents from "../components/SubscribedEvents";
+import UserTopics from "../components/UserTopics";
 
 export default function Account() {
 
     const [books, setBooks] = useState([]);
+    const [events, setEvents] = useState([]);
+    const [topics, setTopics] = useState([]);
     const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(()=> computeNumber());
     const [favoriteBooksSequences, setFavoriteBooksSequences] = useState([])
     const [readBooksSequences, setReadBooksSequences] = useState([])
     const [toReadBooksSequences, setToReadBooksSequences] = useState([])
     const [giftBooksSequences, setGiftBooksSequences] = useState([])
     const [savedBooksSequences, setSavedBooksSequences] = useState([])
+
 
     useEffect(() => {
         if (!books.length) {
@@ -35,6 +40,28 @@ export default function Account() {
         }
     }, []);
 
+    useEffect(() => {
+        if (!events.length) {
+            axios.get(`http://localhost:8080/api/users/3/events`)
+                .then(response => {
+                    setEvents(response.data);
+                    const userEvents = response.data;
+                    setEvents(divideSequence(userEvents, numberOfCardsOnPage));
+                })
+                .catch(error => console.log(error));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!topics.length) {
+            axios.get(`http://localhost:8080/api/users/3/topics`)
+                .then(response => {
+                    setTopics(response.data);
+                })
+                .catch(error => console.log(error));
+        }
+    }, []);
+
     return (
         <ContainerSize >
             <Box sx={{mt: 8}}>
@@ -47,13 +74,16 @@ export default function Account() {
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
+                <SubscribedEvents events={events}/>
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wątki"} />
+                <UserTopics topics={topics}/>
             </Box>
         </ContainerSize>
     );
 }
+
 function computeNumber() {
     // eslint-disable-next-line
     const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
