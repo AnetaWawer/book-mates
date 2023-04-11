@@ -14,7 +14,7 @@ export default function BasicSelect() {
 
     return (
         <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
+            <FormControl fullWidth> //atom czy molecule?
                 <InputLabel id="demo-simple-select-label">Typy wydarzeń</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"

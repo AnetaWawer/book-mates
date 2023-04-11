@@ -4,8 +4,8 @@ import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
 
 import {useParams} from "react-router-dom";
-import EventHeader from "../components/EventHeader";
-import BookDescription from "../components/BookDescription";
+import EventDetails from "../components/EventDetails";
+import Description from "../components/atoms/Description";
 
 
 function Event() {
@@ -47,8 +47,8 @@ function Event() {
 
     return (
         <ContainerSize>
-            <EventHeader book={book} event={event}/>
-            <BookDescription description={event.description}/>
+            <EventDetails book={book} event={event}/>
+            <Description description={event.description}/>
         </ContainerSize>
     );
 }

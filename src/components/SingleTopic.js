@@ -11,7 +11,7 @@ const Img = styled('img')({
     maxWidth: '100%',
     maxHeight: '100%',
 });
-const SingleTopic = ({ topic }) => {
+const SingleTopic = ({ topic }) => { //organism?
     const navigate = useNavigate();
     return (
         <Grid container columnSpacing={{ xs: 2, sm: 4, md: 12 }}  sx={{ height: { xs:'600px',sm:'250px' ,md:'230px' ,lg:'180px' } , display:'wrap'} }>

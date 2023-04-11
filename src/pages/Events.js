@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import CardsPanel from "../components/CardsPanel";
+import CardsPanel from "../components/templates/CardsPanel";
 import {ContainerSize} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/atoms/SearchBar";
 import BasicSelect from "../components/BasicSelect";
 import Grid from "@mui/material/Grid";
-import SectionHeader from "../components/SectionHeader";
-import CardsBar from "../components/CardsBar";
-import SeeMoreButton from "../components/SeeMoreButton";
-import BasicDatePicker from "../components/BasicDatePicker";
+import SectionHeader from "../components/atoms/SectionHeader";
+import CardsBar from "../components/organisms/CardsBar";
+import SeeMoreButton from "../components/atoms/SeeMoreButton";
+import BasicDatePicker from "../components/atoms/BasicDatePicker";
 
 const Events = () =>{
     const eventsHeader = "Wszystkie wydarzenia";

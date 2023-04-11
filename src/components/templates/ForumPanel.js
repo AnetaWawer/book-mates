@@ -1,8 +1,8 @@
 import React from "react";
-import SectionHeader from "./SectionHeader";
-import SeeMoreButton from "./SeeMoreButton";
-import {ContainerStyles} from "./Container.styles";
-import TopicsList from "./TopicsList";
+import SectionHeader from "../atoms/SectionHeader";
+import SeeMoreButton from "../atoms/SeeMoreButton";
+import {ContainerStyles} from "../Container.styles";
+import TopicsList from "../TopicsList";
 
 
 const ForumPanel =( {topics, header} ) =>{

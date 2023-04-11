@@ -1,13 +1,15 @@
 import './styles.css';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import {Button, CardMedia} from "@mui/material";
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import {CardMedia} from "@mui/material";
 import React from "react";
-import moment from "moment/moment";
 
 
-const EventHeader = ({ book, event }) => {
+const BookDetails = ({ book }) => {
     return (
+        <Paper>
             <Grid container spacing={2}>
                 <Grid item sm={4}>
                     {/*<img className="img" src={ book.pictureUrl } alt={`Cover for ${book.title}`} />*/}
@@ -23,18 +25,15 @@ const EventHeader = ({ book, event }) => {
                     />
                 </Grid>
                 <Grid item sm={8}>
-                    <h1 className="book-title">{event.title}</h1>
-                    <p>{moment(event.eventDate).format('DD.MM.YYYY  HH:mm')} </p>
-                    <p>{event.organizer}</p>
-                    <p>zapisanych uczesntików: 0/{event.maxParticipants}</p>
-
-                    <Grid container justifyContent="flex-end">
-                        <Button sx={{color:'inherit'}} onClick="console.log('click')">Dołącz do wydarzenia</Button>
-                    </Grid>
+                    <h1 className="book-title">{book.title}</h1>
+                    <p className="book-author">{book.author}</p>
+                    <p className="number-pages">Liczba stron: {book.pages}</p>
+                    <Typography component="legend">Ocena</Typography>
+                    <Rating name="customized-10" value={Math.round(book.rating)} max={10} />
                 </Grid>
             </Grid>
-
+        </Paper>
     );
 }
 
-export default EventHeader;
+export default BookDetails;

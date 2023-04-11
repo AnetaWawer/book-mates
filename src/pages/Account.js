@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Shelf from "../components/Shelf";
 import {Box, Container} from "@mui/material";
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../components/atoms/SectionHeader";
 import {ContainerSize} from "../components/Container.styles";
 
 export default function Account() {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import BookHeader from '../components/BookHeader';
-import BookDescription from '../components/BookDescription';
+import BookDetails from '../components/BookDetails';
+import Description from '../components/atoms/Description';
 import axios from 'axios';
 import {useLocation, useParams} from "react-router-dom";
 import CreateEvent from "../components/CreateEvent";
-import CardsPanel from "../components/CardsPanel";
+import CardsPanel from "../components/templates/CardsPanel";
 import {Box} from "@mui/material";
 
 
@@ -26,8 +26,8 @@ const Book = () => {
 
     return (
         <Box sx={{mt: 5}}>
-            <BookHeader book={book} />
-            <BookDescription description={book.description} />
+            <BookDetails book={book} />
+            <Description description={book.description} />
             <CreateEvent />
         </Box>
     );

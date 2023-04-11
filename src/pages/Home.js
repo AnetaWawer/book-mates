@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import ForumPanel from "../components/ForumPanel";
+import ForumPanel from "../components/templates/ForumPanel";
 import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
-import CardsPanel from "../components/CardsPanel";
+import CardsPanel from "../components/templates/CardsPanel";
 
 function Home() {
     const [books, setBooks] = useState([]);
