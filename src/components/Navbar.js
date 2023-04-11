@@ -1,5 +1,5 @@
-import React from "react";
-import {BrowserRouter, Route, Link, useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style.css"
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -67,6 +67,11 @@ const Img = styled('img')({
 
 function Navbar() {
     const navigate = useNavigate();
+    const [searchValue, setSearchValue] = useState('');
+
+    const handleSearch = () => {
+        navigate(`/books?q=${searchValue}`);
+    }
 
     return (
         <NavbarContainer >
@@ -74,7 +79,7 @@ function Navbar() {
                 <Grid container spacing={2}>
                     <Grid item xs={5} md={3} lg={2} >
                         <Button sx={{marginTop:'-6%'}} >
-                            <Img alt="book-cover" src={logo} />
+                            <Img alt="book-cover" src={logo} onClick={ () => navigate("/")}/>
                         </Button>
                     </Grid>
                     <Grid  item xs={10} md={9} lg={10} sm container>
@@ -87,7 +92,7 @@ function Navbar() {
                             <StyledButton >Książki</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column">
-                            <StyledButton>Wydarzenia</StyledButton>
+                            <StyledButton onClick={ () => navigate("/events")}>Wydarzenia</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
                             <StyledButton>Kontakt</StyledButton>
@@ -100,6 +105,9 @@ function Navbar() {
                                 <StyledInputBase
                                     placeholder="Szukaj…"
                                     inputProps={{ 'aria-label': 'search' }}
+                                    value={searchValue}
+                                    onChange={(e) => {setSearchValue(e.target.value)}}
+                                    onKeyDown={handleSearch}
                                 />
                             </Search>
                         </Grid>

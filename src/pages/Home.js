@@ -21,7 +21,7 @@ function Home() {
                 )
                 .catch(error => console.log(error));
         }
-    }, [books]);
+    }, []);
 
     useEffect(() => {
         if (!events.length) {
@@ -32,7 +32,7 @@ function Home() {
                 )
                 .catch(error => console.log(error));
         }
-    }, [events]);
+    }, []);
 
     useEffect(() => {
         if (!topics.length) {
@@ -43,7 +43,7 @@ function Home() {
                 )
                 .catch(error => console.log(error));
         }
-    }, [topics]);
+    }, []);
 
     return (
         <ContainerSize>
