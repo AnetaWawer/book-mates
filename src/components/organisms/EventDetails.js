@@ -28,7 +28,7 @@ const EventDetails = ({ book, event }) => {
                     <p>zapisanych uczesntików: 0/{event.maxParticipants}</p>
 
                     <Grid container justifyContent="flex-end">
-                        <Button sx={{color:'inherit'}} onClick="console.log('click')">Dołącz do wydarzenia</Button>
+                        <Button sx={{color:'inherit'}} >Dołącz do wydarzenia</Button>
                     </Grid>
                 </Grid>
             </Grid>

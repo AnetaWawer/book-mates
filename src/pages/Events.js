@@ -63,22 +63,27 @@ const Events = () =>{
         setSearchQuery(value);
         const searchedEvent = searchedEvents.filter(function (element)
             {
-                return element.book.author.toLowerCase().includes(searchQuery) || element.book.title.toLowerCase().includes(searchQuery);
+                return element.bookAuthor.toLowerCase().includes(searchQuery) || element.bookTitle.toLowerCase().includes(searchQuery);
             }
         );
-        setEvents(searchedEvent);
+        if (value.length!==0){
+            setEvents(searchedEvent);
+        } else {
+            handlePageChange(1,0)
+        }
     };
 
 
     return (
         <ContainerSize>
+            <SectionHeader header={eventsHeader} />
             <SearchBar
                 placeholder="Szukaj wydarzeń według autora lub tytułu książki.."
                 onChange={(event) => handleSearch(event.target.value)}
             />
-            <CardsPanel elements={events} header={eventsHeader} />
+            {/*<CardsPanel elements={events} header={eventsHeader} />*/}
             {/*{searchQuery.length >0 ?null : <TablePagination*/}
-            <SectionHeader header={eventsHeader} />
+
 
             <Grid container spacing={10} sx={{  marginBottom: 2 }} >
                 <Grid item sm={4}>
@@ -93,8 +98,8 @@ const Events = () =>{
             </Grid>
 
 
-            <CardsBar elements = {events} >
-                {searchQuery.length >0 ?null : <TablePagination
+            <CardsBar elements = {events}  />
+                {searchQuery.length >0 ? null : <TablePagination
                 component="div"
                 rowsPerPageOptions={[12,24, 48, 96]}
                 onPageChange={handlePageChange}
@@ -104,7 +109,8 @@ const Events = () =>{
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
                 />}
-            </CardsBar>
+
+
         </ContainerSize>
     );
 };

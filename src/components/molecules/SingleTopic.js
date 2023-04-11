@@ -3,6 +3,7 @@ import {ButtonBase, Grid, Typography} from "@mui/material";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import {styled} from "@mui/material/styles";
 import {useNavigate} from "react-router-dom";
+import moment from "moment";
 
 
 const Img = styled('img')({
@@ -37,7 +38,7 @@ const SingleTopic = ({ topic }) => {
                             {topic.title}
                         </Typography>
                         <Typography variant="subtitle2">
-                            <span> {topic.creationTime} przez  {topic.authorName} </span>
+                            <span> {moment(topic.creationTime).format('DD.MM.YYYY  HH:mm')} przez  {topic.authorName} </span>
                         </Typography>
                     </Grid>
                 </Grid>
@@ -45,7 +46,7 @@ const SingleTopic = ({ topic }) => {
                     <Typography variant="subtitle1" paragraph>
                         <ChatOutlinedIcon sx={{ fontSize: 20, textAlign:'right' }} />
                         {/*make dynamic*/}
-                        <span> 90 Odpowiedzi</span>
+                        <span> {topic.numberOfComments===1 ? topic.numberOfComments+' Odpowiedź' : topic.numberOfComments+ ' Odpowiedzi'} </span>
                     </Typography>
                 </Grid>
             </Grid>
