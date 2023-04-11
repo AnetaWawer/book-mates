@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useLocation, useParams} from "react-router-dom";
 import CreateEvent from "../components/CreateEvent";
 import CardsPanel from "../components/CardsPanel";
+import {Box} from "@mui/material";
 
 
 const Book = () => {
@@ -22,14 +23,12 @@ const Book = () => {
 
 
     return (
-        <div>
-            <div>
+            <Box sx={{mt: 5}}>
                 <BookHeader book={bookData && bookData[0]} />
                 <BookDescription description={bookData && bookData[0]} />
                 <CreateEvent />
-            </div>
-        </div>
-    );
+            </Box>
+            );
 };
 
 export default Book;

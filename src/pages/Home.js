@@ -3,6 +3,10 @@ import ForumPanel from "../components/ForumPanel";
 import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
 import CardsPanel from "../components/CardsPanel";
+import Carousel from "react-material-ui-carousel";
+import SingleTopic from "../components/SingleTopic";
+import SectionHeader from "../components/SectionHeader";
+import SeeMoreButton from "../components/SeeMoreButton";
 
 function Home() {
     const [books, setBooks] = useState([]);
@@ -49,7 +53,17 @@ function Home() {
         <ContainerSize>
             <CardsPanel elements={books} header={booksHeader}/>
             <CardsPanel elements={events} header={eventsHeader}/>
-            <ForumPanel topics={topics} header={forumHeader} />
+            {/*<ForumPanel topics={topics} header={forumHeader} />*/}
+            <SectionHeader header={forumHeader} />
+            <Carousel animation="fade" duration={900} interval={3000}>
+                {
+                    topics.map((topic, i) => (
+                        <SingleTopic topic={topic} key={i}/>
+                    ))
+                }
+            </Carousel>
+            <SeeMoreButton />
+
         </ContainerSize>
     );
 }

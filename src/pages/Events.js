@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import CardsPanel from "../components/CardsPanel";
 import {ContainerSize} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
+import SearchBar from "../components/SearchBar";
+import BasicSelect from "../components/BasicSelect";
+import Grid from "@mui/material/Grid";
+import SectionHeader from "../components/SectionHeader";
+import CardsBar from "../components/CardsBar";
+import BasicDatePicker from "../components/BasicDatePicker";
 
 const Events = () =>{
     const eventsHeader = "Wszystkie wydarzenia";
@@ -39,10 +44,62 @@ const Events = () =>{
                 .catch(error => console.log(error));
     }, [page]);
 
+
+    const [searchedEvents, setSearchedEvents] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        if (!searchedEvents.length) {
+            axios.get('http://localhost:8080/api/events/all')
+                .then(response => {
+                    setSearchedEvents(response.data)
+                })
+                .catch(error => console.log(error))
+        }
+    })
+
+    const handleSearch = (value) => {
+        setSearchQuery(value);
+        const searchedEvent = searchedEvents.filter(function (element)
+            {
+                return element.bookAuthor.toLowerCase().includes(searchQuery) || element.bookTitle.toLowerCase().includes(searchQuery);
+            }
+        );
+        if (value.length!==0){
+            setEvents(searchedEvent);
+        } else {
+            handlePageChange(1,0)
+        }
+    };
+
+
+
     return (
         <ContainerSize>
-            <CardsPanel elements={events} header={eventsHeader}/>
-            <TablePagination
+            <SectionHeader header={eventsHeader} />
+            <SearchBar
+                placeholder="Szukaj wydarzeń według autora lub tytułu książki.."
+                onChange={(event) => handleSearch(event.target.value)}
+            />
+            {/*<CardsPanel elements={events} header={eventsHeader} />*/}
+            {/*{searchQuery.length >0 ?null : <TablePagination*/}
+
+
+            <Grid container spacing={10} sx={{  marginBottom: 2 }} >
+                <Grid item sm={4}>
+                    <BasicDatePicker label="od" />
+                </Grid>
+                <Grid item sm={4}>
+                    <BasicDatePicker label="do"/>
+                </Grid>
+                <Grid item sm={4} >
+                    <BasicSelect />
+                </Grid>
+            </Grid>
+
+
+            <CardsBar elements = {events}  />
+                {searchQuery.length >0 ? null : <TablePagination
                 component="div"
                 rowsPerPageOptions={[12,24, 48, 96]}
                 onPageChange={handlePageChange}
@@ -51,7 +108,8 @@ const Events = () =>{
                 rowsPerPage={page.rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
-            />
+                />}
+
         </ContainerSize>
     );
 };

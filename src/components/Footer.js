@@ -57,7 +57,7 @@ function Footer() {
                         <Item variant="subtitle1"  onClick={() =>navigate("/login/")}>
                             Logowanie
                         </Item>
-                        <Item variant="subtitle1" onClick={() =>navigate("/user/")}>
+                        <Item variant="subtitle1" onClick={() =>navigate("/account/")}>
                             Mój profil
                         </Item>
                     </Grid>
