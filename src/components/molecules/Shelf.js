@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from "react-material-ui-carousel";
 import {Box, Typography} from "@mui/material";
-import CardsBar from "./organisms/CardsBar";
+import CardsBar from "../organisms/CardsBar";
 
 const Shelf = ({ header, booksSequences }) => {
 

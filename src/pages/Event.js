@@ -4,7 +4,7 @@ import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
 
 import {useParams} from "react-router-dom";
-import EventDetails from "../components/EventDetails";
+import EventDetails from "../components/organisms/EventDetails";
 import Description from "../components/atoms/Description";
 
 

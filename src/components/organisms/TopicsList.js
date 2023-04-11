@@ -1,5 +1,5 @@
 import {Grid} from "@mui/material";
-import SingleTopic from "./SingleTopic";
+import SingleTopic from "../molecules/SingleTopic";
 import React from "react";
 
 const TopicsList = ({topics} ) => {

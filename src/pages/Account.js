@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import Shelf from "../components/Shelf";
+import Shelf from "../components/molecules/Shelf";
 import {Box, Container} from "@mui/material";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {ContainerSize} from "../components/Container.styles";

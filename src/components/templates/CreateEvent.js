@@ -6,6 +6,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import BasicSelect from "../molecules/BasicSelect";
 
 
 const style = {
@@ -39,6 +40,24 @@ const CreateEvent = () => {
     const handleOpenSelect = () => {
         setOpenSelect(true);
     };
+    const items = [
+        {
+            name:"Wspólne czytanie",
+            value:0,
+        },
+        {
+            name:"Spotkanie autorskie",
+            value:1,
+        },
+        {
+            name:"Wydarzenie cykliczne",
+            value:2,
+        },
+        {
+            name:"Dyskusje",
+            value:3,
+        },
+    ]
 
 
 
@@ -52,6 +71,7 @@ const CreateEvent = () => {
             maxParticipants: data.get('maxParticipants'),
             url: data.get('url'),
             eventType:eventsType,
+            organizerId:2
         })
             .then(response => {
                 handleClose();
@@ -72,24 +92,37 @@ const CreateEvent = () => {
                         Utwórz nowe wydarzenie
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                        <FormControl sx={{ width: 500}}>
-                            <InputLabel id="label">Typ wydarzenia</InputLabel>
-                            <Select
-                                labelId="open-select-label"
-                                id="eventType"
-                                open={openSelect}
-                                onClose={handleCloseSelect}
-                                onOpen={handleOpenSelect}
-                                value={eventsType}
-                                label="Typ wydarzenia"
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={0} >Wspólne czytanie</MenuItem>
-                                <MenuItem value={1}>Spotkanie autorskie</MenuItem>
-                                <MenuItem value={2}>Wydarzenie cykliczne</MenuItem>
-                                <MenuItem value={3}>Dyskusje</MenuItem>
-                            </Select>
-                        </FormControl>
+                        {/*wydzielic*/}
+                        <BasicSelect
+                            labelId="open-select-label"
+                            id="eventType"
+                            value={eventsType}
+                            label="Typ wydarzenia"
+                            handleChange={handleChange}
+                            handleCloseSelect={handleCloseSelect}
+                            handleOpenSelect={handleOpenSelect}
+                            openSelect={openSelect}
+                            items={items}
+                            />
+
+                        {/*<FormControl sx={{ width: 500}}>*/}
+                        {/*    <InputLabel id="label">Typ wydarzenia</InputLabel>*/}
+                        {/*    <Select*/}
+                        {/*        labelId="open-select-label"*/}
+                        {/*        id="eventType"*/}
+                        {/*        open={openSelect}*/}
+                        {/*        onClose={handleCloseSelect}*/}
+                        {/*        onOpen={handleOpenSelect}*/}
+                        {/*        value={eventsType}*/}
+                        {/*        label="Typ wydarzenia"*/}
+                        {/*        onChange={handleChange}*/}
+                        {/*    >*/}
+                        {/*        <MenuItem value={0} >Wspólne czytanie</MenuItem>*/}
+                        {/*        <MenuItem value={1}>Spotkanie autorskie</MenuItem>*/}
+                        {/*        <MenuItem value={2}>Wydarzenie cykliczne</MenuItem>*/}
+                        {/*        <MenuItem value={3}>Dyskusje</MenuItem>*/}
+                        {/*    </Select>*/}
+                        {/*</FormControl>*/}
                         <TextField
                             margin="normal"
                             required
@@ -123,6 +156,8 @@ const CreateEvent = () => {
                                 onChange={(newValue) => setSelectedDateTime(newValue)}
                             />
                         </LocalizationProvider>
+
+                        {/*---*/}
                         <Button
                             type="submit"
                             fullWidth

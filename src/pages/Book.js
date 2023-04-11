@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import BookDetails from '../components/BookDetails';
+import BookDetails from '../components/organisms/BookDetails';
 import Description from '../components/atoms/Description';
 import axios from 'axios';
 import {useLocation, useParams} from "react-router-dom";
-import CreateEvent from "../components/CreateEvent";
+import CreateEvent from "../components/templates/CreateEvent";
 import CardsPanel from "../components/templates/CardsPanel";
 import {Box} from "@mui/material";
 

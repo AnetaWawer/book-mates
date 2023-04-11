@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonBase, Grid, Link, Typography} from "@mui/material";
+import {ButtonBase, Grid, Typography} from "@mui/material";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import {styled} from "@mui/material/styles";
 import {useNavigate} from "react-router-dom";
@@ -11,7 +11,7 @@ const Img = styled('img')({
     maxWidth: '100%',
     maxHeight: '100%',
 });
-const SingleTopic = ({ topic }) => { //organism?
+const SingleTopic = ({ topic }) => {
     const navigate = useNavigate();
     return (
         <Grid container columnSpacing={{ xs: 2, sm: 4, md: 12 }}  sx={{ height: { xs:'600px',sm:'250px' ,md:'230px' ,lg:'180px' } , display:'wrap'} }>
