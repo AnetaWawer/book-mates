@@ -4,9 +4,9 @@ import axios from "axios";
 import {ContainerSize} from "../components/Container.styles";
 import CardsPanel from "../components/templates/CardsPanel";
 import Carousel from "react-material-ui-carousel";
-import SingleTopic from "../components/SingleTopic";
-import SectionHeader from "../components/SectionHeader";
-import SeeMoreButton from "../components/SeeMoreButton";
+import SingleTopic from "../components/molecules/SingleTopic";
+import SectionHeader from "../components/atoms/SectionHeader";
+import SeeMoreButton from "../components/atoms/SeeMoreButton";
 
 function Home() {
     const [books, setBooks] = useState([]);
