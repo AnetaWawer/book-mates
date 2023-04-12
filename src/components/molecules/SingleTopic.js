@@ -45,7 +45,6 @@ const SingleTopic = ({ topic }) => {
                 <Grid item >
                     <Typography variant="subtitle1" paragraph>
                         <ChatOutlinedIcon sx={{ fontSize: 20, textAlign:'right' }} />
-                        {/*make dynamic*/}
                         <span> {topic.numberOfComments===1 ? topic.numberOfComments+' Odpowiedź' : topic.numberOfComments+ ' Odpowiedzi'} </span>
                     </Typography>
                 </Grid>
