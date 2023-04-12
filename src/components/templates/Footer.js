@@ -1,8 +1,8 @@
 import React from "react";
 import {Typography, Grid} from "@mui/material";
 import { styled } from '@mui/material/styles';
-import logo from './mainLogo.png'
-import {ContainerStyles} from "./Container.styles";
+import logo from '../../mainLogo.png'
+import {ContainerStyles} from "../Container.styles";
 import {useNavigate} from "react-router-dom";
 
 const Img = styled('img')({

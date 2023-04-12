@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import Shelf from "../components/Shelf";
 import {Box} from "@mui/material";
-import SectionHeader from "../components/SectionHeader";
+import Shelf from "../components/templates/Shelf";
+import SectionHeader from "../components/atoms/SectionHeader";
 import {ContainerSize} from "../components/Container.styles";
-import SubscribedEvents from "../components/SubscribedEvents";
-import UserTopics from "../components/UserTopics";
+import SubscribedEvents from "../components/templates/SubscribedEvents";
+import ForumPanel from "../components/templates/ForumPanel";
 
 export default function Account() {
 
@@ -18,7 +18,6 @@ export default function Account() {
     const [toReadBooksSequences, setToReadBooksSequences] = useState([])
     const [giftBooksSequences, setGiftBooksSequences] = useState([])
     const [savedBooksSequences, setSavedBooksSequences] = useState([])
-
 
     useEffect(() => {
         if (!books.length) {
@@ -76,14 +75,10 @@ export default function Account() {
                 <SectionHeader header={"Moje wydarzenia"} />
                 <SubscribedEvents events={events}/>
             </Box>
-            <Box sx={{mt: 8}}>
-                <SectionHeader header={"Moje wątki"} />
-                <UserTopics topics={topics}/>
-            </Box>
+            <ForumPanel topics={topics} header="Moje wątki" />
         </ContainerSize>
     );
 }
-
 function computeNumber() {
     // eslint-disable-next-line
     const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;

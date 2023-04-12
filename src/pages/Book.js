@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import BookHeader from '../components/BookHeader';
-import BookDescription from '../components/BookDescription';
+import BookDetails from '../components/organisms/BookDetails';
+import Description from '../components/atoms/Description';
 import axios from 'axios';
-import {useLocation, useParams} from "react-router-dom";
-import CreateEvent from "../components/CreateEvent";
-import CardsPanel from "../components/CardsPanel";
+import {useParams} from "react-router-dom";
+import NewEventModal from "../components/templates/NewEventModal";
 import {Box} from "@mui/material";
 
 
 const Book = () => {
-    const [search, setSearch] = useState("");
-    const [bookData, setData] = useState([]);
-    console.log("Starting rendering book page");
+    const [book, setBook] = useState({});
+    let { bookId } = useParams();
+    console.log(bookId);
+    // const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
+
 
     useEffect(() => {
-        console.log("Trying to call GAPI");
-        axios.get('https://www.googleapis.com/books/v1/volumes?q=strange&maxResults=20')
-            .then(res => setData(res.data.items))
-            .catch(err => console.log("Error: " + err));
-    }, []);
-    console.log(bookData)
-
+        axios.get('http://localhost:8080/api/books/' + bookId)
+            .then(response => {
+                setBook(response.data);
+                }
+            )
+            .catch(error => console.log(error));
+    }, [bookId]);
 
     return (
-            <Box sx={{mt: 5}}>
-                <BookHeader book={bookData && bookData[0]} />
-                <BookDescription description={bookData && bookData[0]} />
-                <CreateEvent />
-            </Box>
-            );
+        <Box sx={{mt: 5}}>
+            <BookDetails book={book} />
+            <Description description={book.description} />
+            <NewEventModal />
+        </Box>
+    );
 };
 
 export default Book;

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../style.css"
+import React from "react";
+import {useNavigate} from "react-router-dom";
+import "../../style.css"
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import logo from './mainLogo.png'
+import logo from '../../mainLogo.png'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import {NavbarContainer} from "./Container.styles";
+import {NavbarContainer} from "../Container.styles";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,11 +67,6 @@ const Img = styled('img')({
 
 function Navbar() {
     const navigate = useNavigate();
-    const [searchValue, setSearchValue] = useState('');
-
-    const handleSearch = () => {
-        navigate(`/books?q=${searchValue}`);
-    }
 
     return (
         <NavbarContainer >
@@ -105,9 +100,6 @@ function Navbar() {
                                 <StyledInputBase
                                     placeholder="Szukaj…"
                                     inputProps={{ 'aria-label': 'search' }}
-                                    value={searchValue}
-                                    onChange={(e) => {setSearchValue(e.target.value)}}
-                                    onKeyDown={handleSearch}
                                 />
                             </Search>
                         </Grid>

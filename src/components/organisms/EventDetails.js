@@ -1,12 +1,11 @@
-import './styles.css';
-import Paper from '@mui/material/Paper';
+import '../styles.css';
 import Grid from '@mui/material/Grid';
 import {Button, CardMedia} from "@mui/material";
 import React from "react";
 import moment from "moment/moment";
 
 
-const EventHeader = ({ book, event }) => {
+const EventDetails = ({ book, event }) => {
     return (
             <Grid container spacing={2}>
                 <Grid item sm={4}>
@@ -37,4 +36,4 @@ const EventHeader = ({ book, event }) => {
     );
 }
 
-export default EventHeader;
+export default EventDetails;

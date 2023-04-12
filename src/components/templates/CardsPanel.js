@@ -1,8 +1,8 @@
 import React from 'react';
-import SectionHeader from "./SectionHeader";
-import CardsBar from "./CardsBar";
-import SeeMoreButton from "./SeeMoreButton";
-import {ContainerStyles} from "./Container.styles";
+import SectionHeader from "../atoms/SectionHeader";
+import CardsBar from "../organisms/CardsBar";
+import SeeMoreButton from "../atoms/SeeMoreButton";
+import {ContainerStyles} from "../Container.styles";
 
 const CardsPanel = ({ elements, header }) => {
     return (

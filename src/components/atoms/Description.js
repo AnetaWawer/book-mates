@@ -1,17 +1,17 @@
-import './styles.css';
+import '../styles.css';
 import Paper from '@mui/material/Paper'
 
 
 
-const BookDescription = ( {description} ) => {
+const Description = ({ description }) => {
     return (
         <Paper>
             <div className="book-description">
                 <h2>Opis</h2>
-                {description && description.volumeInfo.description}
+                {description}
             </div>
         </ Paper>
     );
 };
 
-export default BookDescription;
+export default Description;

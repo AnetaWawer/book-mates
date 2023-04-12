@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid} from "@mui/material";
-import SingleCard from "./SingleCard";
+import SingleCard from "../molecules/SingleCard";
 
 const CardsBar = ( {elements} ) => {
     return (

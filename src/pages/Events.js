@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import CardsPanel from "../components/templates/CardsPanel";
 import {ContainerSize} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
-import SearchBar from "../components/SearchBar";
-import BasicSelect from "../components/BasicSelect";
+import SearchBar from "../components/atoms/SearchBar";
+import BasicSelect from "../components/molecules/BasicSelect";
 import Grid from "@mui/material/Grid";
-import SectionHeader from "../components/SectionHeader";
-import CardsBar from "../components/CardsBar";
-import BasicDatePicker from "../components/BasicDatePicker";
+import SectionHeader from "../components/atoms/SectionHeader";
+import CardsBar from "../components/organisms/CardsBar";
+import BasicDatePicker from "../components/atoms/BasicDatePicker";
 
 const Events = () =>{
     const eventsHeader = "Wszystkie wydarzenia";
@@ -73,7 +74,6 @@ const Events = () =>{
     };
 
 
-
     return (
         <ContainerSize>
             <SectionHeader header={eventsHeader} />
@@ -93,7 +93,7 @@ const Events = () =>{
                     <BasicDatePicker label="do"/>
                 </Grid>
                 <Grid item sm={4} >
-                    <BasicSelect />
+                    {/*<BasicSelect />*/}
                 </Grid>
             </Grid>
 
@@ -109,6 +109,7 @@ const Events = () =>{
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
                 />}
+
 
         </ContainerSize>
     );
