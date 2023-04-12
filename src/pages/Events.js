@@ -93,7 +93,7 @@ const Events = () =>{
                     <BasicDatePicker label="do"/>
                 </Grid>
                 <Grid item sm={4} >
-                    <BasicSelect />
+                    {/*<BasicSelect />*/}
                 </Grid>
             </Grid>
 
