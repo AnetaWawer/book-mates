@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Box} from "@mui/material";
-import Shelf from "../components/molecules/Shelf";
+import Shelf from "../components/templates/Shelf";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {ContainerSize} from "../components/Container.styles";
-import SubscribedEvents from "../components/molecules/SubscribedEvents";
-import UserTopics from "../components/molecules/UserTopics";
+import SubscribedEvents from "../components/templates/SubscribedEvents";
+import UserTopics from "../components/organisms/UserTopics";
 
 export default function Account() {
 

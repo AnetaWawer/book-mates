@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from "react-material-ui-carousel";
 import {Box, Typography} from "@mui/material";
-import SingleTopic from "./SingleTopic";
+import SingleTopic from "../molecules/SingleTopic";
 
 const UserTopics = ({ topics }) => {
     if (!topics.length){
