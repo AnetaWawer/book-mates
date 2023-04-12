@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import {Box, Typography, Modal, Button, TextField,MenuItem, Select, InputLabel,FormControl } from "@mui/material";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import {Box, Typography, Modal, Button } from "@mui/material";
 import dayjs from 'dayjs';
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import BasicSelect from "../molecules/BasicSelect";
+import BasicDateTimePicker from "../atoms/BasicDateTimePicker";
+import NewEventTextFields from "../molecules/NewEventTextFields";
 
 
 const style = {
@@ -20,7 +19,7 @@ const style = {
     p: 5,
 };
 
-const CreateEvent = () => {
+const NewEventModal = () => {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(dayjs);
     let { bookId } = useParams();
@@ -71,7 +70,7 @@ const CreateEvent = () => {
             maxParticipants: data.get('maxParticipants'),
             url: data.get('url'),
             eventType:eventsType,
-            organizerId:2
+
         })
             .then(response => {
                 handleClose();
@@ -92,7 +91,6 @@ const CreateEvent = () => {
                         Utwórz nowe wydarzenie
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                        {/*wydzielic*/}
                         <BasicSelect
                             labelId="open-select-label"
                             id="eventType"
@@ -104,60 +102,13 @@ const CreateEvent = () => {
                             openSelect={openSelect}
                             items={items}
                             />
+                        <NewEventTextFields />
+                        <BasicDateTimePicker
+                            label='Data i godzina rozpoczęcia wydarzenia'
+                            selectedDateTime={selectedDateTime}
+                            setSelectedDateTime={(newValue) => setSelectedDateTime(newValue)}
+                        />
 
-                        {/*<FormControl sx={{ width: 500}}>*/}
-                        {/*    <InputLabel id="label">Typ wydarzenia</InputLabel>*/}
-                        {/*    <Select*/}
-                        {/*        labelId="open-select-label"*/}
-                        {/*        id="eventType"*/}
-                        {/*        open={openSelect}*/}
-                        {/*        onClose={handleCloseSelect}*/}
-                        {/*        onOpen={handleOpenSelect}*/}
-                        {/*        value={eventsType}*/}
-                        {/*        label="Typ wydarzenia"*/}
-                        {/*        onChange={handleChange}*/}
-                        {/*    >*/}
-                        {/*        <MenuItem value={0} >Wspólne czytanie</MenuItem>*/}
-                        {/*        <MenuItem value={1}>Spotkanie autorskie</MenuItem>*/}
-                        {/*        <MenuItem value={2}>Wydarzenie cykliczne</MenuItem>*/}
-                        {/*        <MenuItem value={3}>Dyskusje</MenuItem>*/}
-                        {/*    </Select>*/}
-                        {/*</FormControl>*/}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="title"
-                            label="Nazwa"
-                            name="title"
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="description"
-                            multiline
-                            label="Opis"
-                            name="description"
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            type="number"
-                            id="maxParticipants"
-                            label="Ilość uczestników"
-                            name="maxParticipants"
-                        />
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateTimePicker
-                                label='Data i godzina rozpoczęcia wydarzenia'
-                                value={selectedDateTime}
-                                onChange={(newValue) => setSelectedDateTime(newValue)}
-                            />
-                        </LocalizationProvider>
-
-                        {/*---*/}
                         <Button
                             type="submit"
                             fullWidth
@@ -173,4 +124,4 @@ const CreateEvent = () => {
     )
 }
 
-export default CreateEvent;
+export default NewEventModal;

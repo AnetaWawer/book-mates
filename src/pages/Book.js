@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import BookDetails from '../components/organisms/BookDetails';
 import Description from '../components/atoms/Description';
 import axios from 'axios';
-import {useLocation, useParams} from "react-router-dom";
-import CreateEvent from "../components/templates/CreateEvent";
-import CardsPanel from "../components/templates/CardsPanel";
+import {useParams} from "react-router-dom";
+import NewEventModal from "../components/templates/NewEventModal";
 import {Box} from "@mui/material";
 
 
@@ -28,7 +27,7 @@ const Book = () => {
         <Box sx={{mt: 5}}>
             <BookDetails book={book} />
             <Description description={book.description} />
-            <CreateEvent />
+            <NewEventModal />
         </Box>
     );
 };

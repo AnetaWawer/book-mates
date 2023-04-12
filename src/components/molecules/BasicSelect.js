@@ -25,7 +25,6 @@ export default function BasicSelect(props) {
                             <MenuItem key={item.name} value={item.value}>{item.name}</MenuItem>
                         )
                     }
-
                 </Select>
             </FormControl>
         // </Box>

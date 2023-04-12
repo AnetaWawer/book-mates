@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Box} from "@mui/material";
-import Shelf from "../components/molecules/Shelf";
+import Shelf from "../components/templates/Shelf";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {ContainerSize} from "../components/Container.styles";
-import SubscribedEvents from "../components/molecules/SubscribedEvents";
-import UserTopics from "../components/molecules/UserTopics";
+import SubscribedEvents from "../components/templates/SubscribedEvents";
+import ForumPanel from "../components/templates/ForumPanel";
 
 export default function Account() {
 
@@ -75,10 +75,7 @@ export default function Account() {
                 <SectionHeader header={"Moje wydarzenia"} />
                 <SubscribedEvents events={events}/>
             </Box>
-            <Box sx={{mt: 8}}>
-                <SectionHeader header={"Moje wątki"} />
-                <UserTopics topics={topics}/>
-            </Box>
+            <ForumPanel topics={topics} header="Moje wątki" />
         </ContainerSize>
     );
 }
