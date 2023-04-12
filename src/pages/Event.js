@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
-
 import axios from "axios";
-import {ContainerSize} from "../components/Container.styles";
-
+import {MainContainer} from "../components/Container.styles";
 import {useParams} from "react-router-dom";
 import EventDetails from "../components/organisms/EventDetails";
 import Description from "../components/atoms/Description";
@@ -46,10 +44,10 @@ function Event() {
 
 
     return (
-        <ContainerSize>
+        <MainContainer>
             <EventDetails book={book} event={event}/>
             <Description description={event.description}/>
-        </ContainerSize>
+        </MainContainer>
     );
 }
 

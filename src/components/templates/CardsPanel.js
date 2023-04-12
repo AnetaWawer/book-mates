@@ -2,15 +2,15 @@ import React from 'react';
 import SectionHeader from "../atoms/SectionHeader";
 import CardsBar from "../organisms/CardsBar";
 import SeeMoreButton from "../atoms/SeeMoreButton";
-import {ContainerStyles} from "../Container.styles";
+import {Panel} from "../Container.styles";
 
 const CardsPanel = ({ elements, header }) => {
     return (
-        <ContainerStyles>
+        <Panel>
             <SectionHeader header={header} />
             <CardsBar elements = {elements} />
             <SeeMoreButton />
-        </ContainerStyles>
+        </Panel>
     );
 };
 

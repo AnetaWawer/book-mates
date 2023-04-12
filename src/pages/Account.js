@@ -3,7 +3,7 @@ import axios from "axios";
 import {Box} from "@mui/material";
 import Shelf from "../components/templates/Shelf";
 import SectionHeader from "../components/atoms/SectionHeader";
-import {ContainerSize} from "../components/Container.styles";
+import {MainContainer} from "../components/Container.styles";
 import SubscribedEvents from "../components/templates/SubscribedEvents";
 import ForumPanel from "../components/templates/ForumPanel";
 
@@ -62,7 +62,7 @@ export default function Account() {
     }, []);
 
     return (
-        <ContainerSize >
+        <MainContainer >
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje książki"} />
                 <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
@@ -76,7 +76,7 @@ export default function Account() {
                 <SubscribedEvents events={events}/>
             </Box>
             <ForumPanel topics={topics} header="Moje wątki" />
-        </ContainerSize>
+        </MainContainer>
     );
 }
 function computeNumber() {

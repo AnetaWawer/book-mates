@@ -2,15 +2,15 @@ import React from "react";
 import {Outlet} from "react-router-dom";
 import Navbar from "../components/templates/Navbar";
 import Footer from "../components/templates/Footer";
-import {ContainerSize} from "../components/Container.styles";
+import {MainContainer} from "../components/Container.styles";
 
 const Layout = () => {
     return (
-        <ContainerSize>
+        <MainContainer maxWidth={false}>
             <Navbar />
             <Outlet />
             <Footer />
-        </ContainerSize>
+        </MainContainer>
 
     );
 };

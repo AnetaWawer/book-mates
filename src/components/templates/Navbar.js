@@ -69,7 +69,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     return (
-        <NavbarContainer >
+        <NavbarContainer maxWidth={false}>
             <Toolbar>
                 <Grid container spacing={2}>
                     <Grid item xs={5} md={3} lg={2} >
