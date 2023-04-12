@@ -25,7 +25,7 @@ const BookDetails = ({ book }) => {
                     />
                 </Grid>
                 <Grid item sm={8}>
-                    {/*wydzielic*/}
+                    {/*wydzielic jako molekule*/}
                     <h1 className="book-title">{book.title}</h1>
                     <p className="book-author">{book.author}</p>
                     <p className="number-pages">Liczba stron: {book.pages}</p>
