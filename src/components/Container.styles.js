@@ -1,17 +1,18 @@
-import styled from "styled-components"
+import { styled } from '@mui/material/styles';
+import {Container} from "@mui/material";
 
-export const ContainerStyles = styled.div `
-  padding-top: 7em;
-  padding-bottom: 7em;
-`
+export const MainContainer= styled(Container)({
+    margin: "auto",
+    maxWidth:'80%'
+})
 
-export const NavbarContainer = styled.div `
-  margin-left: 4%;
-  padding-top: 3em;
-`
+export const NavbarContainer= styled(Container)({
+    marginLeft:'4%',
+    paddingTop:'3em'
+})
 
-export const ContainerSize = styled.div `
-  margin: auto;
-  width: 80%;
+export const Panel= styled(Container)({
+  paddingTop:'7em',
+  paddingBottom: '7em',
+})
 
-`

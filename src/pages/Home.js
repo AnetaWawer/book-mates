@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {ContainerSize} from "../components/Container.styles";
+import {MainContainer} from "../components/Container.styles";
 import CardsPanel from "../components/templates/CardsPanel";
 import ForumCarouselPanel from "../components/templates/ForumCarouselPanel";
 
@@ -46,11 +46,11 @@ function Home() {
     }, []);
 
     return (
-        <ContainerSize>
+        <MainContainer>
             <CardsPanel elements={books} header={booksHeader}/>
             <CardsPanel elements={events} header={eventsHeader}/>
             <ForumCarouselPanel topics={topics} header={forumHeader}/>
-        </ContainerSize>
+        </MainContainer>
     );
 }
 

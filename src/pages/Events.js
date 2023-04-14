@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import CardsPanel from "../components/templates/CardsPanel";
-import {ContainerSize} from "../components/Container.styles";
+import {MainContainer} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
 import SearchBar from "../components/atoms/SearchBar";
 import BasicSelect from "../components/molecules/BasicSelect";
@@ -75,7 +75,7 @@ const Events = () =>{
 
 
     return (
-        <ContainerSize>
+        <MainContainer>
             <SectionHeader header={eventsHeader} />
             <SearchBar
                 placeholder="Szukaj wydarzeń według autora lub tytułu książki.."
@@ -111,7 +111,7 @@ const Events = () =>{
                 />}
 
 
-        </ContainerSize>
+        </MainContainer>
     );
 };
 

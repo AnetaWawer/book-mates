@@ -2,7 +2,7 @@ import React from "react";
 import {Typography, Grid} from "@mui/material";
 import { styled } from '@mui/material/styles';
 import logo from '../../mainLogo.png'
-import {ContainerStyles} from "../Container.styles";
+import {Panel} from "../Container.styles";
 import {useNavigate} from "react-router-dom";
 
 const Img = styled('img')({
@@ -19,7 +19,7 @@ const Item= styled('div')({
 function Footer() {
     const navigate = useNavigate();
     return (
-        <ContainerStyles maxWidth="lg" >
+        <Panel maxWidth={false}>
             <Grid container spacing={10} sx={{marginLeft:'2%'}}>
                 <Grid item xs={5} md={4} lg={3}>
                     <Img alt="main-logo" src={logo} />
@@ -71,7 +71,7 @@ function Footer() {
                     </Grid>
                 </Grid>
             </Grid>
-        </ContainerStyles>
+        </Panel>
     );
 }
 
