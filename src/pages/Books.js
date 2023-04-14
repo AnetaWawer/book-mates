@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
-import BookHeader from "../components/BookHeader";
+
 
 const Books = () => {
     const location = useLocation();
@@ -22,7 +22,7 @@ const Books = () => {
 
     return (
         <div>
-            {bookData.length > 0 && <BookHeader book={bookData} />}
+
         </div>
     );
 }

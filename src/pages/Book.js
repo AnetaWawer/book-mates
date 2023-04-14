@@ -9,19 +9,19 @@ import {Box} from "@mui/material";
 
 const Book = () => {
     const [book, setBook] = useState({});
-    let { bookId } = useParams();
-    console.log(bookId);
+    const { query } = useParams();
+
     // const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/books/' + bookId)
+        axios.get('http://localhost:8080/api/books/search/' + query)
             .then(response => {
-                setBook(response.data);
+                    setBook(response.data[1]);
                 }
             )
             .catch(error => console.log(error));
-    }, [bookId]);
+    }, [query]);
 
     return (
         <Box sx={{mt: 5}}>

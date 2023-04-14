@@ -1,4 +1,4 @@
-import './styles.css';
+import '../styles.css';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
