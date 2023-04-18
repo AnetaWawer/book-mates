@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import CardsBar from "../components/organisms/CardsBar";
-import {useParams} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 
 
 const Books = () => {
 
     const [books, setBooks] = useState([]);
-    const { query } = useParams();
+    const [searchParams] = useSearchParams();
 
-
+    const query = searchParams.get('query');
+    console.log("Books.query = " + query);
     useEffect(() => {
         axios.get('http://localhost:8080/api/books/search/' + query)
             .then(response => {

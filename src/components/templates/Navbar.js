@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "../../style.css"
 import Toolbar from '@mui/material/Toolbar';
@@ -67,6 +67,7 @@ const Img = styled('img')({
 
 function Navbar() {
     const navigate = useNavigate();
+    const [searchInput, setSearchInput] = useState("");
 
     return (
         <NavbarContainer maxWidth={false}>
@@ -100,8 +101,10 @@ function Navbar() {
                                 <StyledInputBase
                                     placeholder="Szukaj…"
                                     inputProps={{ 'aria-label': 'search' }}
+                                    value={searchInput} onInput={e => setSearchInput(e.target.value)}
                                 />
                             </Search>
+                            <StyledButton onClick={ () => navigate("/books?query="+searchInput)}>szukaj</StyledButton>
                         </Grid>
                     </Grid>
                 </Grid>
