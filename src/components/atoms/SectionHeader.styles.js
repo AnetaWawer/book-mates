@@ -1,12 +1,12 @@
 import { styled } from '@mui/material/styles';
-import {Box, Container} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 
 export const HeaderContainer = styled(Container)({
     position: "relative",
     marginBottom: "75px",
 })
 
-export const Header = styled(Box)({
+export const HeaderBox = styled(Box)({
   fontSize: "2em",
   lineHeight: 1,
   position: "relative",
@@ -25,4 +25,8 @@ export const Header = styled(Box)({
   '&:after':{
     right: "3px",
   },
+})
+
+export const Header = styled(Typography)({
+  fontSize: 50
 })

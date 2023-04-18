@@ -1,27 +1,20 @@
 import React from 'react';
-import {ButtonBase, Grid, Typography} from "@mui/material";
-import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
-import {styled} from "@mui/material/styles";
+import {Grid, Typography, Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import moment from "moment";
+import {BookCover, ChatIcon, Img, SingleTopicContainer, TopicTitle} from "./SingleTopic.styles";
 
 
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-});
 const SingleTopic = ({ topic }) => {
     const navigate = useNavigate();
     return (
-        <Grid container columnSpacing={{ xs: 2, sm: 4, md: 12 }}  sx={{ height: { xs:'600px',sm:'250px' ,md:'230px' ,lg:'180px' } , display:'wrap'} }>
+        <SingleTopicContainer container columnSpacing={{ xs: 2, sm: 4, md: 12 }} >
             <Grid item md={1}>
-                <ButtonBase sx={{ width: 96, height: 128 }}>
+                <BookCover>
                     <Img alt="book-cover" src={topic.bookPictureUrl} onClick={() =>navigate("/books/" + topic.bookId)} />
-                </ButtonBase>
+                </BookCover>
             </Grid>
-            <Grid  item  sm container>
+            <Grid item sm container>
                 <Grid item xs container direction="column" spacing={2}>
                     <Grid item >
                         <Typography component="h5" >
@@ -33,23 +26,23 @@ const SingleTopic = ({ topic }) => {
                     </Grid>
                 </Grid>
                 <Grid item xs={8} container direction="column">
-                    <Grid item >
-                        <Typography variant="h6" color="inherit"  onClick={ () => navigate("/books/" + topic.bookId+ "/topics")} sx={{cursor:"pointer", color:"inherit"}} >
+                    <Box >
+                        <TopicTitle variant="h6" color="inherit"  onClick={ () => navigate("/books/" + topic.bookId+ "/topics")} >
                             {topic.title}
-                        </Typography>
+                        </TopicTitle>
                         <Typography variant="subtitle2">
-                            <span> {moment(topic.creationTime).format('DD.MM.YYYY  HH:mm')} przez  {topic.authorName} </span>
+                            {moment(topic.creationTime).format('DD.MM.YYYY  HH:mm')} przez  {topic.authorName}
                         </Typography>
-                    </Grid>
+                    </Box>
                 </Grid>
-                <Grid item >
+                <Box>
                     <Typography variant="subtitle1" paragraph>
-                        <ChatOutlinedIcon sx={{ fontSize: 20, textAlign:'right' }} />
-                        <span> {topic.numberOfComments===1 ? topic.numberOfComments+' Odpowiedź' : topic.numberOfComments+ ' Odpowiedzi'} </span>
+                        <ChatIcon />
+                        {topic.numberOfComments===1 ? topic.numberOfComments+' Odpowiedź' : topic.numberOfComments+ ' Odpowiedzi'}
                     </Typography>
-                </Grid>
+                </Box>
             </Grid>
-        </Grid>
+        </SingleTopicContainer>
     );
 };
 

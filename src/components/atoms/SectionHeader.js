@@ -1,15 +1,14 @@
 import React from "react";
-import {Typography} from '@mui/material'
 import "./SectionHeader.styles"
-import {Header, HeaderContainer} from "./SectionHeader.styles";
+import {Header, HeaderBox, HeaderContainer} from "./SectionHeader.styles";
 
 
 const SectionHeader = ({header}) =>{
     return (
         <HeaderContainer>
-            <Header>
-                <Typography component="h2"  sx={{fontSize: 50}}>{header}</Typography>
-            </Header>
+            <HeaderBox>
+                <Header component="h2" >{header}</Header>
+            </HeaderBox>
         </HeaderContainer>
     )
 }
