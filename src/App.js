@@ -15,10 +15,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="books" element={<Books />} />
+            <Route path="books">
+              <Route path=":query" element={<Books />} />
+            </Route>
             {/*<Route path="book" element={<Book />} />*/}
-            <Route path="books" >
-              <Route path=":query" element={<Book />} />
+            <Route path="book" > // localhost:3000/book/id
+              <Route path=":id" element={<Book />} />
             </Route>
             <Route path="events" element={<Events />} />
             <Route path="contact" element={<Contact />} />
