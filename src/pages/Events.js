@@ -80,7 +80,7 @@ const Events = () =>{
             <SearchBar
                 placeholder="Szukaj wydarzeń według autora lub tytułu książki.."
                 onChange={(event) => handleSearch(
-
+                    event.target.value
                 )}
             />
             {/*<CardsPanel elements={events} header={eventsHeader} />*/}
