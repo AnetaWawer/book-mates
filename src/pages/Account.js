@@ -90,7 +90,7 @@ export default function Account() {
         setGiftBooksSequences(divideSequence(giftBooks, numberOfCardsOnPage));
         const savedBooks = books.filter(book => book.shelf === "SAVED");
         setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
-        setEvents(divideSequence(events, numberOfCardsOnPage));
+        setEventsSequences(divideSequence(events, numberOfCardsOnPage));
     }, [size]);
 
     return (
