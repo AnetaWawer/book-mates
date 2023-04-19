@@ -8,6 +8,9 @@ import NoPage from "./pages/NoPage";
 import Event from "./pages/Event";
 import Account from "./pages/Account";
 import Events from "./pages/Events";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import React from "react";
 
 function App() {
   return (
@@ -23,6 +26,8 @@ function App() {
             <Route path="events" element={<Events />} />
             <Route path="contact" element={<Contact />} />
               <Route path="account" element={<Account />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
             <Route path="books/:bookId/events/:eventId" element={<Event />} />
           </Route>
