@@ -1,34 +1,24 @@
 import React from "react";
 import {Typography, Grid} from "@mui/material";
-import { styled } from '@mui/material/styles';
 import logo from '../../mainLogo.png'
 import {Panel} from "../Container.styles";
 import {useNavigate} from "react-router-dom";
+import {FooterContainer, Logo, Item} from "./Footer.styles";
 
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-});
-
-const Item= styled('div')({
-    cursor:"pointer"
-})
 
 function Footer() {
     const navigate = useNavigate();
     return (
         <Panel maxWidth={false}>
-            <Grid container spacing={10} sx={{marginLeft:'2%'}}>
+            <FooterContainer container spacing={10} >
                 <Grid item xs={5} md={4} lg={3}>
-                    <Img alt="main-logo" src={logo} />
+                    <Logo alt="main-logo" src={logo} />
                     <Typography variant="subtitle1" component="div">
                         Miejsce w którym można dyskutować o książkach.
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm container>
-                    <Grid item xs={7} md={5} lg={3}>
+                    <Grid item xs={5} md={4} lg={3}>
                         <Typography variant="h6" component="div" >
                             O nas
                         </Typography>
@@ -36,7 +26,7 @@ function Footer() {
                             Zespół
                         </Item>
                     </Grid>
-                    <Grid item xs={7} md={5} lg={3}>
+                    <Grid item xs={5} md={4} lg={3}>
                         <Typography variant="h6" component="div" >
                             Odwiedź
                         </Typography>
@@ -50,7 +40,7 @@ function Footer() {
                             Wydarzenia
                         </Item>
                     </Grid>
-                    <Grid item xs={7} md={5} lg={3}>
+                    <Grid item xs={5} md={4} lg={3}>
                         <Typography variant="h6" component="div">
                             Moje konto
                         </Typography>
@@ -61,7 +51,7 @@ function Footer() {
                             Mój profil
                         </Item>
                     </Grid>
-                    <Grid item xs={7} md={5} lg={3}>
+                    <Grid item xs={5} md={4} lg={3}>
                         <Typography variant="h6" component="div">
                             Pomoc
                         </Typography>
@@ -70,7 +60,7 @@ function Footer() {
                         </Item>
                     </Grid>
                 </Grid>
-            </Grid>
+            </FooterContainer>
         </Panel>
     );
 }
