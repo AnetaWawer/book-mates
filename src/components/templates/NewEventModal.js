@@ -11,7 +11,7 @@ import {ModalBox, NewEventButton, SubmitEventButton} from "./NewEventModal.style
 const NewEventModal = () => {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(dayjs);
-    let { query } = useParams();
+    let { id } = useParams();
     const [eventsType, setEventsType] = useState('');
     const [openSelect, setOpenSelect] = useState(false);
     const handleClose = () => setOpen(false);
@@ -51,7 +51,7 @@ const NewEventModal = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        axios.post('http://localhost:8080/api/books/' + query + '/event', {
+        axios.post('http://localhost:8080/api/books/' + id + '/event', {
             title:data.get('title'),
             eventDate:selectedDateTime,
             description: data.get('description'),
