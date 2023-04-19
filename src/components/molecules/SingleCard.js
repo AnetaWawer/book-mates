@@ -9,7 +9,7 @@ import BookImage from "../atoms/BookImage";
 const SingleCard = ({ element }) => {
     const navigate = useNavigate();
     return (
-        <CardActionArea onClick={element.eventDate!==undefined ? () => navigate("/books/" + element.bookId + "/events/" + element.id) : () => navigate("/book/" + element.id)}>
+        <CardActionArea onClick={element.eventDate!==undefined ? () => navigate("/books/" + element.bookId + "/events/" + element.id) : () => navigate("/book/" + element.externalId)}>
             <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
                 <BookImage book={element} />
                 <CardContent >

@@ -11,11 +11,9 @@ const Book = () => {
     const [book, setBook] = useState({});
     const { id } = useParams();
 
-    // const [bookId, setBookId] = useState(location.pathname.substring(7)); //we remove '/books/' from the path
-
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/books/' + id)
+        axios.get('http://localhost:8080/api/books/search/' + id)
             .then(response => {
                     setBook(response.data);
                 }

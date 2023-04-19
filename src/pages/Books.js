@@ -12,21 +12,20 @@ const Books = () => {
     const query = searchParams.get('query');
     console.log("Books.query = " + query);
     const criteria = searchParams.get('criteria');
-    // console.log("Url send to backend = " + 'http://localhost:8080/api/books/search/' + criteria +":/\"" + query + "\"");
+    console.log("Url send to backend = " + `http://localhost:8080/api/books/search/?criteria=${criteria}&query=${query}`);
 
     useEffect(() => {
-        // axios.get('http://localhost:8080/api/books/search/' + criteria +":/\"" + query + "\"")
-        axios.get('http://localhost:8080/api/books/search/' + query)
+        axios.get(`http://localhost:8080/api/books/search?criteria=${criteria}&query=${query}`)
             .then(response => {
                     setBooks(response.data);
                 }
             )
             .catch(error => console.log(error));
-    }, [query]);
+    }, [searchParams]);
 
     return (
         <CardsBar elements = {books}  />
     );
 }
 
-export default Books;
+export default Books
