@@ -8,6 +8,9 @@ import NoPage from "./pages/NoPage";
 import Event from "./pages/Event";
 import Account from "./pages/Account";
 import Events from "./pages/Events";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import React from "react";
 
 function App() {
   return (
