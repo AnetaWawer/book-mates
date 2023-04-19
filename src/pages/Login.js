@@ -60,7 +60,7 @@ const Login = () => {
                     {/*<LockOutlinedIcon />*/}
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    LOGOWANIE
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
@@ -83,10 +83,10 @@ const Login = () => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Zapamiętaj mnie"
-                    />
+                    {/*<FormControlLabel*/}
+                    {/*    control={<Checkbox value="remember" color="primary" />}*/}
+                    {/*    label="Zapamiętaj mnie"*/}
+                    {/*/>*/}
                     <Button
                         type="submit"
                         fullWidth
