@@ -87,7 +87,7 @@ function Navbar() {
                             <StyledButton >Książki</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column">
-                            <StyledButton onClick={ () => navigate("/events")}>Wydarzenia</StyledButton>
+                            <StyledButton onClick={ () => navigate("/events")}> Wydarzenia </StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
                             <StyledButton>Kontakt</StyledButton>
