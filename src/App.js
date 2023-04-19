@@ -23,6 +23,8 @@ function App() {
             <Route path="events" element={<Events />} />
             <Route path="contact" element={<Contact />} />
               <Route path="account" element={<Account />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
             <Route path="books/:bookId/events/:eventId" element={<Event />} />
           </Route>
