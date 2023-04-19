@@ -1,37 +1,32 @@
-import '../styles.css';
 import Grid from '@mui/material/Grid';
-import {Button, CardMedia} from "@mui/material";
 import React from "react";
 import moment from "moment/moment";
+import EventSignUpModal from "../templates/EventSignUpModal";
+import BookImage from "../atoms/BookImage";
+import {DetailsWindow, Text} from "./EventDetials.styles";
 
 
 const EventDetails = ({ book, event }) => {
     return (
-            <Grid container spacing={2}>
+        <DetailsWindow>
+            <Grid container spacing={2} >
                 <Grid item sm={4}>
-                    {/*<img className="img" src={ book.pictureUrl } alt={`Cover for ${book.title}`} />*/}
-                    <CardMedia
-                        component="img"
-                        image= { book.pictureUrl }
-                        alt={ book.title }
-                        sx={{
-                            p: 1,
-                            height: 300,
-                            width: 200
-                        }}
-                    />
+                    <BookImage book={book} />
                 </Grid>
                 <Grid item sm={8}>
-                    <h1 className="book-title">{event.title}</h1>
-                    <p>{moment(event.eventDate).format('DD.MM.YYYY  HH:mm')} </p>
-                    <p>{event.organizer}</p>
-                    <p>zapisanych uczesntików: 0/{event.maxParticipants}</p>
-
+                    <Text variant="h4" >{event.title}</Text>
+                    <Text variant="body1">Autor: {event.bookAuthor}</Text>
+                    <Text variant="body1">Książka: {event.bookTitle}</Text>
+                    <Text variant="body1" >Data wydarzenia: {moment(event.eventDate).format('DD.MM.YYYY  HH:mm')} </Text>
+                    <Text variant="body1">Organizator: {event.organizatorName}</Text>
+                    <Text variant="body1">Wolnych miejsc: {event.maxParticipants-event.participants}</Text>
+                    <Text variant="body1">Ilość osób na liście oczekujących: {event.waitingList}</Text>
                     <Grid container justifyContent="flex-end">
-                        <Button sx={{color:'inherit'}} >Dołącz do wydarzenia</Button>
+                        <EventSignUpModal event={event} />
                     </Grid>
                 </Grid>
             </Grid>
+        </DetailsWindow>
 
     );
 }
