@@ -11,7 +11,11 @@ const Books = () => {
 
     const query = searchParams.get('query');
     console.log("Books.query = " + query);
+    const criteria = searchParams.get('criteria');
+    // console.log("Url send to backend = " + 'http://localhost:8080/api/books/search/' + criteria +":/\"" + query + "\"");
+
     useEffect(() => {
+        // axios.get('http://localhost:8080/api/books/search/' + criteria +":/\"" + query + "\"")
         axios.get('http://localhost:8080/api/books/search/' + query)
             .then(response => {
                     setBooks(response.data);

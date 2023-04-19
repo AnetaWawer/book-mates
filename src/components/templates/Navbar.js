@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import {NavbarContainer} from "../Container.styles";
+import BasicSelect from "../molecules/BasicSelect";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -68,6 +69,11 @@ const Img = styled('img')({
 function Navbar() {
     const navigate = useNavigate();
     const [searchInput, setSearchInput] = useState("");
+    const [searchCriteria, setSearchCriteria] = useState("tytuł");
+
+    const handleChange = (event) => {
+        setSearchCriteria(event.target.value);
+    };
 
     return (
         <NavbarContainer maxWidth={false}>
@@ -103,8 +109,18 @@ function Navbar() {
                                     inputProps={{ 'aria-label': 'search' }}
                                     value={searchInput} onInput={e => setSearchInput(e.target.value)}
                                 />
+                                {/*<div>*/}
+                                {/*    <label>*/}
+                                {/*        Szukaj według:*/}
+                                {/*        <select value={searchCriteria} onChange={handleChange}>*/}
+                                {/*            <option value="intitle">Tytułu</option>*/}
+                                {/*            <option value="inauthor">Autora</option>*/}
+                                {/*        </select>*/}
+                                {/*    </label>*/}
+                                {/*</div>*/}
                             </Search>
-                            <StyledButton onClick={ () => navigate("/books?query="+searchInput)}>szukaj</StyledButton>
+                            <StyledButton onClick={ () => navigate("/books?query="+searchInput)}>Szukaj</StyledButton>
+                            {/*<StyledButton onClick={ () => navigate("/books?query="+searchInput+"&criteria="+searchCriteria)}>Szukaj</StyledButton>*/}
                         </Grid>
                     </Grid>
                 </Grid>
