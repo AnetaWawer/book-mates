@@ -6,51 +6,59 @@ import SectionHeader from "../components/atoms/SectionHeader";
 import {MainContainer} from "../components/Container.styles";
 import SubscribedEvents from "../components/templates/SubscribedEvents";
 import ForumPanel from "../components/templates/ForumPanel";
+import {useWindowSize} from "../hooks/useWindowSize";
 
 export default function Account() {
 
     const [books, setBooks] = useState([]);
-    const [events, setEvents] = useState([]);
-    const [topics, setTopics] = useState([]);
-    const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(()=> computeNumber());
+
     const [favoriteBooksSequences, setFavoriteBooksSequences] = useState([])
     const [readBooksSequences, setReadBooksSequences] = useState([])
     const [toReadBooksSequences, setToReadBooksSequences] = useState([])
     const [giftBooksSequences, setGiftBooksSequences] = useState([])
     const [savedBooksSequences, setSavedBooksSequences] = useState([])
 
+    const [events, setEvents] = useState([]);
+    const [eventsSequences, setEventsSequences] = useState([]);
+
+    const [topics, setTopics] = useState([]);
+
+    const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(()=> getInitNumberOfCardsInCarousel());
+
+    const size = useWindowSize();
+
+    // fetch books from the backend and process the data for display on the shelves if form of a carousel
     useEffect(() => {
         if (!books.length) {
             axios.get(`http://localhost:8080/api/users/3/books`)
                 .then(response => {
-                    setBooks(response.data);
-                    const favoriteBooks = response.data.filter(book => book.shelf === "FAVORITE");
-                    setFavoriteBooksSequences(divideSequence(favoriteBooks, numberOfCardsOnPage));
-                    const readBooks = response.data.filter(book => book.shelf === "READ");
-                    setReadBooksSequences(divideSequence(readBooks, numberOfCardsOnPage));
-                    const toReadBooks = response.data.filter(book => book.shelf === "TO_READ");
-                    setToReadBooksSequences(divideSequence(toReadBooks, numberOfCardsOnPage));
-                    const giftBooks = response.data.filter(book => book.shelf === "GIFT");
-                    setGiftBooksSequences(divideSequence(giftBooks, numberOfCardsOnPage));
-                    const savedBooks = response.data.filter(book => book.shelf === "SAVED");
-                    setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
+                    const userBooks = response.data;
+                    setBooks(userBooks);
+                    setFavoriteBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "FAVORITE"), numberOfCardsOnPage));
+                    setReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "READ"), numberOfCardsOnPage));
+                    setToReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "TO_READ"), numberOfCardsOnPage));
+                    setGiftBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "GIFT"), numberOfCardsOnPage));
+                    setSavedBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "SAVED"), numberOfCardsOnPage));
                 })
                 .catch(error => console.log(error));
         }
-    }, []);
+    }, [numberOfCardsOnPage]);
 
+
+    // fetch events from the backend and process the data for display as a carousel
     useEffect(() => {
         if (!events.length) {
             axios.get(`http://localhost:8080/api/users/3/events`)
                 .then(response => {
                     setEvents(response.data);
                     const userEvents = response.data;
-                    setEvents(divideSequence(userEvents, numberOfCardsOnPage));
+                    setEventsSequences(divideSequence(userEvents, numberOfCardsOnPage));
                 })
                 .catch(error => console.log(error));
         }
     }, []);
 
+    // fetch topics from the backend
     useEffect(() => {
         if (!topics.length) {
             axios.get(`http://localhost:8080/api/users/3/topics`)
@@ -60,6 +68,30 @@ export default function Account() {
                 .catch(error => console.log(error));
         }
     }, []);
+
+
+    // react on size change, number of cards in carousel will increase or decrease
+    useEffect(() => {
+        const width = size[1];
+        if (size[1] > 1200) {
+            setNumberOfCardsOnPage(4);
+        } else if (size[1] > 900 && size[1] <= 1200) {
+            setNumberOfCardsOnPage(2);
+        } else {
+            setNumberOfCardsOnPage(1);
+        }
+        const favoriteBooks = books.filter(book => book.shelf === "FAVORITE");
+        setFavoriteBooksSequences(divideSequence(favoriteBooks, numberOfCardsOnPage));
+        const readBooks = books.filter(book => book.shelf === "READ");
+        setReadBooksSequences(divideSequence(readBooks, numberOfCardsOnPage));
+        const toReadBooks = books.filter(book => book.shelf === "TO_READ");
+        setToReadBooksSequences(divideSequence(toReadBooks, numberOfCardsOnPage));
+        const giftBooks = books.filter(book => book.shelf === "GIFT");
+        setGiftBooksSequences(divideSequence(giftBooks, numberOfCardsOnPage));
+        const savedBooks = books.filter(book => book.shelf === "SAVED");
+        setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
+        setEvents(divideSequence(events, numberOfCardsOnPage));
+    }, [size]);
 
     return (
         <MainContainer >
@@ -73,17 +105,16 @@ export default function Account() {
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
-                <SubscribedEvents events={events}/>
+                <SubscribedEvents events={eventsSequences}/>
             </Box>
             <ForumPanel topics={topics} header="Moje wątki" />
         </MainContainer>
     );
 }
-function computeNumber() {
-    // eslint-disable-next-line
-    const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if (width >= 1200) return 4;
-    if (width >= 600 && width < 1200) return 2;
+const getInitNumberOfCardsInCarousel = () => {
+    const width = window.innerWidth;
+    if (width > 1200) return 4;
+    if (width > 900 && width <= 1200) return 2;
     else return 1;
 }
 
