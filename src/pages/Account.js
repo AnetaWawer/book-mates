@@ -70,9 +70,8 @@ export default function Account() {
     }, []);
 
 
-    // react on size change, number of cards in carousel will increase or decrease
+    // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
     useEffect(() => {
-        const width = size[1];
         if (size[1] > 1200) {
             setNumberOfCardsOnPage(4);
         } else if (size[1] > 900 && size[1] <= 1200) {
