@@ -8,7 +8,7 @@ const CardsPanel = ({ elements, header }) => {
     return (
         <Panel>
             <SectionHeader header={header} />
-            <CardsBar elements = {elements} />
+            <CardsBar elements = {elements} keyField='id' />
             <SeeMoreButton />
         </Panel>
     );

@@ -47,7 +47,7 @@ function Home() {
 
     return (
         <MainContainer>
-            <CardsPanel elements={books} header={booksHeader}/>
+            <CardsPanel elements={books} keyField="externalId" header={booksHeader}/>
             <CardsPanel elements={events} header={eventsHeader}/>
             <ForumCarouselPanel topics={topics} header={forumHeader}/>
         </MainContainer>

@@ -18,13 +18,14 @@ const Books = () => {
         axios.get(`http://localhost:8080/api/books/search?criteria=${criteria}&query=${query}`)
             .then(response => {
                     setBooks(response.data);
+                    console.log("Books get from API: " + books);
                 }
             )
             .catch(error => console.log(error));
     }, [searchParams]);
 
     return (
-        <CardsBar elements = {books}  />
+        <CardsBar elements = {books} keyField="externalId" />
     );
 }
 
