@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {Avatar, Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid";
+import AuthService from "../services/AuthService.js";
 
 const Register = () => {
 
@@ -11,30 +12,7 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        axios
-            .post("http://localhost:8080/api/authentication/register", {
-                nickname: data.get('username'),
-                email: data.get('email'),
-                password: data.get('password')
-            })
-            .then(response => {
-                if (response.data.token) {
-                    localStorage.setItem("user", response.data.token);
-                } else {
-                    console.log("no token in respone");
-                }
-                navigate("/account");
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log(error.response);
-                    alert("nie można zarejestrować konta, niepoprawne dane");
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log("Error ", error.message());
-                }
-            });
+        AuthService.register(data);
     }
 
 
