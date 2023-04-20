@@ -3,7 +3,7 @@ import {Button} from '@mui/material'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
 
 export const SeeMore = styled(Button)({
-    marginTop:10 ,
+    marginTop:-90 ,
     textAlign:'right',
     float:'right',
     color:"inherit",
