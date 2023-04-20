@@ -9,7 +9,7 @@ export default function BasicSelect(props) {
     return (
         // <Box sx={{ minWidth: 320 }}>
             <FormControl fullWidth>
-                <InputLabel id="label">Typ wydarzenia</InputLabel>
+                <InputLabel id="label">{props.label}</InputLabel>
                 <Select
                     labelId={props.labelId}
                     id={props.id}

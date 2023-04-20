@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "../../style.css"
 import Toolbar from '@mui/material/Toolbar';
@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import {NavbarContainer} from "../Container.styles";
+import BasicSelect from "../molecules/BasicSelect";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,6 +68,23 @@ const Img = styled('img')({
 
 function Navbar() {
     const navigate = useNavigate();
+    const [searchInput, setSearchInput] = useState("");
+    const [searchCriteria, setSearchCriteria] = useState("intitle");
+
+    const handleChange = (event) => {
+        setSearchCriteria(event.target.value);
+    };
+
+    const searchCriteriaItems = [
+        {
+            name: "Tytułu",
+            value: "intitle"
+        },
+        {
+            name: "Autora",
+            value: "inauthor"
+        }
+    ]
 
     return (
         <NavbarContainer maxWidth={false}>
@@ -100,8 +118,17 @@ function Navbar() {
                                 <StyledInputBase
                                     placeholder="Szukaj…"
                                     inputProps={{ 'aria-label': 'search' }}
+                                    value={searchInput} onInput={e => setSearchInput(e.target.value)}
                                 />
+                                <BasicSelect labelId="search-by-label"
+                                             id="searchCriteria"
+                                             value={searchCriteria}
+                                             label="Szukaj według:"
+                                             handleChange={handleChange}
+                                             items={searchCriteriaItems}
+                                             />
                             </Search>
+                            <StyledButton onClick={ () => navigate("/books?query="+searchInput+"&criteria="+searchCriteria)}>Szukaj</StyledButton>
                         </Grid>
                     </Grid>
                 </Grid>
