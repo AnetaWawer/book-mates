@@ -102,13 +102,13 @@ function Navbar() {
                             </StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
-                            <StyledButton >Książki</StyledButton>
+                            <StyledButton onClick={ () => navigate("/books")}>Książki</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column">
                             <StyledButton onClick={ () => navigate("/events")}> Wydarzenia </StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
-                            <StyledButton>Kontakt</StyledButton>
+                            <StyledButton onClick={ () => navigate("/contact")}>Kontakt</StyledButton>
                         </Grid>
                         <Grid item xs container direction="column" >
                             <Search>
