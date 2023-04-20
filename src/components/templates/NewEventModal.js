@@ -8,7 +8,7 @@ import BasicDateTimePicker from "../atoms/BasicDateTimePicker";
 import NewEventTextFields from "../molecules/NewEventTextFields";
 import {ModalBox, NewEventButton, SubmitEventButton} from "./NewEventModal.styles";
 
-const NewEventModal = () => {
+const NewEventModal = ({book}) => {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(dayjs);
     let { id } = useParams();
@@ -58,6 +58,14 @@ const NewEventModal = () => {
             maxParticipants: data.get('maxParticipants'),
             url: data.get('url'),
             eventType:eventsType,
+            externalId:book.externalId,
+            author:book.author,
+            bookDescription:book.description,
+            bookTitle:book.title,
+            pages:book.pages,
+            pictureUrl:book.pictureUrl,
+            rating:book.rating,
+            year:book.year,
 
         })
             .then(response => {
