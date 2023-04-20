@@ -12,8 +12,30 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        AuthService.register(data);
-    }
+        axios
+            .post("http://localhost:8080/api/authentication/register", {
+                username: data.get('username'),
+                email: data.get('email'),
+                password: data.get('password')
+            })
+            .then(response => {
+                if (response.data.token) {
+                    localStorage.setItem("user", response.data.token);
+                    navigate("/account");
+                } else {
+                    console.log("no token in respone");
+                }
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log(error.response);
+                    alert("nie można zarejestrować konta, niepoprawne dane");
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log("Error ", error.message());
+                }
+            });    }
 
 
     return (

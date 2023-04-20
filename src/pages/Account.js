@@ -30,7 +30,9 @@ export default function Account() {
     // fetch books from the backend and process the data for display on the shelves if form of a carousel
     useEffect(() => {
         if (!books.length) {
-            axios.get(`http://localhost:8080/api/users/3/books`)
+            axios.get(`http://localhost:8080/api/3/users/books`,
+                //{headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
+                )
                 .then(response => {
                     const userBooks = response.data;
                     setBooks(userBooks);

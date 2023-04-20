@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import AuthService from "../services/AuthService";
 
 const Login = () => {
 
@@ -28,10 +29,10 @@ const Login = () => {
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", response.data.token);
+                    navigate("/account");
                 } else {
                     console.log("no token in respone");
                 }
-                navigate("/account");
             })
             .catch((error) => {
                 if (error.response) {

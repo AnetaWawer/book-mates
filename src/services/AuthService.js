@@ -1,19 +1,32 @@
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
 class AuthService {
-    login(username, password) {
+
+    login(data) {
         return axios
-            .post("localhost:8080/api/authentication/login", {
-                username,
-                password
+            .post("http://localhost:8080/api/authentication/login", {
+                email: data.get('email'),
+                password: data.get('password')
             })
             .then(response => {
-                if (response.data.accessToken) {
-                    localStorage.setItem("user", JSON.stringify(response.data));
+                if (response.data.token) {
+                    localStorage.setItem("user", response.data.token);
+                } else {
+                    console.log("no token in respone");
                 }
-                return response.data;
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log(error.response);
+                    alert("niepoprawne dane logowania");
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log("Error ", error.message());
+                }
             });
     }
 
@@ -34,7 +47,6 @@ class AuthService {
                 } else {
                     console.log("no token in respone");
                 }
-                navigate("/account");
             })
             .catch((error) => {
                 if (error.response) {
@@ -46,6 +58,15 @@ class AuthService {
                     console.log("Error ", error.message());
                 }
             });
+    }
+
+    authHeader() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user && user.accessToken) {
+            return { Authorization: "Bearer " + user.accessToken };
+        } else {
+            return {};
+        }
     }
 }
 
