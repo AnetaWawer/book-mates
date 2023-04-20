@@ -2,8 +2,6 @@ import React from 'react';
 import {Box, Card, CardActionArea, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import moment from "moment";
-import BookImage from "../atoms/BookImage";
-
 
 
 const SingleCard = ({ element }) => {
@@ -11,7 +9,17 @@ const SingleCard = ({ element }) => {
     return (
         <CardActionArea onClick={element.eventDate!==undefined ? () => navigate("/books/" + element.bookId + "/events/" + element.id) : () => navigate("/book/" + element.externalId)}>
             <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
-                <BookImage book={element} />
+                <CardMedia
+                    component="img"
+                    image= { element.pictureUrl }
+                    alt={ element.title }
+                    sx={{
+                        p: 4,
+                        height: 340,
+                        width: 400,
+                        backgroundColor:'#eeede7',
+                    }}
+                />
                 <CardContent >
                     <Box>
                         <Typography gutterBottom variant="h6" sx={{textAlign: "center"}}>
