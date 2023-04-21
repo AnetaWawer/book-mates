@@ -11,7 +11,7 @@ const SingleTopic = ({ topic }) => {
         <SingleTopicContainer container columnSpacing={{ xs: 2, sm: 4, md: 12 }} >
             <Grid item md={1}>
                 <BookCover>
-                    <Img alt="book-cover" src={topic.bookPictureUrl} onClick={() =>navigate("/books/" + topic.bookId)} />
+                    <Img alt="book-cover" src={topic.bookPictureUrl} onClick={() =>navigate("/book/" + topic.bookExternalId)} />
                 </BookCover>
             </Grid>
             <Grid item sm container>

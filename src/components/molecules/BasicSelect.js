@@ -19,6 +19,7 @@ export default function BasicSelect(props) {
                     onClose={props.handleCloseSelect}
                     onOpen={props.handleOpenSelect}
                     open={props.openSelect}
+                    required
                 >
                     {
                         props.items.map((item) =>

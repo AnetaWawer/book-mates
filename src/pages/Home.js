@@ -3,6 +3,7 @@ import axios from "axios";
 import {MainContainer} from "../components/Container.styles";
 import CardsPanel from "../components/templates/CardsPanel";
 import ForumCarouselPanel from "../components/templates/ForumCarouselPanel";
+import SeeMoreButton from "../components/atoms/SeeMoreButton";
 
 function Home() {
     const [books, setBooks] = useState([]);
@@ -48,7 +49,9 @@ function Home() {
     return (
         <MainContainer>
             <CardsPanel elements={books} keyField="externalId" header={booksHeader}/>
+            <SeeMoreButton url="/books"/>
             <CardsPanel elements={events} header={eventsHeader}/>
+            <SeeMoreButton url="/events"/>
             <ForumCarouselPanel topics={topics} header={forumHeader}/>
         </MainContainer>
     );
