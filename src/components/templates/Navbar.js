@@ -11,6 +11,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import {NavbarContainer} from "../Container.styles";
 import BasicSelect from "../molecules/BasicSelect";
+import SearchPanel from "../molecules/SearchPanel";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -75,13 +76,17 @@ function Navbar() {
         setSearchCriteria(event.target.value);
     };
 
+    const handleSearch = (input, criteria) => {
+        navigate(`/books?query=${input}&criteria=${criteria}`);
+    };
+
     const searchCriteriaItems = [
         {
-            name: "Tytułu",
+            name: "Tytuł",
             value: "intitle"
         },
         {
-            name: "Autora",
+            name: "Autor",
             value: "inauthor"
         }
     ]
@@ -110,29 +115,33 @@ function Navbar() {
                         <Grid item xs container direction="column" >
                             <StyledButton onClick={ () => navigate("/contact")}>Kontakt</StyledButton>
                         </Grid>
-                        <Grid item xs container direction="column" >
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon sx={{ color: '#afafaf'}} />
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Szukaj…"
-                                    inputProps={{ 'aria-label': 'search' }}
-                                    value={searchInput} onInput={e => setSearchInput(e.target.value)}
-                                />
-                                <BasicSelect labelId="search-by-label"
-                                             id="searchCriteria"
-                                             value={searchCriteria}
-                                             label="Szukaj według:"
-                                             handleChange={handleChange}
-                                             items={searchCriteriaItems}
-                                             />
-                            </Search>
-                            <StyledButton onClick={ () => navigate("/books?query="+searchInput+"&criteria="+searchCriteria)}>Szukaj</StyledButton>
-                        </Grid>
+
                     </Grid>
                 </Grid>
             </Toolbar>
+            <Grid item xs container direction="column" >
+                <SearchPanel searchCriteriaItems={searchCriteriaItems} onSearch={handleSearch} />
+                {/*<Search>*/}
+                {/*    <StyledInputBase*/}
+                {/*        placeholder="Tytuł lub autor"*/}
+                {/*        inputProps={{ 'aria-label': 'search' }}*/}
+                {/*        value={searchInput} onInput={e => setSearchInput(e.target.value)}*/}
+                {/*    />*/}
+                {/*    <BasicSelect labelId="search-by-label"*/}
+                {/*                 id="searchCriteria"*/}
+                {/*                 value={searchCriteria}*/}
+                {/*                 label="Znajdź:"*/}
+                {/*                 handleChange={handleChange}*/}
+                {/*                 items={searchCriteriaItems}*/}
+                {/*                 />*/}
+                {/*</Search>*/}
+                {/*<StyledButton onClick={() => navigate("/books?query="+searchInput+"&criteria="+searchCriteria)}>*/}
+                {/*    <SearchIconWrapper>*/}
+                {/*        Szukaj<SearchIcon sx={{ color: '#afafaf'}} />*/}
+                {/*    </SearchIconWrapper>*/}
+                {/*</StyledButton>*/}
+
+            </Grid>
         </NavbarContainer>
     );
 }

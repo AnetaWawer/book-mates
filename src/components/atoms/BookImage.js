@@ -11,9 +11,10 @@ const BookImage = ({ book }) => {
                     image={book.pictureUrl}
                     alt={book.title}
                     sx={{
-                        p: 1,
-                        height: 300,
-                        width: 200
+                        p: 4,
+                        height: 340,
+                        width: 400,
+                        backgroundColor:'#eeede7',
                     }}
                 />
             ) : (
