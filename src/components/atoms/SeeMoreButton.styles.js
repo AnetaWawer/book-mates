@@ -11,5 +11,5 @@ export const SeeMore = styled(Button)({
 
 export const ArrowImage = styled(KeyboardDoubleArrowRightIcon)({
     fontSize: 20,
-    textAlign:'right'
+    textAlign:'right',
 })

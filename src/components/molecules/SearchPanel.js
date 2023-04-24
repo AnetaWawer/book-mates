@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import BasicSelect from './BasicSelect';
+import SmallBasicSelect from "./SmallBasicSelect";
 
 
 const StyledSearchPanel = styled.div`
@@ -8,7 +9,7 @@ const StyledSearchPanel = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 5px;
-  background-color: #fff;
+  background-color: inherit;
 
   & > * {
     margin: 5px;
@@ -43,6 +44,8 @@ const SearchInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  background-color: inherit;
+  
 
   @media (max-width: 600px) {
     width: 100%;
@@ -52,18 +55,25 @@ const SearchInput = styled.input`
 const SearchButton = styled.button`
   height: 40px;
   padding: 0 10px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: inherit;
+  color: black;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 
+  &:hover,
+  &:active {
+    background-color: #8f8f8f;
+  }
+  
   @media (max-width: 600px) {
     margin-top: 5px;
     width: 100%;
   }
 `;
+
 
 const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
     const [searchInput, setSearchInput] = useState('');
@@ -81,7 +91,7 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 />
-                <BasicSelect
+                <SmallBasicSelect
                     labelId="search-by-label"
                     id="searchCriteria"
                     value={searchCriteria}
