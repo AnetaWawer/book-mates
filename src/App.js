@@ -25,7 +25,7 @@ function App() {
             </Route>
             <Route path="events" element={<Events />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="account" >
+            <Route path="users" >
               <Route path=":id" element={<Account />} />
             </Route>
             <Route path="login" element={<Login />} />

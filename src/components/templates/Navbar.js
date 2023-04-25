@@ -102,7 +102,7 @@ function Navbar() {
                     </Grid>
                     <Grid  item xs={10} md={9} lg={10} sm container>
                         <Grid item xs container direction="column">
-                            <StyledButton  onClick={ () => navigate("/account/profile")} >
+                            <StyledButton  onClick={ () => navigate("/users/profile")} >
                                 <PersonOutlineOutlinedIcon sx={{ fontSize: 18}} />Konto
                             </StyledButton>
                         </Grid>
