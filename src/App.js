@@ -12,7 +12,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import React from "react";
 import {createTheme, ThemeProvider} from "@mui/material";
-import {brown} from "@mui/material/colors";
 
 function App() {
 
