@@ -27,53 +27,30 @@ export default function Account() {
 
     const size = useWindowSize();
 
-    // fetch books from the backend and process the data for display on the shelves if form of a carousel
     useEffect(() => {
-        if (!books.length) {
-            axios.get(`http://localhost:8080/api/users/3/books`,
-                {headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
-                )
-                .then(response => {
-                    const userBooks = response.data;
-                    setBooks(userBooks);
-                    setFavoriteBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "FAVORITE"), numberOfCardsOnPage));
-                    setReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "READ"), numberOfCardsOnPage));
-                    setToReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "TO_READ"), numberOfCardsOnPage));
-                    setGiftBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "GIFT"), numberOfCardsOnPage));
-                    setSavedBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "SAVED"), numberOfCardsOnPage));
-                })
-                .catch(error => console.log(error));
-        }
-    }, [numberOfCardsOnPage]);
+        axios.get(`http://localhost:8080/api/users/3`,
+            {headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
+            .then(response => {
+                const user = response.data;
 
+                // fetch books
+                const userBooks = user.books;
+                setBooks(userBooks);
+                setFavoriteBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "FAVORITE"), numberOfCardsOnPage));
+                setReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "READ"), numberOfCardsOnPage));
+                setToReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "TO_READ"), numberOfCardsOnPage));
+                setGiftBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "GIFT"), numberOfCardsOnPage));
+                setSavedBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "SAVED"), numberOfCardsOnPage));
+                // fetch events
+                const userEvents = user.events;
+                setEvents(userEvents);
+                setEventsSequences(divideSequence(userEvents, numberOfCardsOnPage));
+                // fetch topics
+                setTopics(user.topics);
+            })
+            .catch(error => console.log(error));
+        }, [numberOfCardsOnPage]);
 
-    // fetch events from the backend and process the data for display as a carousel
-    useEffect(() => {
-        if (!events.length) {
-            axios.get(`http://localhost:8080/api/users/3/events`,
-                {headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
-            )
-                .then(response => {
-                    setEvents(response.data);
-                    const userEvents = response.data;
-                    setEventsSequences(divideSequence(userEvents, numberOfCardsOnPage));
-                })
-                .catch(error => console.log(error));
-        }
-    }, []);
-
-    // fetch topics from the backend
-    useEffect(() => {
-        if (!topics.length) {
-            axios.get(`http://localhost:8080/api/users/3/topics`,
-                {headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
-            )
-                .then(response => {
-                    setTopics(response.data);
-                })
-                .catch(error => console.log(error));
-        }
-    }, []);
 
 
     // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
