@@ -52,7 +52,7 @@ export default function Account() {
                 setTopics(user.topics);
             })
             .catch(error => console.log(error));
-        }, [numberOfCardsOnPage]);
+        }, [numberOfCardsOnPage, id]);
 
 
 
