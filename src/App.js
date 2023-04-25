@@ -11,9 +11,24 @@ import Events from "./pages/Events";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import React from "react";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {brown} from "@mui/material/colors";
 
 function App() {
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#5c4e46'
+      },
+      secondary: {
+        main: '#C5A992'
+      },
+    },
+  });
+
   return (
+      <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -35,6 +50,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </ThemeProvider>
   );
 }
 

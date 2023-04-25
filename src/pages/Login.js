@@ -1,18 +1,16 @@
 import React from 'react';
 import axios from "axios";
 import {
+    Link,
     Avatar,
     Box,
     Button,
-    Checkbox,
     Container,
-    FormControlLabel,
     TextField,
     Typography
 } from "@mui/material";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import AuthService from "../services/AuthService";
 
 const Login = () => {
 
@@ -57,9 +55,7 @@ const Login = () => {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    {/*<LockOutlinedIcon />*/}
-                </Avatar>
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
                 <Typography component="h1" variant="h5">
                     LOGOWANIE
                 </Typography>
@@ -84,17 +80,13 @@ const Login = () => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    {/*<FormControlLabel*/}
-                    {/*    control={<Checkbox value="remember" color="primary" />}*/}
-                    {/*    label="Zapamiętaj mnie"*/}
-                    {/*/>*/}
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 3, mb: 2, py: 2 }}
                     >
-                        Sign In
+                        Zaloguj
                     </Button>
                     <Grid container>
                         <Grid item xs>
@@ -103,7 +95,7 @@ const Login = () => {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/register" variant="body2">
                                 {"Nie masz konta? Zapisz się!"}
                             </Link>
                         </Grid>
