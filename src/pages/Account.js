@@ -7,8 +7,11 @@ import {MainContainer} from "../components/Container.styles";
 import SubscribedEvents from "../components/templates/SubscribedEvents";
 import ForumPanel from "../components/templates/ForumPanel";
 import {useWindowSize} from "../hooks/useWindowSize";
+import {useParams} from "react-router-dom";
 
 export default function Account() {
+
+    const { id } = useParams();
 
     const [books, setBooks] = useState([]);
 
@@ -28,7 +31,7 @@ export default function Account() {
     const size = useWindowSize();
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/users/3`,
+        axios.get(`http://localhost:8080/api/users/` + id,
             {headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
             .then(response => {
                 const user = response.data;
