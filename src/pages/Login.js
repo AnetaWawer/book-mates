@@ -29,7 +29,7 @@ const Login = () => {
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", response.data.token);
-                    navigate("/account");
+                    navigate("/account/profile");
                 } else {
                     console.log("no token in respone");
                 }
