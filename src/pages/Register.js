@@ -1,12 +1,55 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {Avatar, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid";
 
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const Register = () => {
 
     const navigate = useNavigate();
+
+    const userRef = useRef();
+    const errRef = useRef();
+
+    const [username, setUsername] = useState('');
+    const [validName, setValidName] = useState(false);
+    const [userFocus, setUserFocus] = useState(false);
+
+    const [password, setPassword] = useState('');
+    const [validPassword, setValidPassword] = useState(false);
+    const [passwordFocus, setPasswordFocus] = useState(false);
+
+    const [matchPassword, setMatchPassword] = useState('');
+    const [validMatch, setValidMatch] = useState(false);
+    const [matchPasswordFocus, setMatchPasswordFocus] = useState(false);
+
+    const [errorMessage, setErrorMessage] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        if (userRef.current) {
+            userRef.current.focus();
+        }
+    }, [userRef.current])
+
+    useEffect(() => {
+        const result = USER_REGEX.test(username);
+        console.log(result);
+        setValidName(result);
+    }, [username])
+
+    useEffect(() => {
+        const result  = PASSWORD_REGEX.test(password);
+        setValidPassword(result);
+        const match = password === matchPassword;
+        setValidMatch(match);
+    }, [password, matchPassword])
+
+    useEffect(() => {
+        setErrorMessage('');
+    }, [username, password, matchPassword])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -39,6 +82,13 @@ const Register = () => {
 
     return (
         <Container component="main" maxWidth="xs">
+            <p
+                ref={errRef}
+                className={errorMessage ? "errmsg" : "offscreen"}
+                aria-live="assertive"
+            >
+                {errorMessage}
+            </p>
             <Box
                 sx={{
                     marginTop: 8,
@@ -59,7 +109,15 @@ const Register = () => {
                         id="username"
                         label="Nazwa użytkownika"
                         name="username"
-                        autoFocus
+                        error={!validName}
+                        helperText={validName? '': 'wpisz poprawną nazwę'}
+                        //autoFocus
+                        ref={userRef}
+                        onChange={(e) => setUsername(e.target.value)}
+                        aria-invalid={validName ? "false" : "true"}
+                        aria-describedby="uidnote"
+                        onFocus={() => setUserFocus(true)}
+                        onBlur={() => setUserFocus(false)}
                     />
                     <TextField
                         margin="normal"
@@ -69,7 +127,6 @@ const Register = () => {
                         label="Adres email"
                         name="email"
                         autoComplete="email"
-                        autoFocus
                     />
                     <TextField
                         margin="normal"
@@ -78,8 +135,16 @@ const Register = () => {
                         name="password"
                         label="Hasło"
                         type="password"
+                        id="matchPassword"
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="matchPassword"
+                        label="Hasło"
+                        type="password"
                         id="password"
-                        autoComplete="current-password"
                     />
                     <Button
                         type="submit"
