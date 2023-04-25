@@ -31,7 +31,7 @@ export default function Account() {
     useEffect(() => {
         if (!books.length) {
             axios.get(`http://localhost:8080/api/users/3/books`,
-                //{headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
+                {headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
                 )
                 .then(response => {
                     const userBooks = response.data;
@@ -50,7 +50,9 @@ export default function Account() {
     // fetch events from the backend and process the data for display as a carousel
     useEffect(() => {
         if (!events.length) {
-            axios.get(`http://localhost:8080/api/users/3/events`)
+            axios.get(`http://localhost:8080/api/users/3/events`,
+                {headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
+            )
                 .then(response => {
                     setEvents(response.data);
                     const userEvents = response.data;
@@ -63,7 +65,9 @@ export default function Account() {
     // fetch topics from the backend
     useEffect(() => {
         if (!topics.length) {
-            axios.get(`http://localhost:8080/api/users/3/topics`)
+            axios.get(`http://localhost:8080/api/users/3/topics`,
+                {headers: {Authorization: "Bearer " + localStorage.getItem("user")}}
+            )
                 .then(response => {
                     setTopics(response.data);
                 })
