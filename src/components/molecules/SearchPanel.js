@@ -20,7 +20,7 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
               sx={{py: 2}}
               justifyContent="flex-end"
         >
-            <Grid item xs={12} sm={6} md={5} lg={3} xl={2}>
+            <Grid item xs={12} sm={12} md={3} lg={3} xl={4}>
                 <TextField
                     fullWidth
                     type="text"
@@ -29,7 +29,7 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
                     onChange={(e) => setSearchInput(e.target.value)}
                     />
             </Grid>
-            <Grid item xs={12} sm={6} md={5} lg={3} xl={2}>
+            <Grid item xs={12} sm={6} md={2} lg={2} xl={1}>
                 <BasicSelect
                         labelId="search-by-label"
                         id="searchCriteria"
@@ -39,11 +39,11 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
                         items={searchCriteriaItems}
                     />
             </Grid>
-            <Grid item xs={12} sm={12} md={2} lg={2} xl={1}>
+            <Grid item xs={12} sm={6} md={2} lg={1} xl={1}>
                 <Button
                     fullWidth
-                    variant="contained"
-                    sx={{ py: 2 }}
+                    variant="outlined"
+                    sx={{ py: 1.8 }}
                     onClick={handleSearch}>
                     Szukaj
                 </Button>
