@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, Divider, Grid, Paper, TextField, Box} from "@mui/material";
+import {Grid, Box} from "@mui/material";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {CommentBox, CommentsDivider, NewCommentTextField,SaveNewCommentButton} from "./ResponseTextField.styles";
 
 const ResponseTextField = (props) => {
     let { topicId } = useParams();
@@ -22,28 +23,27 @@ const ResponseTextField = (props) => {
     };
 
     return (
-        <Paper sx={{backgroundColor:'#eeede7'}}>
-            <Divider sx={{marginTop:'30px'}}/>
+        <CommentBox >
+            <CommentsDivider />
             <Grid container spacing={2} >
                 <Grid item xs={12} sm container>
                     <Grid item xs>
                         <Box component="form" onSubmit={handleSubmit}>
-                        <TextField
-                            id="newComment"
-                            name="newComment"
-                            label="Napisz komentarz"
-                            multiline
-                            rows={4}
-                            sx={{width:'100%',marginTop:'5px'}}
-                        />
-                        <Grid item xs>
-                            <Button sx={{float:'right', color:'inherit'}} type="submit" onClick={(props.comments)}>Dodaj komentarz</Button>
-                        </Grid>
+                            <NewCommentTextField
+                                id="newComment"
+                                name="newComment"
+                                label="Napisz komentarz"
+                                multiline
+                                rows={4}
+                            />
+                            <Grid item xs>
+                                <SaveNewCommentButton type="submit" onClick={(props.comments)}>Dodaj komentarz</SaveNewCommentButton>
+                            </Grid>
                         </Box>
                     </Grid>
                 </Grid>
             </Grid>
-        </Paper>
+        </CommentBox>
     )
 }
 
