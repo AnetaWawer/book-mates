@@ -1,60 +1,56 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "../../style.css"
-import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import logo from '../../mainLogo.png'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 import {NavbarContainer} from "../Container.styles";
-import BasicSelect from "../molecules/BasicSelect";
 import SearchPanel from "../molecules/SearchPanel";
 
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: '#f2f1eb',
-    '&:hover': {
-        backgroundColor: '#eeede7',
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'black',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
+//
+// const Search = styled('div')(({ theme }) => ({
+//     position: 'relative',
+//     borderRadius: theme.shape.borderRadius,
+//     backgroundColor: '#f2f1eb',
+//     '&:hover': {
+//         backgroundColor: '#eeede7',
+//     },
+//     marginLeft: 0,
+//     width: '100%',
+//     [theme.breakpoints.up('sm')]: {
+//         marginLeft: theme.spacing(1),
+//         width: 'auto',
+//     },
+// }));
+//
+// const SearchIconWrapper = styled('div')(({ theme }) => ({
+//     padding: theme.spacing(0, 2),
+//     height: '100%',
+//     position: 'absolute',
+//     pointerEvents: 'none',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+// }));
+//
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//     color: 'black',
+//     '& .MuiInputBase-input': {
+//         padding: theme.spacing(1, 1, 1, 0),
+//         // vertical padding + font size from searchIcon
+//         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//         transition: theme.transitions.create('width'),
+//         width: '100%',
+//         [theme.breakpoints.up('sm')]: {
+//             width: '12ch',
+//             '&:focus': {
+//                 width: '20ch',
+//             },
+//         },
+//     },
+// }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
     color:"inherit",
@@ -93,7 +89,6 @@ function Navbar() {
 
     return (
         <NavbarContainer maxWidth={false}>
-            <Toolbar>
                 <Grid container spacing={2}>
                     <Grid item xs={5} md={3} lg={2} >
                         <Button sx={{marginTop:'-6%'}} >
@@ -118,8 +113,7 @@ function Navbar() {
 
                     </Grid>
                 </Grid>
-            </Toolbar>
-            <Grid item xs container direction="column" >
+            {/*<Grid item xs container direction="column">*/}
                 <SearchPanel searchCriteriaItems={searchCriteriaItems} onSearch={handleSearch} />
                 {/*<Search>*/}
                 {/*    <StyledInputBase*/}
@@ -141,7 +135,7 @@ function Navbar() {
                 {/*    </SearchIconWrapper>*/}
                 {/*</StyledButton>*/}
 
-            </Grid>
+
         </NavbarContainer>
     );
 }
