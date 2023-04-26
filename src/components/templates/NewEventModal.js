@@ -88,8 +88,8 @@ const NewEventModal = ({book}) => {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} >
                     <BasicSelect
-                        labelId="open-select-label"
-                        id="eventType"
+                        //labelId="open-select-label"
+                        //id="eventType"
                         value={eventsType}
                         label="Typ wydarzenia"
                         handleChange={handleChange}
