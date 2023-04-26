@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Typography, Divider, Paper} from "@mui/material";
 import moment from "moment";
 
-const SingleResponse = ({ comment }) => {
+const SingleComment = ({ comment }) => {
     return (
         <Paper sx={{backgroundColor:'#eeede7'}}>
             <Divider sx={{marginTop:'30px'}}/>
@@ -26,4 +26,4 @@ const SingleResponse = ({ comment }) => {
         </Paper>
     )
 }
-export default SingleResponse
+export default SingleComment

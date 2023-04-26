@@ -4,8 +4,8 @@ import {MainContainer, Panel} from "../components/Container.styles";
 import {useParams} from "react-router-dom";
 import SectionHeader from "../components/atoms/SectionHeader";
 import SingleTopic from "../components/molecules/SingleTopic";
-import ResponseList from "../components/organisms/ResponseList";
-import ResponseTextField from "../components/molecules/ResponseTextField";
+import CommentsList from "../components/organisms/CommentsList";
+import NewCommentTextField from "../components/molecules/NewCommentTextField";
 
 function Topic() {
     const topicHeader = "Forum";
@@ -41,8 +41,8 @@ function Topic() {
             <Panel>
                 <SectionHeader header={topicHeader} />
                 <SingleTopic topic={topic} />
-                <ResponseTextField  comments={getComments} />
-                <ResponseList comments={comments} />
+                <NewCommentTextField comments={getComments} />
+                <CommentsList comments={comments} />
             </Panel>
         </MainContainer>
 

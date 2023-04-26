@@ -2,9 +2,9 @@ import React from 'react';
 import {Grid, Box} from "@mui/material";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-import {CommentBox, CommentsDivider, NewCommentTextField,SaveNewCommentButton} from "./ResponseTextField.styles";
+import {CommentBox, CommentsDivider, NewCommentTextArea, SaveNewCommentButton} from "./NewCommentTextField.styles";
 
-const ResponseTextField = (props) => {
+const NewCommentTextField = (props) => {
     let { topicId } = useParams();
     let newCommentField = document.getElementById("newComment")
     const handleSubmit = (comment) => {
@@ -29,7 +29,7 @@ const ResponseTextField = (props) => {
                 <Grid item xs={12} sm container>
                     <Grid item xs>
                         <Box component="form" onSubmit={handleSubmit}>
-                            <NewCommentTextField
+                            <NewCommentTextArea
                                 id="newComment"
                                 name="newComment"
                                 label="Napisz komentarz"
@@ -47,4 +47,4 @@ const ResponseTextField = (props) => {
     )
 }
 
-export default ResponseTextField;
+export default NewCommentTextField;

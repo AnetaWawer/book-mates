@@ -10,7 +10,7 @@ export const CommentsDivider = styled(Divider)({
     marginTop:'30px'
 });
 
-export const NewCommentTextField = styled(TextField)({
+export const NewCommentTextArea = styled(TextField)({
     width:'100%',
     marginTop:'5px'
 });
