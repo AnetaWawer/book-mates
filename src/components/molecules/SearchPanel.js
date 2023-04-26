@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import styled from 'styled-components';
-import BasicSelect from './BasicSelect';
 import SmallBasicSelect from "./SmallBasicSelect";
 
 
