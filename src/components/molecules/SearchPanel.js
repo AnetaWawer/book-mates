@@ -17,8 +17,8 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
     return (
         <Grid container
               direction={'row'}
-              // spacing={1}
-              justifyContent="center" //"flex-end"
+              spacing={1}
+              justifyContent="flex-end"
               sx ={{ mt : 1, mb: 7}}
         >
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
