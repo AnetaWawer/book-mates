@@ -6,9 +6,12 @@ import {useParams} from "react-router-dom";
 import NewEventModal from "../components/templates/NewEventModal";
 import {Box} from "@mui/material";
 import CardsPanel from "../components/templates/CardsPanel";
+import SectionHeader from "../components/atoms/SectionHeader";
+import {MainContainer} from "../components/Container.styles";
 
 
 const Book = () => {
+    const bookHeader = "O tytule"
     const [book, setBook] = useState({});
     const [events, setEvents] = useState([]);
     const { id } = useParams();
@@ -35,12 +38,15 @@ const Book = () => {
     }, [id]);
 
     return (
-        <Box sx={{mt: 5}}>
-            <BookDetails book={book} />
-            <Description description={book.description} />
-            <NewEventModal book={book}/>
-            <CardsPanel elements={events} header={eventsHeader}/>
-        </Box>
+        <MainContainer>
+            <SectionHeader header={bookHeader} />
+            <Box sx={{mt: 5}}>
+                <BookDetails book={book} />
+                <Description description={book.description} />
+                <NewEventModal book={book}/>
+                <CardsPanel elements={events} header={eventsHeader}/>
+            </Box>
+        </ MainContainer>
     );
 };
 

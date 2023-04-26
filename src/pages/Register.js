@@ -1,9 +1,8 @@
 import React from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Avatar, Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography} from "@mui/material";
+import {Avatar, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid";
-import AuthService from "../services/AuthService.js";
 
 const Register = () => {
 
@@ -21,7 +20,7 @@ const Register = () => {
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", response.data.token);
-                    navigate("/account");
+                    navigate("/users/profile");
                 } else {
                     console.log("no token in respone");
                 }
@@ -48,9 +47,7 @@ const Register = () => {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    {/*<LockOutlinedIcon />*/}
-                </Avatar>
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
                 <Typography component="h1" variant="h5">
                     REJESTRACJA
                 </Typography>
@@ -84,27 +81,18 @@ const Register = () => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    {/*<FormControlLabel*/}
-                    {/*    control={<Checkbox value="remember" color="primary" />}*/}
-                    {/*    label="Zapamiętaj mnie"*/}
-                    {/*/>*/}
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 3, mb: 2, py: 2 }}
                     >
-                        Sign In
+                        Zapisz się
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
+                    <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
-                                {"Don't have an account? Sign Up"}
+                            <Link href="/login" variant="body2">
+                                Masz już konto? Zaloguj się!
                             </Link>
                         </Grid>
                     </Grid>

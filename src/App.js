@@ -12,23 +12,37 @@ import Events from "./pages/Events";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Topic from "./pages/Topic";
+import {createTheme, ThemeProvider} from "@mui/material";
 
 function App() {
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#5c4e46'
+      },
+      secondary: {
+        main: '#C5A992'
+      },
+    },
+  });
+
   return (
+      <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="books" element={<Books />}>
-              {/*<Route path=":query" element={<Books />} />*/}
             </Route>
-            {/*<Route path="book" element={<Book />} />*/}
             <Route path="book" > // localhost:3000/book/id
               <Route path=":id" element={<Book />} />
             </Route>
             <Route path="events" element={<Events />} />
             <Route path="contact" element={<Contact />} />
-              <Route path="account" element={<Account />} />
+            <Route path="users" >
+              <Route path=":id" element={<Account />} />
+            </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
@@ -37,8 +51,8 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </ThemeProvider>
   );
 }
-
 
 export default App;
