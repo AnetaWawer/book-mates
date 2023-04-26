@@ -21,7 +21,7 @@ const Register = () => {
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", response.data.token);
-                    navigate("/account");
+                    navigate("/users/profile");
                 } else {
                     console.log("no token in respone");
                 }
