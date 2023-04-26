@@ -4,7 +4,7 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import {CommentBox, CommentsDivider, NewCommentTextArea, SaveNewCommentButton} from "./NewCommentTextField.styles";
 
-const NewCommentTextField = (props) => {
+const NewCommentTextField = ({updateComments}) => {
     let { topicId } = useParams();
     let newCommentField = document.getElementById("newComment")
     const handleSubmit = (comment) => {
@@ -37,7 +37,7 @@ const NewCommentTextField = (props) => {
                                 rows={4}
                             />
                             <Grid item xs>
-                                <SaveNewCommentButton type="submit" onClick={(props.comments)}>Dodaj komentarz</SaveNewCommentButton>
+                                <SaveNewCommentButton type="submit" onClick={updateComments}>Dodaj komentarz</SaveNewCommentButton>
                             </Grid>
                         </Box>
                     </Grid>

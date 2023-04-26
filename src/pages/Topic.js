@@ -11,37 +11,36 @@ function Topic() {
     const topicHeader = "Forum";
     const [topic, setTopic] = useState([]);
     const [comments, setComments] = useState([]);
+    const [commentsNumber, setCommentsNumber] = useState(-1);
     let { topicId } = useParams();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/topics/' + topicId)
             .then(response => {
                 setTopic(response.data);
+                setCommentsNumber(response.data.length)
                 }
             )
             .catch(error => console.log(error));
-    }, [topicId]);
-
-    let getComments = () => {
-        axios.get('http://localhost:8080/api/topics/' + topicId + "/comments")
-            .then(response => {
-                    setComments(response.data);
-                }
-            )
-            .catch(error => console.log(error));
-        return comments;
-    }
+    }, [commentsNumber]);
 
     useEffect(() => {
-        getComments();
-    }, [comments]);
+        axios.get('http://localhost:8080/api/topics/' + topicId + "/comments")
+            .then(response => {
+                setComments(response.data);
+                setCommentsNumber(response.data.length)
+                }
+            )
+            .catch(error => console.log(error));
+
+    }, [commentsNumber]);
 
     return (
         <MainContainer>
             <Panel>
                 <SectionHeader header={topicHeader} />
-                <SingleTopic topic={topic} />
-                <NewCommentTextField comments={getComments} />
+                <SingleTopic topic={topic} updateCommentsNumber={setCommentsNumber}/>
+                <NewCommentTextField updateComments={setCommentsNumber}/>
                 <CommentsList comments={comments} />
             </Panel>
         </MainContainer>
