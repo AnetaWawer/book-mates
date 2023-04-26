@@ -4,8 +4,10 @@ import axios from "axios";
 import {Avatar, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
 const Register = () => {
 
     const navigate = useNavigate();
@@ -14,8 +16,12 @@ const Register = () => {
     const errRef = useRef();
 
     const [username, setUsername] = useState('');
-    const [validName, setValidName] = useState(false);
+    const [validName, setValidName] = useState(true);
     const [userFocus, setUserFocus] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(true);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [password, setPassword] = useState('');
     const [validPassword, setValidPassword] = useState(false);
@@ -28,28 +34,40 @@ const Register = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
-    useEffect(() => {
-        if (userRef.current) {
-            userRef.current.focus();
-        }
-    }, [userRef.current])
+    // useEffect(() => {
+    //         userRef.current.focus();
+    // }, [])
 
-    useEffect(() => {
-        const result = USER_REGEX.test(username);
-        console.log(result);
-        setValidName(result);
-    }, [username])
+    // useEffect(() => {
+    //     const result = USERNAME_REGEX.test(username);
+    //     console.log(result);
+    //     setValidName(result);
+    // }, [username])
 
-    useEffect(() => {
-        const result  = PASSWORD_REGEX.test(password);
-        setValidPassword(result);
-        const match = password === matchPassword;
-        setValidMatch(match);
-    }, [password, matchPassword])
+    const onBlurUsername = () => {
+        setValidName(USERNAME_REGEX.test(username));
+        setUserFocus(false);
+    }
 
-    useEffect(() => {
-        setErrorMessage('');
-    }, [username, password, matchPassword])
+    const onBlurEmail = () => {
+        setValidEmail(EMAIL_REGEX.test(email));
+        setUserFocus(false);
+    }
+    const onBlurPassword = () => {
+        setValidPassword(PASSWORD_REGEX.test(password));
+        setUserFocus(false);
+    }
+
+    // useEffect(() => {
+    //     const result  = PASSWORD_REGEX.test(password);
+    //     setValidPassword(result);
+    //     const match = password === matchPassword;
+    //     setValidMatch(match);
+    // }, [password, matchPassword])
+    //
+    // useEffect(() => {
+    //     setErrorMessage('');
+    // }, [username, password, matchPassword])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -110,14 +128,12 @@ const Register = () => {
                         label="Nazwa użytkownika"
                         name="username"
                         error={!validName}
-                        helperText={validName? '': 'wpisz poprawną nazwę'}
-                        //autoFocus
+                        helperText={validName && !userFocus? '': 'Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -'}
+                        autoFocus
                         ref={userRef}
                         onChange={(e) => setUsername(e.target.value)}
-                        aria-invalid={validName ? "false" : "true"}
-                        aria-describedby="uidnote"
                         onFocus={() => setUserFocus(true)}
-                        onBlur={() => setUserFocus(false)}
+                        onBlur={onBlurUsername}
                     />
                     <TextField
                         margin="normal"
@@ -127,6 +143,11 @@ const Register = () => {
                         label="Adres email"
                         name="email"
                         autoComplete="email"
+                        error={!validEmail}
+                        helperText={validEmail ? '': 'niepoprawny adres email'}
+                        onChange={(e) => setEmail(e.target.value)}
+                        onFocus={() => setEmailFocus(true)}
+                        onBlur={onBlurEmail}
                     />
                     <TextField
                         margin="normal"
