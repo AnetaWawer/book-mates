@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Box} from "@mui/material";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-import {CommentBox, CommentsDivider, NewCommentTextArea, SaveNewCommentButton} from "./NewCommentTextField.styles";
+import {CommentBox, CommentsDivider, NewCommentTextArea, SaveNewCommentButton} from "./Comments.styles";
 
 const NewCommentTextField = ({updateComments}) => {
     let { topicId } = useParams();

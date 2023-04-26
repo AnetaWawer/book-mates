@@ -1,29 +1,30 @@
 import React from 'react';
-import {Grid, Typography, Divider, Paper} from "@mui/material";
+import {Grid} from "@mui/material";
 import moment from "moment";
+import {CommentBox, CommentData, CommentsDivider} from "./Comments.styles";
 
 const SingleComment = ({ comment }) => {
     return (
-        <Paper sx={{backgroundColor:'#eeede7'}}>
-            <Divider sx={{marginTop:'30px'}}/>
+        <CommentBox>
+            <CommentsDivider/>
             <Grid container spacing={2} >
                 <Grid item xs={12} sm container>
                     <Grid item xs>
-                        <Typography variant="h6" component="div" sx={{p:2}}>
+                        <CommentData variant="h6">
                             {comment.authorName} odpowiedział(a):
-                        </Typography>
-                        <Typography variant="body1" component="div" sx={{p:2}}>
+                        </CommentData>
+                        <CommentData variant="body1">
                             {comment.commentMessage}
-                        </Typography>
+                        </CommentData>
                     </Grid>
                     <Grid item>
-                        <Typography variant="body1" component="div">
+                        <CommentData variant="body1">
                             {moment(comment.creationTime).format('DD.MM.YYYY  HH:mm')}
-                        </Typography>
+                        </CommentData>
                     </Grid>
                 </Grid>
             </Grid>
-        </Paper>
+        </CommentBox>
     )
 }
 export default SingleComment

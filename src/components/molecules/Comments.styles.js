@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {Button, Divider, Paper, TextField} from "@mui/material";
+import {Button, Divider, Paper, TextField, Typography} from "@mui/material";
 
 
 export const CommentBox = styled(Paper)({
@@ -18,4 +18,8 @@ export const NewCommentTextArea = styled(TextField)({
 export const SaveNewCommentButton = styled(Button)({
     float:'right',
     color:'inherit'
+});
+
+export const CommentData = styled(Typography)({
+    padding:20
 });
