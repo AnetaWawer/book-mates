@@ -6,68 +6,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
 
-// const StyledSearchPanel = styled.div`
-//   display: flex;
-//   justify-content: flex-end;
-//   align-items: center;
-//   padding: 5px;
-//   background-color: #fff;
-//
-//   & > * {
-//     margin: 5px;
-//   }
-//
-//   @media (max-width: 600px) {
-//     flex-direction: column;
-//     align-items: stretch;
-//     & > * {
-//       margin: 0;
-//     }
-//   }
-//
-//   @media (min-width: 600px) {
-//     flex-direction: row;
-//     justify-content: flex-start;
-//
-//     & > * {
-//       margin: 0;
-//     }
-//
-//     & > *:not(:last-child) {
-//       margin-right: 10px;
-//     }
-//   }
-// `;
-//
-// const SearchInput = styled.input`
-//   width: 60%;
-//   height: 40px;
-//   padding: 5px;
-//   border: 1px solid #ccc;
-//   border-radius: 5px;
-//   font-size: 16px;
-//
-//   @media (max-width: 600px) {
-//     width: 100%;
-//   }
-// `;
-//
-// const SearchButton = styled.button`
-//   height: 40px;
-//   padding: 0 10px;
-//   border: none;
-//   border-radius: 5px;
-//   background-color: #007bff;
-//   color: #fff;
-//   font-size: 16px;
-//   cursor: pointer;
-//
-//   @media (max-width: 600px) {
-//     margin-top: 5px;
-//     width: 100%;
-//   }
-// `;
-
 const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
     const [searchInput, setSearchInput] = useState('');
     const [searchCriteria, setSearchCriteria] = useState(searchCriteriaItems[0].value);
@@ -77,45 +15,43 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
     };
 
     return (
-        //<StyledSearchPanel>
         <Grid container
               direction={'row'}
               // spacing={1}
-              sx={{py: 2}}
-              justifyContent="flex-end"
+              justifyContent="center" //"flex-end"
+              sx ={{ mt : 1, mb: 7}}
         >
-            {/*<SearchInput*/}
-            <Grid item xs={12} sm={6} md={5} lg={3} xl={2}>
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
                 <TextField
                     fullWidth
-                    type="text"
+                    size='small'
                     placeholder="Tytuł lub autor"
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
+                    sx ={{ mt : 1}}
                     />
             </Grid>
-            <Grid item xs={12} sm={6} md={5} lg={3} xl={2}>
+            <Grid item xs={12} sm={4} md={3} lg={3} xl={2} >
                 <BasicSelect
-                        labelId="search-by-label"
-                        id="searchCriteria"
-                        value={searchCriteria}
-                        label="Znajdź:"
-                        handleChange={(e) => setSearchCriteria(e.target.value)}
-                        items={searchCriteriaItems}
-                    />
+                    sx ={{ mt : 1}}
+                    size='small'
+                    value={searchCriteria}
+                    label="Znajdź:"
+                    handleChange={(e) => setSearchCriteria(e.target.value)}
+                    items={searchCriteriaItems}
+                />
             </Grid>
-            <Grid item xs={12} sm={12} md={2} lg={2} xl={1}>
+            <Grid item xs={12} sm={2} md={2} lg={2} xl={1} >
                 <Button
                     fullWidth
-                    variant="contained"
-                    sx={{ py: 2 }}
-                    onClick={handleSearch}>
+                    variant="outlined"
+                    sx={{ height: 40, mt: 1 }}
+                    onClick={handleSearch}
+                >
                     Szukaj
                 </Button>
             </Grid>
-            {/*<SearchButton onClick={handleSearch}>Szukaj</SearchButton>*/}
         </Grid>
-        // </StyledSearchPanel>
     );
 };
 

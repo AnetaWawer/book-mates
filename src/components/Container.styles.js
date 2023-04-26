@@ -7,7 +7,9 @@ export const MainContainer= styled(Container)({
 })
 
 export const NavbarContainer= styled(Container)({
-    marginLeft:'4%',
+    // marginLeft:'4%',
+    maxWidth:'90%',
+    margin:'auto',
     paddingTop:'3em'
 })
 
