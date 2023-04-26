@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Grid, Box} from "@mui/material";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import {CommentBox, CommentsDivider, NewCommentTextArea, SaveNewCommentButton} from "./Comments.styles";
+import BasicSnackBar from "../atoms/BasicSnackBar";
 
 const NewCommentTextField = ({updateComments}) => {
     let { topicId } = useParams();
     let newCommentField = document.getElementById("newComment")
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState("");
+
     const handleSubmit = (comment) => {
         comment.preventDefault();
         const data = new FormData(comment.currentTarget);
@@ -16,10 +20,20 @@ const NewCommentTextField = ({updateComments}) => {
             .then(response => {
                 console.log(response)
                 newCommentField.value=''
+                setOpen(true)
+                setMessage("Komentarz dodany poprawnie!")
             })
             .catch(error => {
                 console.log(error);
+                setMessage("Komentarz nie został dodany. Spróbuj ponownie!")
             })
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
     };
 
     return (
@@ -38,6 +52,13 @@ const NewCommentTextField = ({updateComments}) => {
                             />
                             <Grid item xs>
                                 <SaveNewCommentButton type="submit" onClick={updateComments}>Dodaj komentarz</SaveNewCommentButton>
+                                <BasicSnackBar
+                                    open={open}
+                                    handleClose={handleClose}
+                                    message={message}
+                                    autoHideDuration={5000}
+                                >
+                                </BasicSnackBar>
                             </Grid>
                         </Box>
                     </Grid>
