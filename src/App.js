@@ -39,6 +39,7 @@ function App() {
               <Route path=":id" element={<Book />} />
             </Route>
             <Route path="events" element={<Events />} />
+            <Route path="events/:eventId" element={<Event />} />
             <Route path="contact" element={<Contact />} />
             <Route path="users" >
               <Route path=":id" element={<Account />} />
@@ -46,7 +47,6 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
-            <Route path="books/:bookId/events/:eventId" element={<Event />} />
             <Route path="topics/:topicId" element={<Topic/>} />
           </Route>
         </Routes>
