@@ -6,12 +6,12 @@ import BookImage from "../atoms/BookImage";
 import {DetailsWindow, Text} from "./EventDetials.styles";
 
 
-const EventDetails = ({ book, event }) => {
+const EventDetails = ({ event }) => {
     return (
         <DetailsWindow>
             <Grid container spacing={2} >
                 <Grid item sm={4}>
-                    <BookImage book={book} />
+                    <BookImage book={event} />
                 </Grid>
                 <Grid item sm={8}>
                     <Text variant="h4" >{event.title}</Text>
