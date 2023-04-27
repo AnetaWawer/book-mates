@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import CardsBar from "../components/organisms/CardsBar";
 import {useSearchParams} from "react-router-dom";
+import SectionHeader from "../components/atoms/SectionHeader";
+import {MainContainer} from "../components/Container.styles";
 
 
 const Books = () => {
-
+    const booksHeader = "Wybrane tytuły"
     const [books, setBooks] = useState([]);
     const [searchParams] = useSearchParams();
 
@@ -25,7 +27,10 @@ const Books = () => {
     }, [searchParams]);
 
     return (
-        <CardsBar elements = {books} keyField="externalId" />
+        <MainContainer>
+            <SectionHeader header={booksHeader} />
+            <CardsBar elements = {books} keyField="externalId" />
+        </MainContainer>
     );
 }
 
