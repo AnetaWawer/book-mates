@@ -8,11 +8,11 @@ import Select from '@mui/material/Select';
 export default function BasicSelect(props) {
     return (
         // <Box sx={{ minWidth: 320 }}>
-            <FormControl fullWidth>
+            <FormControl fullWidth sx={props.sx ? props.sx : { } }>
                 <InputLabel id="label">{props.label}</InputLabel>
                 <Select
-                    labelId={props.labelId}
-                    id={props.id}
+                    //labelId={props.labelId}
+                    //id={props.id}
                     value={props.value}
                     label={props.label}
                     onChange={props.handleChange}
@@ -20,6 +20,7 @@ export default function BasicSelect(props) {
                     onOpen={props.handleOpenSelect}
                     open={props.openSelect}
                     required
+                    size={props.size ? props.size : 'medium'}
                 >
                     {
                         props.items.map((item) =>

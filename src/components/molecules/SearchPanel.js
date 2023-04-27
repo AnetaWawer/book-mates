@@ -17,34 +17,36 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
         <Grid container
               direction={'row'}
               spacing={1}
-              sx={{py: 2}}
               justifyContent="flex-end"
+              sx ={{ mt : 1, mb: 7}}
         >
-            <Grid item xs={12} sm={12} md={3} lg={3} xl={4}>
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
                 <TextField
                     fullWidth
-                    type="text"
+                    size='small'
                     placeholder="Tytuł lub autor"
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
+                    sx ={{ mt : 1}}
                     />
             </Grid>
-            <Grid item xs={12} sm={6} md={2} lg={2} xl={1}>
+            <Grid item xs={12} sm={4} md={3} lg={3} xl={2} >
                 <BasicSelect
-                        labelId="search-by-label"
-                        id="searchCriteria"
-                        value={searchCriteria}
-                        label="Znajdź:"
-                        handleChange={(e) => setSearchCriteria(e.target.value)}
-                        items={searchCriteriaItems}
-                    />
+                    sx ={{ mt : 1}}
+                    size='small'
+                    value={searchCriteria}
+                    label="Znajdź:"
+                    handleChange={(e) => setSearchCriteria(e.target.value)}
+                    items={searchCriteriaItems}
+                />
             </Grid>
-            <Grid item xs={12} sm={6} md={2} lg={1} xl={1}>
+            <Grid item xs={12} sm={2} md={2} lg={2} xl={1} >
                 <Button
                     fullWidth
                     variant="outlined"
-                    sx={{ py: 1.8 }}
-                    onClick={handleSearch}>
+                    sx={{ height: 40, mt: 1 }}
+                    onClick={handleSearch}
+                >
                     Szukaj
                 </Button>
             </Grid>
