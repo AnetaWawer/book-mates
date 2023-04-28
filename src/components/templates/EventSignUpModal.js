@@ -48,7 +48,6 @@ const EventSignUpModal = ({event}) => {
                 <Divider />
                 <EventButton onClick={handleSubmit} >Dołącz</EventButton>
                 <EventButton sx={{float:'right'}} onClick={handleClose}>Zrezygnuj</EventButton>
-
             </ModalBox>
             </Modal>
         </Box>
