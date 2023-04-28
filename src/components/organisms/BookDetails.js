@@ -5,6 +5,8 @@ import React from "react";
 import BookData from "../molecules/BookData";
 import BookImage from "../atoms/BookImage";
 import {DetailsWindow} from "./EventDetials.styles";
+import NewEventModal from "../templates/NewEventModal";
+import AddBookToShelfModal from "../templates/AddBookToShelfModal";
 
 
 const BookDetails = ({ book }) => {
@@ -15,9 +17,11 @@ const BookDetails = ({ book }) => {
                     <BookImage book={book} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={8} container direction="column">
-                    <Grid item>
-                        <BookData book={book} />
-                    </Grid>
+                    <BookData book={book} />
+                </Grid>
+                <Grid item xs={12} sx={{ display: "flex", justifyContent: "right" }}>
+                    <NewEventModal book={book} />
+                    <AddBookToShelfModal book={book} />
                 </Grid>
             </Grid>
         </DetailsWindow>

@@ -7,7 +7,7 @@ const SectionHeader = ({header}) =>{
     return (
         <HeaderContainer>
             <HeaderBox>
-                <Header component="h2" >{header}</Header>
+                <Header component="h2">{header}</Header>
             </HeaderBox>
         </HeaderContainer>
     )

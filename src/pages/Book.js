@@ -43,7 +43,7 @@ const Book = () => {
             <Box sx={{mt: 5}}>
                 <BookDetails book={book} />
                 <Description description={book.description} />
-                <NewEventModal book={book}/>
+                {/*<NewEventModal book={book}/>*/}
                 <CardsPanel elements={events} header={eventsHeader}/>
             </Box>
         </ MainContainer>

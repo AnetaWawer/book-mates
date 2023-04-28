@@ -65,7 +65,7 @@ const BookImage = ({ book }) => {
         ctx.fillStyle = 'cadetblue';
         ctx.font = '16px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText(book.author, canvas.width / 2, canvas.height / 2 + 20);
+        ctx.fillText(book.author ? book.author : "", canvas.width / 2, canvas.height / 2 + 20);
 
         // Set the image data to the base64-encoded image
         setImageData(canvas.toDataURL());

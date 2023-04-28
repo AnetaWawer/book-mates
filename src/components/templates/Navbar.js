@@ -24,12 +24,6 @@ const Img = styled('img')({
 
 function Navbar() {
     const navigate = useNavigate();
-    // const [searchInput, setSearchInput] = useState("");
-    // const [searchCriteria, setSearchCriteria] = useState("intitle");
-    //
-    // const handleChange = (event) => {
-    //     setSearchCriteria(event.target.value);
-    // };
 
     const handleSearch = (input, criteria) => {
         navigate(`/books?query=${input}&criteria=${criteria}`);
