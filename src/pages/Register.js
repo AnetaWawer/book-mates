@@ -5,8 +5,8 @@ import {Avatar, Box, Button, Container, Link, Typography, TextField} from "@mui/
 import Grid from "@mui/material/Grid";
 
 const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,24}$/;
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/; // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^+-]).{8,24}$/;
 
 const Register = () => {
 
@@ -78,9 +78,9 @@ const Register = () => {
 
     useEffect(() => {
         if (isEmailOmitted) {
-            setEmailHelperText('Należy podać email');
+            setEmailHelperText('Należy podać email.');
         } else if (!isEmailValid && isEmailEdited) {
-            setEmailHelperText('Niepoprawny format adresu email');
+            setEmailHelperText('Niepoprawny format adresu email.');
         } else {
             setEmailHelperText('');
         }
@@ -102,11 +102,11 @@ const Register = () => {
 
     useEffect(() => {
         if (isPasswordFocused && !isPasswordEdited) {
-            setPasswordHelperText('Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę, jedną cyfrę i jeden znak specjalny');
+            setPasswordHelperText('Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę i jedną cyfrę.');
         } else if (isPasswordOmitted) {
             setPasswordHelperText('Należy podać hasło');
         } else if (!isPasswordValid && isPasswordEdited) {
-            setPasswordHelperText('Niepoprawne hasło. Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę, jedną cyfrę i jeden znak specjalny');
+            setPasswordHelperText('Niepoprawne hasło. Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę i jedną cyfrę.');
         } else {
             setPasswordHelperText('');
         }
