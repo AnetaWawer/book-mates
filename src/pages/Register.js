@@ -1,112 +1,174 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Avatar, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
+import {Avatar, Box, Button, Container, Link, Typography, TextField} from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,24}$/;
 
 const Register = () => {
 
     const navigate = useNavigate();
 
-    const userRef = useRef();
-    const errRef = useRef();
-
     const [username, setUsername] = useState('');
-    const [validName, setValidName] = useState(true);
-    const [userFocus, setUserFocus] = useState(false);
+    const [isNameValid, setIsNameValid] = useState(false);
+    const [isNameFocused, setIsNameFocused] = useState(true);
+    const [isNameEdited, setIsNameEdited] = useState(false);
+    const [isNameOmitted, setIsNameOmitted] = useState(false);
+    const [usernameHelperText, setUsernameHelperText] = useState('Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -');
 
     const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState(true);
-    const [emailFocus, setEmailFocus] = useState(false);
+    const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isEmailEdited, setIsEmailEdited] = useState(false);
+    const [isEmailOmitted, setIsEmailOmitted] = useState(false);
+    const [emailHelperText, setEmailHelperText] = useState('');
 
     const [password, setPassword] = useState('');
-    const [validPassword, setValidPassword] = useState(false);
-    const [passwordFocus, setPasswordFocus] = useState(false);
+    const [isPasswordFocused, setIsPasswordFocused] = useState(false)
+    const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const [isPasswordEdited, setIsPasswordEdited] = useState(false);
+    const [isPasswordOmitted, setIsPasswordOmitted] = useState(false);
+    const [passwordHelperText, setPasswordHelperText] = useState('');
+
 
     const [matchPassword, setMatchPassword] = useState('');
-    const [validMatch, setValidMatch] = useState(false);
-    const [matchPasswordFocus, setMatchPasswordFocus] = useState(false);
+    const [isMatchPasswordValid, setIsMatchPasswordValid] = useState(false);
+    const [isMatchPasswordEdited, setIsMatchPasswordEdited] = useState(false);
+    const [isMatchPasswordOmitted, setIsMatchPasswordOmitted] = useState(false);
+    const [matchPasswordHelperText, setMatchPasswordHelperText] = useState('');
 
-    const [errorMessage, setErrorMessage] = useState('');
-    const [success, setSuccess] = useState(false);
-
-    // useEffect(() => {
-    //         userRef.current.focus();
-    // }, [])
-
-    // useEffect(() => {
-    //     const result = USERNAME_REGEX.test(username);
-    //     console.log(result);
-    //     setValidName(result);
-    // }, [username])
+    const onUsernameChange = (e) => {
+        setIsNameValid(USERNAME_REGEX.test(e.target.value));
+        setUsername(e.target.value);
+        setIsNameOmitted(e.target.value === '');
+    }
 
     const onBlurUsername = () => {
-        setValidName(USERNAME_REGEX.test(username));
-        setUserFocus(false);
+        setIsNameValid(USERNAME_REGEX.test(username));
+        setIsNameFocused(false);
+        setIsNameEdited(true);
+        setIsNameOmitted(username === '');
+    }
+
+    useEffect (() => {
+        if (isNameFocused && !isNameEdited) {
+            setUsernameHelperText('Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -');
+        } else if (!isNameValid && isNameOmitted && isNameEdited) {
+            setUsernameHelperText('Należy podać nazwę użytkownika');
+        } else if (!isNameValid && isNameEdited) {
+            setUsernameHelperText('Błędna nazwa użytkownika. Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -');
+        } else {
+            setUsernameHelperText('');
+        }
+    }, [username, isNameValid, isNameFocused, isNameEdited, isNameOmitted])
+
+    const onEmailChange = (e) => {
+        setEmail(e.target.value);
+        setIsEmailValid(EMAIL_REGEX.test(e.target.value));
+        setIsEmailOmitted(e.target.value === '');
     }
 
     const onBlurEmail = () => {
-        setValidEmail(EMAIL_REGEX.test(email));
-        setUserFocus(false);
-    }
-    const onBlurPassword = () => {
-        setValidPassword(PASSWORD_REGEX.test(password));
-        setUserFocus(false);
+        setIsEmailValid(EMAIL_REGEX.test(email));
+        setIsEmailEdited(true);
+        setIsEmailOmitted(email === '');
     }
 
-    // useEffect(() => {
-    //     const result  = PASSWORD_REGEX.test(password);
-    //     setValidPassword(result);
-    //     const match = password === matchPassword;
-    //     setValidMatch(match);
-    // }, [password, matchPassword])
-    //
-    // useEffect(() => {
-    //     setErrorMessage('');
-    // }, [username, password, matchPassword])
+    useEffect(() => {
+        if (isEmailOmitted) {
+            setEmailHelperText('Należy podać email');
+        } else if (!isEmailValid && isEmailEdited) {
+            setEmailHelperText('Niepoprawny format adresu email');
+        } else {
+            setEmailHelperText('');
+        }
+    }, [email, isEmailValid, isEmailEdited, isEmailOmitted])
+
+    const onPasswordChange = (e) => {
+        setPassword(e.target.value);
+        setIsPasswordValid(PASSWORD_REGEX.test(e.target.value));
+        setIsPasswordOmitted(e.target.value === '');
+        setIsMatchPasswordValid(e.target.value === matchPassword);
+    }
+
+    const onBlurPassword = () => {
+        setIsPasswordValid(PASSWORD_REGEX.test(password));
+        setIsPasswordEdited(true);
+        setIsPasswordOmitted(password === '');
+        setIsPasswordFocused(false);
+    }
+
+    useEffect(() => {
+        if (isPasswordFocused && !isPasswordEdited) {
+            setPasswordHelperText('Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę, jedną cyfrę i jeden znak specjalny');
+        } else if (isPasswordOmitted) {
+            setPasswordHelperText('Należy podać hasło');
+        } else if (!isPasswordValid && isPasswordEdited) {
+            setPasswordHelperText('Niepoprawne hasło. Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę, jedną cyfrę i jeden znak specjalny');
+        } else {
+            setPasswordHelperText('');
+        }
+    }, [password, isPasswordValid, isPasswordEdited, isPasswordOmitted, isPasswordFocused])
+
+    const onMatchPasswordChange = (e) => {
+        setMatchPassword(e.target.value);
+        setIsMatchPasswordValid(e.target.value === password);
+        setIsMatchPasswordOmitted(e.target.value === '');
+    }
+
+    const onBlurMatchPassword = () => {
+        setIsMatchPasswordValid(matchPassword === password);
+        setIsMatchPasswordEdited(true);
+        setIsMatchPasswordOmitted(matchPassword === '');
+    }
+
+    useEffect(() => {
+        if (isMatchPasswordOmitted) {
+            setMatchPasswordHelperText('Należy powtórzyć hasło');
+        } else if (!isMatchPasswordValid && isMatchPasswordEdited) {
+            setMatchPasswordHelperText('Podane hasła różnią się');
+        } else {
+            setMatchPasswordHelperText('');
+        }
+    }, [matchPassword, isMatchPasswordValid, isMatchPasswordEdited, isMatchPasswordOmitted, password])
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        axios
-            .post("http://localhost:8080/api/authentication/register", {
-                username: data.get('username'),
-                email: data.get('email'),
-                password: data.get('password')
-            })
-            .then(response => {
-                if (response.data.token) {
-                    localStorage.setItem("user", response.data.token);
-                    navigate("/users/profile");
-                } else {
-                    console.log("no token in respone");
-                }
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log(error.response);
-                    alert("nie można zarejestrować konta, niepoprawne dane");
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log("Error ", error.message());
-                }
-            });    }
+        setIsEmailOmitted(email === '');
+        setIsPasswordOmitted(password === '');
+        setIsMatchPasswordOmitted(matchPassword === '');
+        if (isNameValid && isEmailValid && isPasswordValid && isMatchPasswordValid) {
+            const data = new FormData(event.currentTarget);
+            axios
+                .post("http://localhost:8080/api/authentication/register", {
+                    username: data.get('username'),
+                    email: data.get('email'),
+                    password: data.get('password')
+                })
+                .then(response => {
+                    if (response.data.token) {
+                        localStorage.setItem("user", response.data.token);
+                        navigate(-1);
+                    }
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(error.response);
+                        alert("nie można zarejestrować konta, niepoprawne dane");
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log("Error ", error.message());
+                    }
+                });
+        }
+    }
 
 
     return (
         <Container component="main" maxWidth="xs">
-            <p
-                ref={errRef}
-                className={errorMessage ? "errmsg" : "offscreen"}
-                aria-live="assertive"
-            >
-                {errorMessage}
-            </p>
             <Box
                 sx={{
                     marginTop: 8,
@@ -124,15 +186,13 @@ const Register = () => {
                         margin="normal"
                         required
                         fullWidth
-                        id="username"
                         label="Nazwa użytkownika"
                         name="username"
-                        error={!validName}
-                        helperText={validName && !userFocus? '': 'Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -'}
+                        error={!isNameValid && isNameEdited}
+                        helperText={ usernameHelperText }
                         autoFocus
-                        ref={userRef}
-                        onChange={(e) => setUsername(e.target.value)}
-                        onFocus={() => setUserFocus(true)}
+                        onChange={(e) => onUsernameChange(e)}
+                        onFocus={() => setIsNameFocused(true)}
                         onBlur={onBlurUsername}
                     />
                     <TextField
@@ -143,10 +203,9 @@ const Register = () => {
                         label="Adres email"
                         name="email"
                         autoComplete="email"
-                        error={!validEmail}
-                        helperText={validEmail ? '': 'niepoprawny adres email'}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onFocus={() => setEmailFocus(true)}
+                        error={!isEmailValid && (isEmailEdited || isEmailOmitted)}
+                        helperText={ emailHelperText }
+                        onChange={(e) => onEmailChange(e)}
                         onBlur={onBlurEmail}
                     />
                     <TextField
@@ -156,16 +215,30 @@ const Register = () => {
                         name="password"
                         label="Hasło"
                         type="password"
-                        id="matchPassword"
+                        error={!isPasswordValid && (isPasswordEdited || isPasswordOmitted)}
+                        helperText={ passwordHelperText }
+                        onFocus={() => {
+                            setIsEmailOmitted(email === '');
+                            setIsPasswordFocused(true);
+                        }}
+                        onChange={(e) => onPasswordChange(e)}
+                        onBlur={onBlurPassword}
                     />
                     <TextField
                         margin="normal"
                         required
                         fullWidth
                         name="matchPassword"
-                        label="Hasło"
+                        label="Powtórz hasło"
                         type="password"
-                        id="password"
+                        error={!isMatchPasswordValid && isMatchPasswordEdited || isMatchPasswordOmitted}
+                        helperText={ matchPasswordHelperText }
+                        onFocus={() => {
+                            setIsEmailOmitted(email === '');
+                            setIsPasswordOmitted(password === '');
+                        }}
+                        onChange={(e) => onMatchPasswordChange(e)}
+                        onBlur={onBlurMatchPassword}
                     />
                     <Button
                         type="submit"
