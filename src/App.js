@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
@@ -10,7 +11,7 @@ import Account from "./pages/Account";
 import Events from "./pages/Events";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import React from "react";
+import Topic from "./pages/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Route path=":id" element={<Book />} />
             </Route>
             <Route path="events" element={<Events />} />
+            <Route path="events/:eventId" element={<Event />} />
             <Route path="contact" element={<Contact />} />
             <Route path="users" >
               <Route path=":id" element={<Account />} />
@@ -45,7 +47,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
-            <Route path="books/:bookId/events/:eventId" element={<Event />} />
+            <Route path="topics/:topicId" element={<Topic/>} />
           </Route>
         </Routes>
       </BrowserRouter>

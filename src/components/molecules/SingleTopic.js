@@ -27,7 +27,7 @@ const SingleTopic = ({ topic }) => {
                 </Grid>
                 <Grid item xs={8} container direction="column">
                     <Box >
-                        <TopicTitle variant="h6" color="inherit"  onClick={ () => navigate("/books/" + topic.bookId+ "/topics")} >
+                        <TopicTitle variant="h6" color="inherit"  onClick={ () => navigate("/topics/" + topic.id)} >
                             {topic.title}
                         </TopicTitle>
                         <Typography variant="subtitle2">

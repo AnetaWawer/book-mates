@@ -8,7 +8,7 @@ import BasicDateTimePicker from "../atoms/BasicDateTimePicker";
 import NewEventTextFields from "../molecules/NewEventTextFields";
 import {ModalBox, NewEventButton, SubmitEventButton} from "./NewEventModal.styles";
 
-const NewEventModal = ({book}) => {
+const NewEventModal = ({book, updateEvents}) => {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(dayjs);
     let { id } = useParams();
@@ -88,8 +88,8 @@ const NewEventModal = ({book}) => {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} >
                     <BasicSelect
-                        labelId="open-select-label"
-                        id="eventType"
+                        //labelId="open-select-label"
+                        //id="eventType"
                         value={eventsType}
                         label="Typ wydarzenia"
                         handleChange={handleChange}
@@ -108,6 +108,7 @@ const NewEventModal = ({book}) => {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        onClick={updateEvents}
                     >
                         Dodaj wydarzenie
                     </SubmitEventButton>

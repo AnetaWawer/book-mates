@@ -14,6 +14,7 @@ const Book = () => {
     const bookHeader = "O tytule"
     const [book, setBook] = useState({});
     const [events, setEvents] = useState([]);
+    const [eventsNumber, setEventsNumber] = useState(0);
     const { id } = useParams();
     const eventsHeader = "Wydarzenia";
 
@@ -27,15 +28,14 @@ const Book = () => {
     }, [id]);
 
     useEffect(() => {
-        if (!events.length) {
             axios.get('http://localhost:8080/api/books/'+ id +'/events')
                 .then(response => {
                     setEvents(response.data);
+                    setEventsNumber(events.length)
                     }
                 )
                 .catch(error => console.log(error));
-        }
-    }, [id]);
+    }, [eventsNumber]);
 
     return (
         <MainContainer>
@@ -43,7 +43,7 @@ const Book = () => {
             <Box sx={{mt: 5}}>
                 <BookDetails book={book} />
                 <Description description={book.description} />
-                {/*<NewEventModal book={book}/>*/}
+                <NewEventModal book={book} updateEvents={setEventsNumber}/>
                 <CardsPanel elements={events} header={eventsHeader}/>
             </Box>
         </ MainContainer>
