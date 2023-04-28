@@ -1,8 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Avatar, Box, Button, Container, Link, Typography} from "@mui/material";
-import TextField from "@mui/material/TextField";
+import {Avatar, Box, Button, Container, Link, Typography, TextField} from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -218,7 +217,7 @@ const Register = () => {
                         type="password"
                         error={!isPasswordValid && (isPasswordEdited || isPasswordOmitted)}
                         helperText={ passwordHelperText }
-                        onFocus={(e) => {
+                        onFocus={() => {
                             setIsEmailOmitted(email === '');
                             setIsPasswordFocused(true);
                         }}
@@ -234,7 +233,7 @@ const Register = () => {
                         type="password"
                         error={!isMatchPasswordValid && isMatchPasswordEdited || isMatchPasswordOmitted}
                         helperText={ matchPasswordHelperText }
-                        onFocus={(e) => {
+                        onFocus={() => {
                             setIsEmailOmitted(email === '');
                             setIsPasswordOmitted(password === '');
                         }}
