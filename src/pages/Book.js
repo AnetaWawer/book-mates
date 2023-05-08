@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import BookDetails from '../components/organisms/BookDetails';
 import Description from '../components/atoms/Description';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import {Box} from "@mui/material";
 import CardsPanel from "../components/templates/CardsPanel";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {MainContainer} from "../components/Container.styles";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 const Book = () => {
@@ -15,16 +16,21 @@ const Book = () => {
     const [book, setBook] = useState({});
     const [events, setEvents] = useState([]);
     const [eventsNumber, setEventsNumber] = useState(0);
+    const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const eventsHeader = "Wydarzenia";
 
     useEffect(() => {
+        setLoading(true);
         axios.get('http://localhost:8080/api/books/search/' + id)
             .then(response => {
                     setBook(response.data);
+                    setLoading(false);
                 }
             )
-            .catch(error => console.log(error));
+            .catch(error => {setLoading(false);
+                console.log(error)}
+            );
     }, [id]);
 
     useEffect(() => {
@@ -41,7 +47,9 @@ const Book = () => {
         <MainContainer>
             <SectionHeader header={bookHeader} />
             <Box sx={{mt: 5}}>
-                <BookDetails book={book} />
+                <div>
+                    {loading ? <CircularProgress /> : <BookDetails book={book} />}
+                </div>
                 <Description description={book.description} />
                 <NewEventModal book={book} updateEvents={setEventsNumber}/>
                 <CardsPanel elements={events} header={eventsHeader}/>
