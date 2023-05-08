@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import {Box, Typography, Modal } from "@mui/material";
-import dayjs from 'dayjs';
+import {Box, Modal} from "@mui/material";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import BasicSelect from "../molecules/BasicSelect";
-import BasicDateTimePicker from "../atoms/BasicDateTimePicker";
-import NewEventTextFields from "../molecules/NewEventTextFields";
 import {ModalBox, NewEventButton, SubmitEventButton} from "./NewEventModal.styles";
 
 const AddBookToShelfModal = ({book}) => {
@@ -31,23 +28,23 @@ const AddBookToShelfModal = ({book}) => {
     const items = [
         {
             name:"Ulubione",
-            value:0,
+            value:"FAVORITE",
         },
         {
             name:"Przeczytane",
-            value:1,
+            value:"READ",
         },
         {
             name:"Do przeczytania",
-            value:2,
+            value:"TO_READ",
         },
         {
             name:"Na prezent",
-            value:3,
+            value:"GIFT",
         },
         {
             name:"Zapisane",
-            value:4,
+            value:"SAVED",
         },
     ]
 
@@ -55,11 +52,7 @@ const AddBookToShelfModal = ({book}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        axios.post('http://localhost:8080/api/books/shelves/' + shelfType + '/' + id, {
-            title:data.get('title'),
-            shelfType:shelfType,
-            externalId:book.externalId,
-        })
+        axios.post('http://localhost:8080/api/books/shelves/' + shelfType + '/' + id, null, {headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
             .then(response => {
                 handleClose();
             })
