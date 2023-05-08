@@ -67,7 +67,7 @@ const NewEventModal = ({book, updateEvents}) => {
             rating:book.rating,
             year:book.year,
 
-        })
+        }, {headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
             .then(response => {
                 handleClose();
             })
