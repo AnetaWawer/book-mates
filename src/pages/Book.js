@@ -40,7 +40,7 @@ const Book = () => {
         <MainContainer>
             <SectionHeader header={bookHeader} />
             <Box sx={{mt: 5}}>
-                <BookDetails book={book} />
+                <BookDetails book={book} updateEvents={setEventsNumber} />
                 <Description description={book.description} />
                 <CardsPanel elements={events} header={eventsHeader}/>
             </Box>

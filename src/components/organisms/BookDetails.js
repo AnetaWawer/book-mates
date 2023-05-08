@@ -9,7 +9,7 @@ import NewEventModal from "../templates/NewEventModal";
 import AddBookToShelfModal from "../templates/AddBookToShelfModal";
 
 
-const BookDetails = ({ book }) => {
+const BookDetails = ({ book,updateEvents }) => {
     return (
         <DetailsWindow>
             <Grid container spacing={2}>
@@ -20,7 +20,7 @@ const BookDetails = ({ book }) => {
                     <BookData book={book} />
                 </Grid>
                 <Grid item xs={12} sx={{ display: "flex", justifyContent: "right" }}>
-                    <NewEventModal book={book} />
+                    <NewEventModal book={book} updateEvents={updateEvents} />
                     <AddBookToShelfModal book={book} />
                 </Grid>
             </Grid>

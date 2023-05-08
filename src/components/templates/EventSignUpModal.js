@@ -6,7 +6,7 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import {EventButton, Text} from "../organisms/EventDetials.styles";
 
-const EventSignUpModal = ({event}) => {
+const EventSignUpModal = ({event, getParticipants}) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
@@ -17,8 +17,9 @@ const EventSignUpModal = ({event}) => {
         axios.post('http://localhost:8080/api/events/' + eventId + '/join', {
         },{headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
             .then(response => {
+                console.log(response)
                 handleClose();
-                window.location.reload();
+                getParticipants()
             })
             .catch(error => {
                 console.log(error);

@@ -6,7 +6,7 @@ import BookImage from "../atoms/BookImage";
 import {DetailsWindow, Text} from "./EventDetials.styles";
 
 
-const EventDetails = ({ event }) => {
+const EventDetails = ({ event, getParticipants }) => {
     return (
         <DetailsWindow>
             <Grid container spacing={2} >
@@ -22,7 +22,7 @@ const EventDetails = ({ event }) => {
                     <Text variant="body1">Wolnych miejsc: {event.maxParticipants-event.participants}</Text>
                     <Text variant="body1">Ilość osób na liście oczekujących: {event.waitingList}</Text>
                     <Grid container justifyContent="flex-end">
-                        <EventSignUpModal event={event} />
+                        <EventSignUpModal event={event} getParticipants={getParticipants} />
                     </Grid>
                 </Grid>
             </Grid>
