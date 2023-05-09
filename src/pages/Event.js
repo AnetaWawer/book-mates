@@ -8,21 +8,22 @@ import Description from "../components/atoms/Description";
 
 function Event() {
     const [event, setEvent] = useState({});
+    const [eventParticipants, setEventParticipants] = useState(0);
     let { eventId } = useParams();
 
     useEffect(() => {
-            axios.get('http://localhost:8080/api/events/' + eventId )
-                .then(response => {
-                        setEvent(response.data);
-                    }
-                )
-                .catch(error => console.log(error));
-
-    }, [eventId]);
+        axios.get('http://localhost:8080/api/events/' + eventId )
+            .then(response => {
+                setEvent(response.data);
+                setEventParticipants(event.participants+event.waitingList)
+                }
+            )
+            .catch(error => console.log(error));
+    }, [eventParticipants]);
 
     return (
         <MainContainer>
-            <EventDetails event={event}/>
+            <EventDetails event={event} getParticipants={setEventParticipants}/>
             <Description description={event.description}/>
         </MainContainer>
     );
