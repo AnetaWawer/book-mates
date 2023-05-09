@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import {CardMedia} from "@mui/material";
 
+
+
 const BookImage = ({ book }) => {
     const [imageData, setImageData] = useState('');
     const canvasRef = useRef(null);
@@ -65,7 +67,7 @@ const BookImage = ({ book }) => {
         ctx.fillStyle = 'cadetblue';
         ctx.font = '16px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText(book.author ? book.author : "", canvas.width / 2, canvas.height / 2 + 20);
+        ctx.fillText(book.author ? book.author : "", canvas.width / 2, canvas.height / 2 + 60);
 
         // Set the image data to the base64-encoded image
         setImageData(canvas.toDataURL());
