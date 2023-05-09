@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Topic from "./pages/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
+import ScrollToTop from "./hooks/ScrollToTop";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
