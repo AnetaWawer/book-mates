@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Topic from "./pages/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
+import Logout from "./pages/Logout";
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
               <Route path=":id" element={<Account />} />
             </Route>
             <Route path="login" element={<Login />} />
+            <Route path="logout" element={<Logout />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
             <Route path="topics/:topicId" element={<Topic/>} />
