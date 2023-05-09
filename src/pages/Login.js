@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 import {
     Link,
@@ -15,6 +15,10 @@ import Grid from "@mui/material/Grid";
 const Login = () => {
 
     const navigate = useNavigate();
+
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isDataValid, setIsDataValid] = useState(true);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -34,12 +38,8 @@ const Login = () => {
             })
             .catch((error) => {
                 if (error.response) {
-                    console.log(error.response);
-                    alert("niepoprawne dane logowania");
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log("Error ", error.message());
+                    setErrorMessage(error.response.data);
+                    setIsDataValid(false);
                 }
             });
     }
@@ -56,19 +56,22 @@ const Login = () => {
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
-                <Typography component="h1" variant="h5">
+                <Typography variant="h5">
                     LOGOWANIE
+                </Typography>
+                <Typography sx={{ m: 1, color: 'error.main' }}>
+                    {errorMessage}
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
                         label="Adres email"
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        error={!isDataValid}
                     />
                     <TextField
                         margin="normal"
@@ -77,8 +80,8 @@ const Login = () => {
                         name="password"
                         label="Hasło"
                         type="password"
-                        id="password"
                         autoComplete="current-password"
+                        error={!isDataValid}
                     />
                     <Button
                         type="submit"

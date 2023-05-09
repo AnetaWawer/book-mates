@@ -40,6 +40,7 @@ const Register = () => {
     const [isMatchPasswordOmitted, setIsMatchPasswordOmitted] = useState(false);
     const [matchPasswordHelperText, setMatchPasswordHelperText] = useState('');
 
+    const [errorMessage, setErrorMessage] = useState('');
     const onUsernameChange = (e) => {
         setIsNameValid(USERNAME_REGEX.test(e.target.value));
         setUsername(e.target.value);
@@ -149,21 +150,13 @@ const Register = () => {
                     password: data.get('password')
                 })
                 .then(response => {
-                    if (response.data.token) {
-                        localStorage.setItem("user", response.data.token);
-                        navigate(-1);
-                    }
+                        navigate('/login');
                 })
                 .catch((error) => {
                     if (error.response) {
-                        console.log(error.response);
-                        alert("nie można zarejestrować konta, niepoprawne dane");
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log("Error ", error.message());
+                        setErrorMessage(error.response.data)
                     }
-                });
+                })
         }
     }
 
@@ -179,8 +172,11 @@ const Register = () => {
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
-                <Typography component="h1" variant="h5">
+                <Typography variant="h5">
                     REJESTRACJA
+                </Typography>
+                <Typography sx={{ m: 1, color: 'error.main' }}>
+                    {errorMessage}
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
@@ -203,7 +199,6 @@ const Register = () => {
                         id="email"
                         label="Adres email"
                         name="email"
-                        autoComplete="email"
                         error={!isEmailValid && (isEmailEdited || isEmailOmitted)}
                         helperText={ emailHelperText }
                         onChange={(e) => onEmailChange(e)}
@@ -232,7 +227,7 @@ const Register = () => {
                         name="matchPassword"
                         label="Powtórz hasło"
                         type="password"
-                        error={!isMatchPasswordValid && isMatchPasswordEdited || isMatchPasswordOmitted}
+                        error={(!isMatchPasswordValid && isMatchPasswordEdited) || isMatchPasswordOmitted}
                         helperText={ matchPasswordHelperText }
                         onFocus={() => {
                             setIsEmailOmitted(email === '');
