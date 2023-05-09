@@ -15,7 +15,7 @@ const EventSignUpModal = ({event, getParticipants}) => {
     let currentWaitingListNumber = event.waitingList +1;
     const handleSubmit = () => {
         axios.post('http://localhost:8080/api/events/' + eventId + '/join', {
-        },{headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
+        })
             .then(response => {
                 console.log(response)
                 handleClose();

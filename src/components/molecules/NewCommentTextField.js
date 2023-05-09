@@ -16,7 +16,7 @@ const NewCommentTextField = ({updateComments}) => {
         const data = new FormData(comment.currentTarget);
         axios.post('http://localhost:8080/api/topics/' + topicId + '/comments', {
             commentMessage:data.get('newComment')
-        },{headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
+        })
             .then(response => {
                 console.log(response)
                 newCommentField.value=''

@@ -51,9 +51,9 @@ const AddBookToShelfModal = ({book}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        axios.post('http://localhost:8080/api/books/shelves/' + shelfType + '/' + id, null, {headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
-            .then(response => {
+        // const data = new FormData(event.currentTarget);
+        axios.post('http://localhost:8080/api/books/shelves/' + shelfType + '/' + id)
+            .then(() => {
                 handleClose();
             })
             .catch(error => {

@@ -21,8 +21,8 @@ const SingleCard = ({ element }) => {
                 {/*        backgroundColor:'#eeede7',*/}
                 {/*    }}*/}
                 {/*/>*/}
-                <BookImage book={element} />
-                <CardContent >
+                <BookImage style={{flexGrow: 3}} book={element} />
+                <CardContent sx={{flexGrow: 1}}>
                     <Box>
                         <Typography gutterBottom variant="h6" sx={{textAlign: "center"}}>
                             { element.title}
