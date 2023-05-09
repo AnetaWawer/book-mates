@@ -31,8 +31,7 @@ export default function Account() {
     const size = useWindowSize();
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/users/` + id,
-            {headers: {Authorization: "Bearer " + localStorage.getItem("user")}})
+        axios.get(`http://localhost:8080/api/users/` + id)
             .then(response => {
                 const user = response.data;
 
