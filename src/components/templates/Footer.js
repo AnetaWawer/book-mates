@@ -44,10 +44,13 @@ function Footer() {
                         <Typography variant="h6" component="div">
                             Moje konto
                         </Typography>
+                        <Item variant="subtitle1"  onClick={() =>navigate("/register/")}>
+                            Rejestracja
+                        </Item>
                         <Item variant="subtitle1"  onClick={() =>navigate("/login/")}>
                             Logowanie
                         </Item>
-                        <Item variant="subtitle1" onClick={() =>navigate("/account/")}>
+                        <Item variant="subtitle1" onClick={() =>navigate("/users/profile/")}>
                             Mój profil
                         </Item>
                     </Grid>

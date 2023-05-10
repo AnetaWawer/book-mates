@@ -12,6 +12,7 @@ export const Img = styled('img')({
 export const SingleTopicContainer = styled(Grid)({
     height: { xs:'600px',sm:'250px' ,md:'230px' ,lg:'180px' },
     display:'wrap',
+    marginBottom:'25px',
 });
 
 export const BookCover = styled(ButtonBase)({

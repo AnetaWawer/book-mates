@@ -3,13 +3,13 @@ import BookDetails from '../components/organisms/BookDetails';
 import Description from '../components/atoms/Description';
 import axios from 'axios';
 import {useParams} from "react-router-dom";
-import NewEventModal from "../components/templates/NewEventModal";
 import {Box} from "@mui/material";
 import CardsPanel from "../components/templates/CardsPanel";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {MainContainer} from "../components/Container.styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import ForumPanel from "../components/templates/ForumPanel";
+import NewEventModal from "../components/templates/NewEventModal";
 
 
 const Book = () => {

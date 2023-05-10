@@ -5,9 +5,9 @@ import Shelf from "../components/templates/Shelf";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {MainContainer} from "../components/Container.styles";
 import SubscribedEvents from "../components/templates/SubscribedEvents";
-import ForumPanel from "../components/templates/ForumPanel";
 import {useWindowSize} from "../hooks/useWindowSize";
 import {useParams} from "react-router-dom";
+import TopicsList from "../components/organisms/TopicsList";
 
 export default function Account() {
 
@@ -91,7 +91,10 @@ export default function Account() {
                 <SectionHeader header={"Moje wydarzenia"} />
                 <SubscribedEvents events={eventsSequences}/>
             </Box>
-            <ForumPanel topics={topics} header="Moje wątki" />
+            <Box sx={{mt: 8}}>
+                <SectionHeader header="Moje wątki" />
+                <TopicsList topics={topics} />
+            </Box>
         </MainContainer>
     );
 }
