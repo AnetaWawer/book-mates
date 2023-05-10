@@ -74,18 +74,16 @@ const BookImage = ({ book }) => {
     }, [book]);
 
     return (
-        <div>
+        <div style={{ height: "65%" }}>
             <CardMedia
                 component="img"
                 image={book.pictureUrl ? book.pictureUrl : imageData}
                 alt={book.title}
                 width="200"
                 height="300"
+                style={{ height: "100%" }}
             />
-            <canvas
-                    ref={canvasRef}
-                    style={{ display: 'none' }}
-                />
+            <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
     );
 };
