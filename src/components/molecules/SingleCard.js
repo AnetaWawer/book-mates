@@ -10,8 +10,8 @@ const SingleCard = ({ element }) => {
     return (
         <CardActionArea onClick={element.eventDate!==undefined ? () => navigate("/events/" + element.id) : () => navigate("/book/" + element.externalId)}>
             <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit', display: 'flex', flexDirection: 'column' }}>
-                <BookImage book={element} style={{ height: '65%' }} />
-                <CardContent sx={{ flexGrow: 1 }}>
+                <BookImage book={element} style={{ height: '75%' }} />
+                <CardContent sx={{ height: '25%' }}>
                     <Box>
                         <Typography gutterBottom variant="h6" sx={{textAlign: "center"}}>
                             { element.title}
