@@ -2,8 +2,8 @@ import SingleTopic from "../molecules/SingleTopic";
 import {Box, Typography} from "@mui/material";
 import React from "react";
 
-const TopicsList = ({topics} ) => {
-    if (!topics.length){
+const TopicsList = ( {topics} ) => {
+    if (!topics.length) {
         return (
             <Box sx={{mt: 5}}>
                 <Typography>Brak aktywnych wątków</Typography>
