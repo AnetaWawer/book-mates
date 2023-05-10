@@ -3,12 +3,14 @@ import {useNavigate} from "react-router-dom";
 import "../../style.css"
 import Button from '@mui/material/Button';
 import logo from '../../mainLogo.png'
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles';
 import {NavbarContainer} from "../Container.styles";
 import SearchPanel from "../molecules/SearchPanel";
-
+import AccountMenu from "../molecules/AccountMenu";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import {Menu} from "@mui/material";
+import checkIfUserLogged from "../../services/JwtToken";
 
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -24,6 +26,16 @@ const Img = styled('img')({
 
 function Navbar() {
     const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const isUserLogged=checkIfUserLogged();
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const handleSearch = (input, criteria) => {
         navigate(`/books?query=${input}&criteria=${criteria}`);
@@ -50,9 +62,25 @@ function Navbar() {
                 </Grid>
                 <Grid  item xs={12} md={9} lg={10} sm container>
                     <Grid item xs container direction="column">
-                        <StyledButton  onClick={ () => navigate("/users/profile")} >
+                        <StyledButton  onClick={handleClick}>
                             <PersonOutlineOutlinedIcon sx={{ fontSize: 18}} />Konto
                         </StyledButton>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                                  anchorOrigin={{
+                                      vertical: 'bottom',
+                                      horizontal: 'center',
+                                  }}
+                                  transformOrigin={{
+                                      vertical: 'top',
+                                      horizontal: 'center',
+                                  }}
+                        >
+                            <AccountMenu isUserLogged={isUserLogged} close={handleClose} />
+                        </Menu>
+
                     </Grid>
                     <Grid item xs container direction="column" >
                         <StyledButton onClick={ () => navigate("/books")}>Książki</StyledButton>
