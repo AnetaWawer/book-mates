@@ -1,7 +1,7 @@
 import {styled} from "@mui/material/styles";
-import {Container} from "@mui/material";
+import {Grid} from "@mui/material";
 
-export const BookDataContainer = styled(Container)({
+export const BookCoverGrid = styled(Grid)({
     margin: 'auto',
     display: 'flex',
     justifyContent: 'center',
@@ -9,8 +9,4 @@ export const BookDataContainer = styled(Container)({
     flexDirection: 'column',
     maxWidth: '100%',
     maxHeight: '100%',
-    '& .book-title': {
-        textAlign: 'center',
-    },
 });
-

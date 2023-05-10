@@ -21,7 +21,7 @@ export const HeaderBox = styled(Box)({
   },
   '&:before':{
     left: "3px",
-    width: "10%",
+    width: "25%",
   },
   '&:after':{
     right: "3px",

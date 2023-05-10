@@ -9,7 +9,7 @@ const BookData = ( {book} ) => {
 
     return (
         <BookDataContainer>
-            <h1 className="book-title">{book.title}</h1>
+            <h3 className="book-title">{book.title}</h3>
             <p className="book-author">{book.author}</p>
             <p className="book-year">Data wydania: {book.year}</p>
             <p className="number-pages">Liczba stron: {book.pages}</p>
