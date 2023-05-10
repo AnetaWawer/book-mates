@@ -37,7 +37,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="books" element={<Books />}>
             </Route>
-            <Route path="book" > // localhost:3000/book/id
+            <Route path="book" >
               <Route path=":id" element={<Book />} />
             </Route>
             <Route path="events" element={<Events />} />

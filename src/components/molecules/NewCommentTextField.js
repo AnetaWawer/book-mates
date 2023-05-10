@@ -14,8 +14,9 @@ const NewCommentTextField = ({updateComments}) => {
     const handleSubmit = (comment) => {
         comment.preventDefault();
         const data = new FormData(comment.currentTarget);
-        axios.post('http://localhost:8080/api/topics/' + topicId + '/comments', {
-            commentMessage:data.get('newComment')
+        axios.post('http://localhost:8080/api/comments', {
+            commentMessage: data.get('newComment'),
+            topicId: topicId
         })
             .then(response => {
                 console.log(response)
