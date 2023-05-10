@@ -9,20 +9,9 @@ const SingleCard = ({ element }) => {
     const navigate = useNavigate();
     return (
         <CardActionArea onClick={element.eventDate!==undefined ? () => navigate("/events/" + element.id) : () => navigate("/book/" + element.externalId)}>
-            <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit' }}>
-                {/*<CardMedia*/}
-                {/*    component="img"*/}
-                {/*    image= { element.pictureUrl }*/}
-                {/*    alt={ element.title }*/}
-                {/*    sx={{*/}
-                {/*        p: 4,*/}
-                {/*        height: 340,*/}
-                {/*        width: 400,*/}
-                {/*        backgroundColor:'#eeede7',*/}
-                {/*    }}*/}
-                {/*/>*/}
-                <BookImage style={{flexGrow: 3}} book={element} />
-                <CardContent sx={{flexGrow: 1}}>
+            <Card sx={{ maxWidth: 360, height: 480, backgroundColor:'inherit', display: 'flex', flexDirection: 'column' }}>
+                <BookImage book={element} style={{ height: '75%' }} />
+                <CardContent sx={{ height: '25%' }}>
                     <Box>
                         <Typography gutterBottom variant="h6" sx={{textAlign: "center"}}>
                             { element.title}
@@ -39,5 +28,6 @@ const SingleCard = ({ element }) => {
 
     );
 };
+
 
 export default SingleCard;
