@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import CardsPanel from "../components/templates/CardsPanel";
 import {MainContainer} from "../components/Container.styles";
 import {TablePagination} from "@mui/material";
 import SearchBar from "../components/atoms/SearchBar";
-import BasicSelect from "../components/molecules/BasicSelect";
 import Grid from "@mui/material/Grid";
 import SectionHeader from "../components/atoms/SectionHeader";
 import CardsBar from "../components/organisms/CardsBar";
 import BasicDatePicker from "../components/atoms/BasicDatePicker";
+import dayjs from "dayjs";
+//import {isAfter, isBefore} from 'date-fns';
 
 const Events = () =>{
     const eventsHeader = "Wszystkie wydarzenia";
@@ -36,13 +36,13 @@ const Events = () =>{
     };
 
     useEffect(() => {
-            axios.get(`http://localhost:8080/api/events?page=${page.page}&size=${page.rowsPerPage}` )
-                .then(response => {
+        axios.get(`http://localhost:8080/api/events?page=${page.page}&size=${page.rowsPerPage}` )
+            .then(response => {
                     setEvents(response.data.content);
                     setEventsCount(response.data.totalElements);
-                    }
-                )
-                .catch(error => console.log(error));
+                }
+            )
+            .catch(error => console.log(error));
     }, [page]);
 
 
@@ -59,40 +59,64 @@ const Events = () =>{
         }
     })
 
-    const handleSearch = (value) => {
-        setSearchQuery(value);
+    const handleSearch = (search, dateSince, dateUntil) => {
+        setSearchQuery(search);
+        setSelectedSinceDate(dateSince);
+        setSelectedUntilDate(dateUntil);
         const searchedEvent = searchedEvents.filter(function (element)
             {
-                return element.bookAuthor.toLowerCase().includes(searchQuery) || element.bookTitle.toLowerCase().includes(searchQuery);
+                return (element.bookAuthor.toLowerCase().includes(searchQuery).filter
+                        || element.bookTitle.toLowerCase().includes(searchQuery))
+                   // && (isBefore(new Date(element.eventDate), selectUntildDate) && isAfter(new Date(element.eventDate), selectSinceDate));
+                   && (new Date(element.eventDate) < selectUntildDate && new Date(element.eventDate) > selectSinceDate);
             }
+
         );
-        if (value.length!==0){
+        if (search.length!==0){
             setEvents(searchedEvent);
         } else {
             handlePageChange(1,0)
         }
     };
 
+    // const getProperDate = (date) => {
+    //     new
+    // }
 
+    const dateSinceDefeault = new Date(2000, 0, 1)
+    const [selectSinceDate, setSelectedSinceDate]= useState(dateSinceDefeault);
+    const dateUntilDefault = new Date(2100, 0, 1);
+    const [selectUntildDate, setSelectedUntilDate]= useState(dateUntilDefault);
+
+
+    let search;
     return (
         <MainContainer>
             <SectionHeader header={eventsHeader} />
             <SearchBar
                 placeholder="Szukaj wydarzeń według autora lub tytułu książki.."
                 onChange={(event) => handleSearch(
-                    event.target.value
+                   event.target.value, selectSinceDate, selectUntildDate
                 )}
             />
-            {/*<CardsPanel elements={events} header={eventsHeader} />*/}
-            {/*{searchQuery.length >0 ?null : <TablePagination*/}
-
-
             <Grid container spacing={10} sx={{  marginBottom: 2 }} >
                 <Grid item sm={4}>
-                    <BasicDatePicker label="od" />
+                    <BasicDatePicker
+                        label="od"
+                        selectedDate={selectSinceDate}
+                        onChange={(newValue) => handleSearch(
+                            searchQuery, newValue, selectUntildDate
+                        )}
+                    />
                 </Grid>
                 <Grid item sm={4}>
-                    <BasicDatePicker label="do"/>
+                    <BasicDatePicker
+                        label="do"
+                        selectedDate={selectUntildDate}
+                        onChange={(newValue) => handleSearch(
+                            searchQuery, selectSinceDate, newValue
+                        )}
+                    />
                 </Grid>
                 <Grid item sm={4} >
                     {/*<BasicSelect />*/}
@@ -100,8 +124,9 @@ const Events = () =>{
             </Grid>
 
 
+
             <CardsBar elements = {events}  />
-                {searchQuery.length >0 ? null : <TablePagination
+            {searchQuery.length >0 ? null : <TablePagination
                 component="div"
                 rowsPerPageOptions={[12,24, 48, 96]}
                 onPageChange={handlePageChange}
@@ -110,10 +135,10 @@ const Events = () =>{
                 rowsPerPage={page.rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
-                />}
-
+            />}
 
         </MainContainer>
+
     );
 };
 
