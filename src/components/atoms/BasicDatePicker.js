@@ -3,19 +3,20 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import {useState} from "react";
-import moment from "moment";
 
-export default function BasicDatePicker({label}) {
-    const [selectedDate, setSelectedDate]= useState(null)
+const BasicDatePicker = (props) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
                 <DatePicker
-                    label={label}
-
+                    format="DD/MM/YYYY"
+                    value={props.selectedDateTime}
+                    label={props.label}
+                    onChange= {props.onChange}
                 />
             </DemoContainer>
         </LocalizationProvider>
     );
 }
+
+export default BasicDatePicker;
