@@ -4,7 +4,7 @@ import checkIfUserLogged from "./JwtToken";
 export default function setupAxiosInterceptors() {
     axios.interceptors.request.use(
         config => {
-            if (checkIfUserLogged()) {
+            if (!config.url.endsWith("api/authentication/refresh") && !config.url.endsWith("api/authentication/login") && checkIfUserLogged()) {
                 config.headers.Authorization = `Bearer ${localStorage.getItem('user')}`;
             }
             return config;
