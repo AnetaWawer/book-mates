@@ -1,8 +1,7 @@
 import React from 'react';
-import {Fab, Grid, Popover, Typography} from "@mui/material";
+import Grid from '@mui/material/Grid';
 import moment from "moment";
 import {CommentBox, CommentData, CommentsDivider} from "./Comments.styles";
-import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import AbuseReport from "./AbuseReport";
 
 const SingleComment = ({ comment }) => {
