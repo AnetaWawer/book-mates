@@ -53,7 +53,7 @@ const BooksDb = () =>{
                 })
                 .catch(error => console.log(error))
         }
-    })
+    }, [])
 
 
     return (
