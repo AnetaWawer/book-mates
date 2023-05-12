@@ -8,7 +8,7 @@ const BasicDateTimePicker = (props) => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateTimePicker
                 label={props.label}
-                value={props.selectedDateTime}
+                value={props.selectedDate}
                 onChange={(newValue) => props.setSelectedDateTime(newValue)}
                 sx={{width:'500px'}}
             />

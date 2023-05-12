@@ -31,9 +31,10 @@ const Login = () => {
             .then(response => {
                 if (response.data.token) {
                     localStorage.setItem("user", response.data.token);
+                    localStorage.setItem("refresh", response.data.refreshToken);
                     navigate("/users/profile");
                 } else {
-                    console.log("no token in respone");
+                    console.log("no token in response");
                 }
             })
             .catch((error) => {

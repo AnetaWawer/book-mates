@@ -21,7 +21,7 @@ const Book = () => {
     const [loading, setLoading] = useState(false);
     const { id } = useParams();
     const eventsHeader = "Wydarzenia";
-    const forumHeader = "Dyskusje o książce";
+    const forumHeader = "Dyskusje";
 
     useEffect(() => {
         setLoading(true);
@@ -63,7 +63,6 @@ const Book = () => {
                     {loading ? <CircularProgress /> : <BookDetails book={book} />}
                 </div>
                 <Description description={book.description} />
-                <NewEventModal book={book} updateEvents={setEventsNumber} />
                 <CardsPanel elements={events} header={eventsHeader} />
                 <ForumPanel topics={topics} header={forumHeader} />
             </Box>
