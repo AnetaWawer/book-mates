@@ -49,7 +49,7 @@ function Home() {
     return (
         <MainContainer>
             <CardsPanel elements={books} keyField="externalId" header={booksHeader}/>
-            <SeeMoreButton url="/books"/>
+            <SeeMoreButton url="/booksdb"/>
             <CardsPanel elements={events} header={eventsHeader}/>
             <SeeMoreButton url="/events"/>
             <ForumCarouselPanel topics={topics} header={forumHeader}/>

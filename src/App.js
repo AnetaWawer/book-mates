@@ -36,7 +36,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="books" element={<BooksDb />}>
+            <Route path="booksdb" element={<BooksDb />}>
+            </Route>
+            <Route path="books" element={<Books />}>
             </Route>
             <Route path="book" >
               <Route path=":id" element={<Book />} />
