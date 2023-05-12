@@ -15,7 +15,7 @@ function Home() {
 
     useEffect(() => {
         if (!books.length) {
-            axios.get('http://localhost:8080/api/books?amount=4')
+            axios.get('http://localhost:8080/api/books/homepage')
                 .then(response => {
                         setBooks(response.data);
                     }
@@ -49,7 +49,7 @@ function Home() {
     return (
         <MainContainer>
             <CardsPanel elements={books} keyField="externalId" header={booksHeader}/>
-            <SeeMoreButton url="/books"/>
+            <SeeMoreButton url="/booksdb"/>
             <CardsPanel elements={events} header={eventsHeader}/>
             <SeeMoreButton url="/events"/>
             <ForumCarouselPanel topics={topics} header={forumHeader}/>
