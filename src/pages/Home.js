@@ -15,7 +15,7 @@ function Home() {
 
     useEffect(() => {
         if (!books.length) {
-            axios.get('http://localhost:8080/api/books?amount=4')
+            axios.get('http://localhost:8080/api/books/homepage')
                 .then(response => {
                         setBooks(response.data);
                     }

@@ -7,7 +7,6 @@ import Grid from "@mui/material/Grid";
 import SectionHeader from "../components/atoms/SectionHeader";
 import CardsBar from "../components/organisms/CardsBar";
 import BasicDatePicker from "../components/atoms/BasicDatePicker";
-import dayjs from "dayjs";
 //import {isAfter, isBefore} from 'date-fns';
 
 const Events = () =>{
