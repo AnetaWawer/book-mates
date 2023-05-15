@@ -6,10 +6,10 @@ import {useParams} from "react-router-dom";
 import {Box} from "@mui/material";
 import CardsPanel from "../components/templates/CardsPanel";
 import SectionHeader from "../components/atoms/SectionHeader";
-import {MainContainer} from "../components/Container.styles";
+import {MainContainer, Panel} from "../components/Container.styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import ForumPanel from "../components/templates/ForumPanel";
-import NewEventModal from "../components/templates/NewEventModal";
+import NewTopicForm from "../components/molecules/NewTopicForm";
 
 
 const Book = () => {
@@ -64,7 +64,10 @@ const Book = () => {
                 </div>
                 <Description description={book.description} />
                 <CardsPanel elements={events} header={eventsHeader} />
-                <ForumPanel topics={topics} header={forumHeader} />
+               <Panel>
+                   <ForumPanel topics={topics} header={forumHeader} />
+                   <NewTopicForm />
+               </Panel>
             </Box>
         </ MainContainer>
     );
