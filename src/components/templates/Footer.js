@@ -33,7 +33,7 @@ function Footer() {
                         <Item variant="subtitle1"  onClick={() =>navigate("/")} >
                             Strona główna
                         </Item>
-                        <Item variant="subtitle1"  onClick={() =>navigate("/books")}>
+                        <Item variant="subtitle1"  onClick={() =>navigate("/booksdb")}>
                             Książki
                         </Item>
                         <Item variant="subtitle1" onClick={() =>navigate("/events")}>
