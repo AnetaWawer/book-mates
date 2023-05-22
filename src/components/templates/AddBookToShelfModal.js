@@ -10,6 +10,7 @@ const AddBookToShelfModal = ({book}) => {
     let { id } = useParams();
     const [shelfType, setShelfType] = useState('');
     const [openSelect, setOpenSelect] = useState(false);
+    const [message, setMessage] = useState('');
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
 
@@ -51,10 +52,10 @@ const AddBookToShelfModal = ({book}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // const data = new FormData(event.currentTarget);
         axios.post('http://localhost:8080/api/books/shelves/' + shelfType + '/' + id)
             .then(() => {
                 handleClose();
+                setMessage("Dodano na półkę!");
             })
             .catch(error => {
                 console.log(error);
