@@ -7,7 +7,7 @@ import BasicSnackBar from "../atoms/BasicSnackBar";
 
 const NewCommentTextField = ({updateComments}) => {
     let { topicId } = useParams();
-    let newCommentField = document.getElementById("newComment")
+    let newCommentField = document.getElementById("newComment");
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -19,14 +19,15 @@ const NewCommentTextField = ({updateComments}) => {
             topicId: topicId
         })
             .then(response => {
-                console.log(response)
-                newCommentField.value=''
-                setOpen(true)
-                setMessage("Komentarz dodany poprawnie!")
+                console.log(response);
+                newCommentField.value='';
+                setOpen(true);
+                setMessage("Komentarz dodany poprawnie!");
             })
             .catch(error => {
                 console.log(error);
-                setMessage("Komentarz nie został dodany. Spróbuj ponownie!")
+                setOpen(true);
+                setMessage("Komentarz nie został dodany. Spróbuj ponownie!");
             })
     };
 

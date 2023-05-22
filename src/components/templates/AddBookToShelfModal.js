@@ -4,13 +4,15 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import BasicSelect from "../molecules/BasicSelect";
 import {ModalBox, NewEventButton, SubmitEventButton} from "./NewEventModal.styles";
+import BasicSnackBar from "../atoms/BasicSnackBar";
 
 const AddBookToShelfModal = ({book}) => {
     const [open, setOpen] = useState(false);
     let { id } = useParams();
     const [shelfType, setShelfType] = useState('');
     const [openSelect, setOpenSelect] = useState(false);
-    const [message, setMessage] = useState('');
+    const [openInfo, setOpenInfo] = useState(false);
+    const [info, setInfo] = useState("");
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
 
@@ -55,12 +57,20 @@ const AddBookToShelfModal = ({book}) => {
         axios.post('http://localhost:8080/api/books/shelves/' + shelfType + '/' + id)
             .then(() => {
                 handleClose();
-                setMessage("Dodano na półkę!");
+                setOpenInfo(true);
+                setInfo("Dodano pomyślnie na półkę");
             })
             .catch(error => {
                 console.log(error);
+                setOpenInfo(true);
+                setInfo("Nie udało się dodać.");
             })
     };
+
+    const handleCloseInfo = () => {
+        setOpenInfo(false);
+    };
+
     return (
         <Box>
             <NewEventButton onClick={handleOpen}>Dodaj na półkę</NewEventButton>
@@ -91,6 +101,13 @@ const AddBookToShelfModal = ({book}) => {
                     </Box>
                 </ModalBox>
             </Modal>
+            <BasicSnackBar
+                open={openInfo}
+                handleClose={handleCloseInfo}
+                message={info}
+                autoHideDuration={5000}
+            >
+            </BasicSnackBar>
         </Box>
     )
 }

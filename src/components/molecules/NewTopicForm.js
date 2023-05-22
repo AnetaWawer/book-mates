@@ -10,7 +10,7 @@ const NewTopicForm = () => {
     let newTopicTitle = document.getElementById("newTopicTitle");
     let newTopicMessage = document.getElementById("newTopicMessage");
     const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState("");
+    const [info, setInfo] = useState("");
 
     const handleSubmit = (topic) => {
         topic.preventDefault();
@@ -25,11 +25,12 @@ const NewTopicForm = () => {
                 newTopicTitle.value='';
                 newTopicMessage.value='';
                 setOpen(true);
-                setMessage("Wątek dodany poprawnie!");
+                setInfo("Wątek dodany poprawnie!");
             })
             .catch(error => {
                 console.log(error);
-                setMessage("Wątek nie został dodany. Spróbuj ponownie!")
+                setOpen(true);
+                setInfo("Wątek nie został dodany. Spróbuj ponownie!")
             })
     };
 
@@ -64,7 +65,7 @@ const NewTopicForm = () => {
                                 <BasicSnackBar
                                     open={open}
                                     handleClose={handleClose}
-                                    message={message}
+                                    message={info}
                                     autoHideDuration={5000}
                                 >
                                 </BasicSnackBar>
