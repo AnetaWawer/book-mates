@@ -44,7 +44,7 @@ const Book = () => {
                     }
                 )
                 .catch(error => console.log(error));
-    }, [eventsNumber]);
+    }, [eventsNumber, events, id]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/books/'+ id +'/topics')
@@ -53,7 +53,7 @@ const Book = () => {
                 }
             )
             .catch(error => console.log(error));
-    }, [id]);
+    }, [topics, id]);
 
     return (
         <MainContainer>
