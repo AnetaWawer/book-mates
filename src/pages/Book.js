@@ -36,37 +36,45 @@ const Book = () => {
             );
     }, [id]);
 
-    useEffect(() => {
-            axios.get('http://localhost:8080/api/books/'+ id +'/events')
-                .then(response => {
+    const fetchEvent = () => {
+        axios.get('http://localhost:8080/api/books/'+ id +'/events')
+            .then(response => {
                     setEvents(response.data);
                     setEventsNumber(events.length)
-                    }
-                )
-                .catch(error => console.log(error));
-    }, [eventsNumber, events, id]);
+                }
+            )
+            .catch(error => console.log(error));
+    }
+
 
     useEffect(() => {
+            fetchEvent();
+        },[eventsNumber]);
+
+    const fetchTopic = () => {
         axios.get('http://localhost:8080/api/books/'+ id +'/topics')
             .then(response => {
                     setTopics(response.data);
                 }
             )
-            .catch(error => console.log(error));
-    }, [topics, id]);
+            .catch(error => console.log(error));}
+
+    useEffect(() => {
+        fetchTopic();
+    }, [id]);
 
     return (
         <MainContainer>
             <SectionHeader header={bookHeader} />
             <Box sx={{mt: 5}}>
                 <div>
-                    {loading ? <CircularProgress /> : <BookDetails book={book} />}
+                    {loading ? <CircularProgress /> : <BookDetails book={book} fetchEvent={fetchEvent}/>}
                 </div>
                 <Description description={book.description} />
-                <CardsPanel elements={events} header={eventsHeader} />
+                <CardsPanel elements={events} header={eventsHeader}  />
                <Panel>
                    <ForumPanel topics={topics} header={forumHeader} />
-                   <NewTopicForm />
+                   <NewTopicForm fetchTopic={fetchTopic} />
                </Panel>
             </Box>
         </ MainContainer>

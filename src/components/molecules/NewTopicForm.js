@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {TopicBox, TopicsDivider, NewTopicTitleTextArea, NewTopicMessageTextArea, SaveNewTopicButton} from "./NewTopicForm.styles";
 import BasicSnackBar from "../atoms/BasicSnackBar";
 
-const NewTopicForm = () => {
+const NewTopicForm = (props) => {
     let { id } = useParams();
     let newTopicTitle = document.getElementById("newTopicTitle");
     let newTopicMessage = document.getElementById("newTopicMessage");
@@ -26,6 +26,8 @@ const NewTopicForm = () => {
                 newTopicMessage.value='';
                 setOpen(true);
                 setInfo("Wątek dodany poprawnie!");
+                props.fetchTopic();
+
             })
             .catch(error => {
                 console.log(error);

@@ -8,7 +8,7 @@ import BasicDateTimePicker from "../atoms/BasicDateTimePicker";
 import NewEventTextFields from "../molecules/NewEventTextFields";
 import {ModalBox, NewEventButton, SubmitEventButton} from "./NewEventModal.styles";
 
-const NewEventModal = ({book, updateEvents}) => {
+const NewEventModal = ({book, updateEvents, fetchEvent}) => {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(dayjs);
     let { id } = useParams();
@@ -70,6 +70,7 @@ const NewEventModal = ({book, updateEvents}) => {
         })
             .then(response => {
                 handleClose();
+                fetchEvent();
             })
             .catch(error => {
                 console.log(error);

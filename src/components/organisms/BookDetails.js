@@ -9,7 +9,7 @@ import AddBookToShelfModal from "../templates/AddBookToShelfModal";
 import {BookCoverGrid} from "./BookDetails.styles";
 
 
-const BookDetails = ({ book,updateEvents }) => {
+const BookDetails = ({ book,updateEvents, fetchEvent }) => {
     return (
         <DetailsWindow>
             <Grid container spacing={2}>
@@ -20,7 +20,7 @@ const BookDetails = ({ book,updateEvents }) => {
                     <BookData book={book} />
                 </Grid>
                 <Grid item xs={12} sx={{ display: "flex", justifyContent: "right" }}>
-                    <NewEventModal book={book} updateEvents={updateEvents} />
+                    <NewEventModal book={book} updateEvents={updateEvents} fetchEvent={fetchEvent} />
                     <AddBookToShelfModal book={book} />
                 </Grid>
             </Grid>
