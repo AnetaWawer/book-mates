@@ -9,18 +9,18 @@ import Description from "../components/atoms/Description";
 function Event() {
     const [event, setEvent] = useState({});
     const [eventParticipants, setEventParticipants] = useState(0);
-    const [book, setBook] = useState({});
-    let { bookId } = useParams();
+    // const [book, setBook] = useState({});
+    // let { bookId } = useParams();
     let { eventId } = useParams();
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/books/' + bookId)
-            .then(response => {
-                    setBook(response.data);
-                }
-            )
-            .catch(error => console.log(error));
-    }, [bookId]);
+    // useEffect(() => {
+    //     axios.get('http://localhost:8080/api/books/' + bookId)
+    //         .then(response => {
+    //                 setBook(response.data);
+    //             }
+    //         )
+    //         .catch(error => console.log(error));
+    // }, [bookId]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/events/' + eventId )
