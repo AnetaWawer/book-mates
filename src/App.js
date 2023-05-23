@@ -15,6 +15,7 @@ import Topic from "./pages/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
 import ScrollToTop from "./hooks/ScrollToTop";
 import BooksDb from "./pages/BooksDb";
+import EventResignation from "./pages/EventResignation";
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
             </Route>
             <Route path="events" element={<Events />} />
             <Route path="events/:eventId" element={<Event />} />
+            <Route path="events/:eventId/resign" element={<EventResignation />} />
             <Route path="contact" element={<Contact />} />
             <Route path="users" >
               <Route path=":id" element={<Account />} />
