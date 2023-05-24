@@ -2,12 +2,16 @@ import React from "react";
 import {Typography, Grid} from "@mui/material";
 import logo from '../../mainLogo.png'
 import {Panel} from "../Container.styles";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {FooterContainer, Logo, Item} from "./Footer.styles";
+import checkIfUserLogged from "../../services/JwtToken";
 
 
 function Footer() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const isUserLogged = checkIfUserLogged();
+
     return (
         <Panel maxWidth={false}>
             <FooterContainer container spacing={10} >
@@ -50,7 +54,7 @@ function Footer() {
                         <Item variant="subtitle1"  onClick={() =>navigate("/login/")}>
                             Logowanie
                         </Item>
-                        <Item variant="subtitle1" onClick={() =>navigate("/users/profile/")}>
+                        <Item variant="subtitle1" onClick={() => { isUserLogged ? navigate("/users/profile/") : navigate("/login", {state: { from: location}, replace: true})}} >
                             Mój profil
                         </Item>
                     </Grid>

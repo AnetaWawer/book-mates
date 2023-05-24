@@ -15,7 +15,7 @@ const SingleTopic = ({topic}) => {
                     rozpoczęta {moment(topic.creationTime).format('DD.MM.YYYY  HH:mm')} przez {topic.authorName}
                 </SpacedTypography>
             </Grid>
-            <Grid item md={1}>
+            <Grid item xs={6} md={1}>
                 <BookCover>
                     <Img alt="book-cover" src={topic.bookPictureUrl}
                          onClick={() => navigate("/book/" + topic.bookExternalId)}/>
@@ -23,7 +23,7 @@ const SingleTopic = ({topic}) => {
             </Grid>
             <Grid item sm container>
                 <Grid item xs container direction="row" spacing={0}>
-                    <Grid item xs={4}>
+                    <Grid item xs={12}>
                         <SpacedTypography component="h5">
                             {topic.bookTitle}
                         </SpacedTypography>
@@ -31,7 +31,7 @@ const SingleTopic = ({topic}) => {
                             {topic.bookAuthor}
                         </SpacedTypography>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={12}>
                         <TopicTitle variant="h6" color="inherit" onClick={() => navigate("/topics/" + topic.id)}>
                             {topic.title}
                         </TopicTitle>
