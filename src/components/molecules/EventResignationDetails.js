@@ -1,20 +1,9 @@
 import React from 'react';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {useParams} from "react-router-dom";
 import {Button, Typography, Box} from "@mui/material";
 
-function EventResignationDetails() {
+function EventResignationDetails({resignFromEvent}) {
     const navigate = useNavigate();
-    let { eventId } = useParams();
-    const resignFromEvent = () => {
-        axios.delete('http://localhost:8080/api/events/' + eventId + '/resign')
-            .then((response) => {
-               console.log(response)
-            })
-            .then(() => navigate("/"))
-            .catch(error => console.log(error))
-    };
 
     return (
         <Box textAlign="center">
