@@ -13,7 +13,7 @@ const EventDetails = ({ event, getParticipants, alreadySubscribed, isLoggedIn, o
         return (
             <DetailsWindow>
                 <Grid container spacing={2}>
-                    <Grid item sm={4}>
+                    <Grid item sm={3}>
                         <BookImage book={event}/>
                     </Grid>
                     <Grid item sm={8}>
@@ -25,7 +25,7 @@ const EventDetails = ({ event, getParticipants, alreadySubscribed, isLoggedIn, o
                         <Text variant="body1">Organizator: {event.organizatorName}</Text>
                         <Text variant="body1">Wolnych miejsc: {event.maxParticipants - event.participants}</Text>
                         <Text variant="body1">Ilość osób na liście oczekujących: {event.waitingList}</Text>
-                        <Grid container justifyContent="flex-end">
+                        <Grid container justifyContent="flex-end" >
                             {signForEventDetails}
                         </Grid>
                     </Grid>
@@ -34,7 +34,11 @@ const EventDetails = ({ event, getParticipants, alreadySubscribed, isLoggedIn, o
         );
     }
 
-    if (organizer === event.organizatorName){
+    if ((window.location.pathname).includes("resign")){
+        return (
+            getEventDetails()
+        );
+    } else if (organizer === event.organizatorName){
         return (
             getEventDetails(<Text variant="h6">Jesteś organizatorem tego wydarzenia.</Text>)
         );
