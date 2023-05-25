@@ -130,7 +130,7 @@ export default function Account() {
                 <SubscribedEvents events={eventsSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
-                <SectionHeader header= {id === "profile" ? "Moje wątki " :  "Wątki " } />
+                <SectionHeader header="Moje wątki" />
                 <TopicsList topics={topics} />
             </Box>
         </MainContainer>
