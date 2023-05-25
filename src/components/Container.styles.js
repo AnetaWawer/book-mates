@@ -14,7 +14,7 @@ export const NavbarContainer= styled(Container)({
 })
 
 export const Panel= styled(Container)({
-  paddingTop:'2em',
+  paddingTop:'3em',
   paddingBottom: '2em',
 })
 

@@ -67,6 +67,7 @@ export default function Account() {
         }, [numberOfCardsOnPage, id]);
 
 
+
     // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
     useEffect(() => {
         if (size[1] > 1200) {
@@ -117,6 +118,12 @@ export default function Account() {
                 <TabsBar value={value} index={4}>
                     <Shelf booksSequences={savedBooksSequences}/>
                 </TabsBar>
+                <SectionHeader header={id === "profile" ? "Moje książki" : "Książki " }/>
+                <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
+                <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
+                <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
+                <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
+                <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
