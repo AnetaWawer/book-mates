@@ -8,6 +8,7 @@ import SubscribedEvents from "../components/templates/SubscribedEvents";
 import {useWindowSize} from "../hooks/useWindowSize";
 import {useParams} from "react-router-dom";
 import TopicsList from "../components/organisms/TopicsList";
+import Profile from "../components/templates/Profile";
 
 export default function Account() {
 
@@ -30,19 +31,31 @@ export default function Account() {
 
     const size = useWindowSize();
 
+    const [nickname, setNickname] = useState();
+    const [biogram, setBiogram] = useState();
+    const [amountBooksRead, setAmountsBooksRead] = useState();
+    const [amountAllBooks, setAmountAllBooks] = useState();
+    const [isProfile, setIsProfile] = useState();
+    const [user, setUser] = useState();
     useEffect(() => {
         axios.get(`http://localhost:8080/api/users/` + id)
             .then(response => {
                 const user = response.data;
-
+                setUser(user);
+                setIsProfile(id === "profile")
+                setNickname(user.nickname);
+                setBiogram(user.biogram);
                 // fetch books
                 const userBooks = user.books;
-                setBooks(userBooks);
+                setAmountAllBooks(userBooks.length);
+                //setBooks(userBooks);
                 setFavoriteBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "FAVORITE"), numberOfCardsOnPage));
                 setReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "READ"), numberOfCardsOnPage));
                 setToReadBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "TO_READ"), numberOfCardsOnPage));
                 setGiftBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "GIFT"), numberOfCardsOnPage));
                 setSavedBooksSequences(divideSequence(userBooks.filter(b => b.shelf === "SAVED"), numberOfCardsOnPage));
+
+                setAmountsBooksRead(readBooksSequences.length)
                 // fetch events
                 const userEvents = user.events;
                 setEvents(userEvents);
@@ -77,10 +90,16 @@ export default function Account() {
         setEventsSequences(divideSequence(events, numberOfCardsOnPage));
     }, [size]);
 
+
     return (
         <MainContainer >
             <Box sx={{mt: 8}}>
-                <SectionHeader header={"Moje książki"} />
+                    <Profile isProfile={isProfile} allBooks ={amountAllBooks} readBooks = {amountBooksRead} nickname={nickname} id={id} biogram={biogram} user={user} >
+
+                    </Profile>
+            </Box>
+            <Box sx={{mt: 8}}>
+                <SectionHeader header={id === "profile" ? "Moje książki" : "Książki " }/>
                 <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
                 <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
                 <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
@@ -88,11 +107,11 @@ export default function Account() {
                 <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
-                <SectionHeader header={"Moje wydarzenia"} />
+                <SectionHeader header={id === "profile" ? "Moje wydarzenia" : "Wydarzenia " } />
                 <SubscribedEvents events={eventsSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
-                <SectionHeader header="Moje wątki" />
+                <SectionHeader header= {id === "profile" ? "Moje wątki " :  "Wątki " } />
                 <TopicsList topics={topics} />
             </Box>
         </MainContainer>
