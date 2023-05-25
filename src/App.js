@@ -15,6 +15,7 @@ import Topic from "./pages/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
 import ScrollToTop from "./hooks/ScrollToTop";
 import BooksDb from "./pages/BooksDb";
+import About from "./pages/About";
 import EventResignation from "./pages/EventResignation";
 import About from "./pages/About";
 
