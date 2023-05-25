@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Box} from "@mui/material";
+import {Box, Tab, Tabs} from "@mui/material";
 import Shelf from "../components/templates/Shelf";
 import SectionHeader from "../components/atoms/SectionHeader";
 import {MainContainer} from "../components/Container.styles";
@@ -8,6 +8,7 @@ import SubscribedEvents from "../components/templates/SubscribedEvents";
 import {useWindowSize} from "../hooks/useWindowSize";
 import {useParams} from "react-router-dom";
 import TopicsList from "../components/organisms/TopicsList";
+import TabsBar from "../components/atoms/TabsBar";
 
 export default function Account() {
 
@@ -29,6 +30,18 @@ export default function Account() {
     const [numberOfCardsOnPage, setNumberOfCardsOnPage] = useState(()=> getInitNumberOfCardsInCarousel());
 
     const size = useWindowSize();
+
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    function setIndex(index) {
+        return {
+            id: `${index}`,
+        };
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/users/` + id)
@@ -52,7 +65,6 @@ export default function Account() {
             })
             .catch(error => console.log(error));
         }, [numberOfCardsOnPage, id]);
-
 
 
     // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
@@ -81,11 +93,30 @@ export default function Account() {
         <MainContainer >
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje książki"} />
-                <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
-                <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
-                <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
-                <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
-                <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
+                <Box display="flex" justifyContent="center" width="100%">
+                <Tabs value={value} onChange={handleChange} >
+                    <Tab label="Ulubione" {...setIndex(0)} />
+                    <Tab label="Przeczytane" {...setIndex(1)} />
+                    <Tab label="Chcę przeczytać" {...setIndex(2)} />
+                    <Tab label="Na prezent" {...setIndex(3)} />
+                    <Tab label="Pozostałe" {...setIndex(4)} />
+                </Tabs>
+                </Box>
+                <TabsBar value={value} index={0}>
+                    <Shelf  booksSequences={favoriteBooksSequences}/>
+                </TabsBar>
+                <TabsBar value={value} index={1}>
+                    <Shelf booksSequences={readBooksSequences}/>
+                </TabsBar>
+                <TabsBar value={value} index={2}>
+                    <Shelf  booksSequences={toReadBooksSequences}/>
+                </TabsBar>
+                <TabsBar value={value} index={3}>
+                    <Shelf booksSequences={giftBooksSequences}/>
+                </TabsBar>
+                <TabsBar value={value} index={4}>
+                    <Shelf booksSequences={savedBooksSequences}/>
+                </TabsBar>
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
