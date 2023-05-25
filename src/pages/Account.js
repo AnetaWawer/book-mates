@@ -93,11 +93,11 @@ export default function Account() {
 
     return (
         <MainContainer >
-            <Box sx={{mt: 8}}>
-                    <Profile isProfile={isProfile} allBooks ={amountAllBooks} readBooks = {amountBooksRead} nickname={nickname} id={id} biogram={biogram} user={user} >
+            {/*<Box sx={{mt: 8}}>*/}
+            {/*        <Profile isProfile={isProfile} allBooks ={amountAllBooks} readBooks = {amountBooksRead} nickname={nickname} id={id} biogram={biogram} user={user} >*/}
 
-                    </Profile>
-            </Box>
+            {/*        </Profile>*/}
+            {/*</Box>*/}
             <Box sx={{mt: 8}}>
                 <SectionHeader header={id === "profile" ? "Moje książki" : "Książki " }/>
                 <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
