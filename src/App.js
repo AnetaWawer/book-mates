@@ -16,6 +16,7 @@ import {createTheme, ThemeProvider} from "@mui/material";
 import ScrollToTop from "./hooks/ScrollToTop";
 import BooksDb from "./pages/BooksDb";
 import EventResignation from "./pages/EventResignation";
+import About from "./pages/About";
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<NoPage />} />
+            <Route path="/about" element={<About />} />
             <Route path="topics/:topicId" element={<Topic/>} />
           </Route>
         </Routes>

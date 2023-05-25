@@ -67,6 +67,7 @@ export default function Account() {
         }, [numberOfCardsOnPage, id]);
 
 
+
     // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
     useEffect(() => {
         if (size[1] > 1200) {
@@ -88,6 +89,7 @@ export default function Account() {
         setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
         setEventsSequences(divideSequence(events, numberOfCardsOnPage));
     }, [size]);
+
 
     return (
         <MainContainer >
@@ -119,11 +121,11 @@ export default function Account() {
                 </TabsBar>
             </Box>
             <Box sx={{mt: 8}}>
-                <SectionHeader header={"Moje wydarzenia"} />
+                <SectionHeader header={id === "profile" ? "Moje wydarzenia" : "Wydarzenia " } />
                 <SubscribedEvents events={eventsSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
-                <SectionHeader header="Moje wątki" />
+                <SectionHeader header= {id === "profile" ? "Moje wątki " :  "Wątki " } />
                 <TopicsList topics={topics} />
             </Box>
         </MainContainer>

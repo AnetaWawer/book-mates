@@ -11,6 +11,7 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[^\s'"`&<>*]{8,24}$/;
 
 const Register = () => {
 
+
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -187,7 +188,6 @@ const Register = () => {
                         name="username"
                         error={!isNameValid && isNameEdited}
                         helperText={ usernameHelperText }
-                        autoFocus
                         onChange={(e) => onUsernameChange(e)}
                         onFocus={() => setIsNameFocused(true)}
                         onBlur={onBlurUsername}
