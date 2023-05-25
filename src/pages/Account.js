@@ -90,7 +90,6 @@ export default function Account() {
         setEventsSequences(divideSequence(events, numberOfCardsOnPage));
     }, [size]);
 
-
     return (
         <MainContainer >
             <Box sx={{mt: 8}}>
@@ -119,9 +118,15 @@ export default function Account() {
                 <TabsBar value={value} index={4}>
                     <Shelf booksSequences={savedBooksSequences}/>
                 </TabsBar>
+                <SectionHeader header={id === "profile" ? "Moje książki" : "Książki " }/>
+                <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
+                <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
+                <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
+                <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
+                <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
-                <SectionHeader header={id === "profile" ? "Moje wydarzenia" : "Wydarzenia " } />
+                <SectionHeader header={"Moje wydarzenia"} />
                 <SubscribedEvents events={eventsSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
