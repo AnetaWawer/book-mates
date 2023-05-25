@@ -40,8 +40,8 @@ function Topic() {
             <Panel>
                 <SectionHeader header={topicHeader} />
                 <SingleTopic topic={topic} updateCommentsNumber={setCommentsNumber}/>
-                <NewCommentTextField updateComments={setCommentsNumber}/>
                 <CommentsList comments={comments} />
+                <NewCommentTextField updateComments={setCommentsNumber}/>
             </Panel>
         </MainContainer>
 
