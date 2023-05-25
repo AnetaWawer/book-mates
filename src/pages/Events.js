@@ -64,23 +64,24 @@ const Events = () =>{
         setSelectedUntilDate(dateUntil);
         const searchedEvent = searchedEvents.filter(function (element)
             {
-                return (element.bookAuthor.toLowerCase().includes(searchQuery).filter
-                        || element.bookTitle.toLowerCase().includes(searchQuery))
-                   // && (isBefore(new Date(element.eventDate), selectUntildDate) && isAfter(new Date(element.eventDate), selectSinceDate));
-                   && (new Date(element.eventDate) < selectUntildDate && new Date(element.eventDate) > selectSinceDate);
+                if (search.length===0){
+                    return (new Date(dateUntil).toISOString() > element.eventDate) && (new Date(dateSince).toISOString() < element.eventDate);
             }
+                else {
+                    return (element.bookAuthor.toLowerCase().includes(search).filter
+                    || element.bookTitle.toLowerCase().includes(search))
+                    && (new Date(dateUntil).toISOString() > element.eventDate) && (new Date(dateSince).toISOString() < element.eventDate);
+        }}
 
         );
-        if (search.length!==0){
-            setEvents(searchedEvent);
-        } else {
-            handlePageChange(1,0)
-        }
+        setEvents(searchedEvent);
+        // if (search.length!==0){
+        //     setEvents(searchedEvent);
+        // } else {
+        //     handlePageChange(1,0)
+        // }
     };
 
-    // const getProperDate = (date) => {
-    //     new
-    // }
 
     const dateSinceDefeault = new Date(2000, 0, 1)
     const [selectSinceDate, setSelectedSinceDate]= useState(dateSinceDefeault);
@@ -88,7 +89,7 @@ const Events = () =>{
     const [selectUntildDate, setSelectedUntilDate]= useState(dateUntilDefault);
 
 
-    let search;
+
     return (
         <MainContainer>
             <SectionHeader header={eventsHeader} />

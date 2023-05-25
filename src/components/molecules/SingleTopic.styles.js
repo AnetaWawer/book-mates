@@ -25,7 +25,12 @@ export const ChatIcon = styled(ChatOutlinedIcon)({
     textAlign:'right'
 });
 
+export const SpacedTypography = styled(Typography)({
+    marginBottom: '5px',
+});
+
 export const TopicTitle = styled(Typography)({
     cursor:"pointer",
-    color:"inherit"
+    color:"inherit",
+    marginBottom: '5px',
 });
