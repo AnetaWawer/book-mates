@@ -64,8 +64,7 @@ export default function Account() {
                 setTopics(user.topics);
             })
             .catch(error => console.log(error));
-        }, [numberOfCardsOnPage, id]);
-
+    }, [numberOfCardsOnPage, id]);
 
 
     // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
@@ -89,19 +88,18 @@ export default function Account() {
         setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
         setEventsSequences(divideSequence(events, numberOfCardsOnPage));
     }, [size]);
-
     return (
         <MainContainer >
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje książki"} />
                 <Box display="flex" justifyContent="center" width="100%">
-                <Tabs value={value} onChange={handleChange} >
-                    <Tab label="Ulubione" {...setIndex(0)} />
-                    <Tab label="Przeczytane" {...setIndex(1)} />
-                    <Tab label="Chcę przeczytać" {...setIndex(2)} />
-                    <Tab label="Na prezent" {...setIndex(3)} />
-                    <Tab label="Pozostałe" {...setIndex(4)} />
-                </Tabs>
+                    <Tabs value={value} onChange={handleChange} >
+                        <Tab label="Ulubione" {...setIndex(0)} />
+                        <Tab label="Przeczytane" {...setIndex(1)} />
+                        <Tab label="Chcę przeczytać" {...setIndex(2)} />
+                        <Tab label="Na prezent" {...setIndex(3)} />
+                        <Tab label="Pozostałe" {...setIndex(4)} />
+                    </Tabs>
                 </Box>
                 <TabsBar value={value} index={0}>
                     <Shelf  booksSequences={favoriteBooksSequences}/>
@@ -118,12 +116,6 @@ export default function Account() {
                 <TabsBar value={value} index={4}>
                     <Shelf booksSequences={savedBooksSequences}/>
                 </TabsBar>
-                <SectionHeader header={id === "profile" ? "Moje książki" : "Książki " }/>
-                <Shelf header={"Ulubione"} booksSequences={favoriteBooksSequences}/>
-                <Shelf header={"Przeczytane"} booksSequences={readBooksSequences}/>
-                <Shelf header={"Chcę przeczytać"} booksSequences={toReadBooksSequences}/>
-                <Shelf header={"Na prezent"} booksSequences={giftBooksSequences}/>
-                <Shelf header={"Pozostałe"} booksSequences={savedBooksSequences}/>
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
@@ -142,7 +134,6 @@ const getInitNumberOfCardsInCarousel = () => {
     if (width > 900 && width <= 1200) return 2;
     else return 1;
 }
-
 const divideSequence = (sequence, maxSubsequenceLength) => {
     let sequenceOfSubsequences = []
     for (let i = 0; i < sequence.length; i = i + maxSubsequenceLength) {
