@@ -5,25 +5,31 @@ import moment from "moment";
 import {BookCover, ChatIcon, Img, SingleTopicContainer, SpacedTypography, TopicTitle} from "./SingleTopic.styles";
 
 
-const SingleTopic = ({topic}) => {
+const SingleTopic = ({ topic }) => {
     const navigate = useNavigate();
     return (
-        <SingleTopicContainer container columnSpacing={{xs: 2, sm: 4, md: 12}}>
-            <Grid item md={12}>
-                <SpacedTypography variant="subtitle2">
-                    Dyskusja
-                    rozpoczęta {moment(topic.creationTime).format('DD.MM.YYYY  HH:mm')} przez {topic.authorName}
-                </SpacedTypography>
+        <SingleTopicContainer container columnSpacing={{ xs: 2, sm: 4, md: 12 }}>
+            <Grid item container>
+                <Grid item xs container direction="row" spacing={0} alignItems="center">
+                    <SpacedTypography variant="subtitle2">
+                        Dyskusja rozpoczęta {moment(topic.creationTime).format('DD.MM.YYYY  HH:mm')} przez {topic.authorName}
+                    </SpacedTypography>
+                    <Box sx={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+                        <ChatIcon />
+                        <SpacedTypography sx={{ textAlign: "right", marginLeft: '5px' }} variant="subtitle2" paragraph>
+                            {topic.numberOfComments === 1 ? topic.numberOfComments + ' Odpowiedź' : topic.numberOfComments + ' Odpowiedzi'}
+                        </SpacedTypography>
+                    </Box>
+                </Grid>
             </Grid>
-            <Grid item xs={6} md={1}>
+            <Grid item md={1}>
                 <BookCover>
-                    <Img alt="book-cover" src={topic.bookPictureUrl}
-                         onClick={() => navigate("/book/" + topic.bookExternalId)}/>
+                    <Img alt="book-cover" src={topic.bookPictureUrl} onClick={() => navigate("/book/" + topic.bookExternalId)} />
                 </BookCover>
             </Grid>
             <Grid item sm container>
                 <Grid item xs container direction="row" spacing={0}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={4} md={3}>
                         <SpacedTypography component="h5">
                             {topic.bookTitle}
                         </SpacedTypography>
@@ -31,7 +37,7 @@ const SingleTopic = ({topic}) => {
                             {topic.bookAuthor}
                         </SpacedTypography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={8} md={9}>
                         <TopicTitle variant="h6" color="inherit" onClick={() => navigate("/topics/" + topic.id)}>
                             {topic.title}
                         </TopicTitle>
@@ -40,14 +46,7 @@ const SingleTopic = ({topic}) => {
                         </SpacedTypography>
                     </Grid>
                 </Grid>
-                <Box>
-                    <SpacedTypography variant="subtitle1" paragraph>
-                        <ChatIcon/>
-                        {topic.numberOfComments === 1 ? topic.numberOfComments + ' Odpowiedź' : topic.numberOfComments + ' Odpowiedzi'}
-                    </SpacedTypography>
-                </Box>
             </Grid>
-
         </SingleTopicContainer>
     );
 };

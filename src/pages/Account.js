@@ -78,7 +78,7 @@ export default function Account() {
                 setTopics(user.topics);
             })
             .catch(error => console.log(error));
-        }, [numberOfCardsOnPage, id]);
+    }, [numberOfCardsOnPage, id]);
 
 
     // react on size change, i.e. the number of cards in carousel will increase or decrease depending on width
@@ -168,7 +168,6 @@ const getInitNumberOfCardsInCarousel = () => {
     if (width > 900 && width <= 1200) return 2;
     else return 1;
 }
-
 const divideSequence = (sequence, maxSubsequenceLength) => {
     let sequenceOfSubsequences = []
     for (let i = 0; i < sequence.length; i = i + maxSubsequenceLength) {
