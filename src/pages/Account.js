@@ -108,7 +108,7 @@ export default function Account() {
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje książki"} />
                 <Box display="flex" justifyContent="center" width="100%">
-                    <Tabs value={bookValue} onChange={handleShelfChange} >
+                    <Tabs value={bookValue} onChange={handleShelfChange} sx={{'& .MuiTabs-flexContainer': {flexWrap: 'wrap',},}}>
                         <Tab label="Ulubione" {...setIndex(0)} />
                         <Tab label="Przeczytane" {...setIndex(1)} />
                         <Tab label="Chcę przeczytać" {...setIndex(2)} />
@@ -135,7 +135,7 @@ export default function Account() {
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
                 <Box display="flex" justifyContent="center" width="100%">
-                    <Tabs value={eventValue} onChange={handleEventChange} >
+                    <Tabs value={eventValue} onChange={handleEventChange} sx={{'& .MuiTabs-flexContainer': {flexWrap: 'wrap',},}}>
                         <Tab label="Uczestniczę" {...setIndex(0)} />
                         <Tab label="Na liście rezerwowych" {...setIndex(1)} />
                         <Tab label="Organizuję" {...setIndex(2)} />
