@@ -168,6 +168,8 @@ const getInitNumberOfCardsInCarousel = () => {
     if (width > 900 && width <= 1200) return 2;
     else return 1;
 }
+
+// this method divides a sequence of books or events in to smaller sequences to print them on the page
 const divideSequence = (sequence, maxSubsequenceLength) => {
     let sequenceOfSubsequences = []
     for (let i = 0; i < sequence.length; i = i + maxSubsequenceLength) {
