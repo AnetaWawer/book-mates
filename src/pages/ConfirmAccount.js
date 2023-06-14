@@ -15,7 +15,13 @@ const ConfirmAccount = () => {
             .then(response => {
                 setMessage(response.data);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                if (error.response) {
+                    setMessage(error.response.data)
+                } else {
+                    setMessage("Coś poszło nie tak.")
+                }
+            });
     }, [token])
 
 
