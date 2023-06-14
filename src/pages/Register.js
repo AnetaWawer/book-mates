@@ -7,12 +7,10 @@ import Grid from "@mui/material/Grid";
 const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[^\s'"`&<>*]{8,24}$/;
-// /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^+-]).{8,24}$/;
 
 const Register = () => {
 
-
-    const navigate = useNavigate();
+    const CONFIRMATION_EMAIL_INFO = "Aby dokończyć proces rejestracji, postępuj zgodnie ze wskazówkami przesłanymi na podany adres email.";
 
     const [username, setUsername] = useState('');
     const [isNameValid, setIsNameValid] = useState(false);
@@ -42,6 +40,9 @@ const Register = () => {
     const [matchPasswordHelperText, setMatchPasswordHelperText] = useState('');
 
     const [errorMessage, setErrorMessage] = useState('');
+
+    const [isRegistrationInProgress, setIsRegistrationInProgress] = useState(true);
+
     const onUsernameChange = (e) => {
         setIsNameValid(USERNAME_REGEX.test(e.target.value));
         setUsername(e.target.value);
@@ -151,7 +152,7 @@ const Register = () => {
                     password: data.get('password')
                 })
                 .then(response => {
-                        navigate('/login');
+                        setIsRegistrationInProgress(false);
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -161,100 +162,109 @@ const Register = () => {
         }
     }
 
-
-    return (
-        <Container component="main" maxWidth="xs">
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
-                <Typography variant="h5">
-                    REJESTRACJA
-                </Typography>
-                <Typography sx={{ m: 1, color: 'error.main' }}>
-                    {errorMessage}
-                </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Nazwa użytkownika"
-                        name="username"
-                        error={!isNameValid && isNameEdited}
-                        helperText={ usernameHelperText }
-                        onChange={(e) => onUsernameChange(e)}
-                        onFocus={() => setIsNameFocused(true)}
-                        onBlur={onBlurUsername}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Adres email"
-                        name="email"
-                        error={!isEmailValid && (isEmailEdited || isEmailOmitted)}
-                        helperText={ emailHelperText }
-                        onChange={(e) => onEmailChange(e)}
-                        onBlur={onBlurEmail}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Hasło"
-                        type="password"
-                        error={!isPasswordValid && (isPasswordEdited || isPasswordOmitted)}
-                        helperText={ passwordHelperText }
-                        onFocus={() => {
-                            setIsEmailOmitted(email === '');
-                            setIsPasswordFocused(true);
-                        }}
-                        onChange={(e) => onPasswordChange(e)}
-                        onBlur={onBlurPassword}
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="matchPassword"
-                        label="Powtórz hasło"
-                        type="password"
-                        error={(!isMatchPasswordValid && isMatchPasswordEdited) || isMatchPasswordOmitted}
-                        helperText={ matchPasswordHelperText }
-                        onFocus={() => {
-                            setIsEmailOmitted(email === '');
-                            setIsPasswordOmitted(password === '');
-                        }}
-                        onChange={(e) => onMatchPasswordChange(e)}
-                        onBlur={onBlurMatchPassword}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2, py: 2 }}
-                    >
-                        Zapisz się
-                    </Button>
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Link href="/login" variant="body2">
-                                Masz już konto? Zaloguj się!
-                            </Link>
+    if (isRegistrationInProgress) {
+        return (
+            <Container component="main" maxWidth="xs">
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}/>
+                    <Typography variant="h5">
+                        REJESTRACJA
+                    </Typography>
+                    <Typography sx={{m: 1, color: 'error.main'}}>
+                        {errorMessage}
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Nazwa użytkownika"
+                            name="username"
+                            error={!isNameValid && isNameEdited}
+                            helperText={usernameHelperText}
+                            onChange={(e) => onUsernameChange(e)}
+                            onFocus={() => setIsNameFocused(true)}
+                            onBlur={onBlurUsername}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Adres email"
+                            name="email"
+                            error={!isEmailValid && (isEmailEdited || isEmailOmitted)}
+                            helperText={emailHelperText}
+                            onChange={(e) => onEmailChange(e)}
+                            onBlur={onBlurEmail}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Hasło"
+                            type="password"
+                            error={!isPasswordValid && (isPasswordEdited || isPasswordOmitted)}
+                            helperText={passwordHelperText}
+                            onFocus={() => {
+                                setIsEmailOmitted(email === '');
+                                setIsPasswordFocused(true);
+                            }}
+                            onChange={(e) => onPasswordChange(e)}
+                            onBlur={onBlurPassword}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="matchPassword"
+                            label="Powtórz hasło"
+                            type="password"
+                            error={(!isMatchPasswordValid && isMatchPasswordEdited) || isMatchPasswordOmitted}
+                            helperText={matchPasswordHelperText}
+                            onFocus={() => {
+                                setIsEmailOmitted(email === '');
+                                setIsPasswordOmitted(password === '');
+                            }}
+                            onChange={(e) => onMatchPasswordChange(e)}
+                            onBlur={onBlurMatchPassword}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{mt: 3, mb: 2, py: 2}}
+                        >
+                            Zapisz się
+                        </Button>
+                        <Grid container justifyContent="flex-end">
+                            <Grid item>
+                                <Link href="/login" variant="body2">
+                                    Masz już konto? Zaloguj się!
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Box>
                 </Box>
-            </Box>
-        </Container>
-    );
+            </Container>
+        );
+    } else {
+        return (
+            <Container component="main" maxWidth="sm" sx={{ py: 10 }}>
+                <Typography variant="h6">
+                    {CONFIRMATION_EMAIL_INFO}
+                </Typography>
+            </Container>
+        )
+    }
 };
 
 export default Register;
