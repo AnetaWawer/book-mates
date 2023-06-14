@@ -17,6 +17,7 @@ import ScrollToTop from "./hooks/ScrollToTop";
 import BooksDb from "./pages/BooksDb";
 import About from "./pages/About";
 import EventResignation from "./pages/EventResignation";
+import ConfirmAccount from "./pages/ConfirmAccount";
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
             <Route path="*" element={<NoPage />} />
             <Route path="/about" element={<About />} />
             <Route path="topics/:topicId" element={<Topic/>} />
+            <Route path="confirm-account" element={<ConfirmAccount/>} />
           </Route>
         </Routes>
       </BrowserRouter>
