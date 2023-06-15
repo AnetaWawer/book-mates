@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Avatar, Box, Button, Container, Link, Typography, TextField} from "@mui/material";
+import {Avatar, Box, Button, Container, Typography, TextField} from "@mui/material";
 import Grid from "@mui/material/Grid";
+import {useNavigate} from "react-router-dom";
 
 const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[^\s'"`&<>*]{8,24}$/;
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const CONFIRMATION_EMAIL_INFO = "Aby dokończyć proces rejestracji, postępuj zgodnie ze wskazówkami przesłanymi na podany adres email.";
 
@@ -251,9 +254,9 @@ const Register = () => {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="/login" variant="body2">
+                                <Button onClick={() =>navigate("/login/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
                                     Masz już konto? Zaloguj się!
-                                </Link>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Box>
