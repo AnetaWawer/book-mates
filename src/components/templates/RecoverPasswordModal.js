@@ -9,10 +9,12 @@ import {
     DialogTitle,
     TextField
 } from "@mui/material";
+import axios from "axios";
 
 const RecoverPasswordModal = () => {
     const [open, setOpen] = useState(false);
-    const [email, setEmail] = useState();
+    const [input, setInput] = useState('');
+    const [response, setResponse] = useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -20,15 +22,30 @@ const RecoverPasswordModal = () => {
 
     const handleClose = () => {
         setOpen(false);
+        setResponse('')
     };
 
     const handleSave = () => {
-        setOpen(false);
-        console.log(email)
+        axios.post(`http://localhost:8080/api/authentication/reset_password_confirmation`,{}, {
+            params: {
+                email: input.email
+            },
+        })
+            .then(response => {
+                setResponse(response.data);
+                if (response.data === "Email z linkiem do resetowania hasła został wysłany.") {
+                    setOpen(false);
+                }
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
+
     const emailSubmit = e => {
         const {value} = e.target;
-        setEmail(() => ({
+        setInput(() => ({
             email: value
         }));
     }
@@ -58,6 +75,7 @@ const RecoverPasswordModal = () => {
                         fullWidth
                         variant="standard"
                         onChange={emailSubmit}
+                        helperText={response}
                     />
                 </DialogContent>
                 <DialogActions>
