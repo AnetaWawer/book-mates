@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import {
-    Link,
     Avatar,
     Box,
     Button,
@@ -11,6 +10,7 @@ import {
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import RecoverPasswordModal from "../components/templates/RecoverPasswordModal";
 
 const Login = () => {
 
@@ -94,14 +94,12 @@ const Login = () => {
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                {"Zapomniałeś hasła?"}
-                            </Link>
+                            <RecoverPasswordModal />
                         </Grid>
-                        <Grid item>
-                            <Link href="/register" variant="body2">
-                                {"Nie masz konta? Zapisz się!"}
-                            </Link>
+                        <Grid item xs >
+                            <Button onClick={() =>navigate("/register/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
+                                Nie masz konta? Zapisz się!
+                            </Button>
                         </Grid>
                     </Grid>
                 </Box>
