@@ -42,6 +42,11 @@ const Register = () => {
 
     const [isRegistrationInProgress, setIsRegistrationInProgress] = useState(true);
 
+    // every page reload should show registration form, which will vanish after successful registration
+    useEffect(() => {
+        setIsRegistrationInProgress(true);
+    }, [])
+
     const onUsernameChange = (e) => {
         setIsNameValid(USERNAME_REGEX.test(e.target.value));
         setUsername(e.target.value);
