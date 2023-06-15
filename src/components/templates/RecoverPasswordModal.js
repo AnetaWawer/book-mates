@@ -12,6 +12,7 @@ import {
 
 const RecoverPasswordModal = () => {
     const [open, setOpen] = useState(false);
+    const [email, setEmail] = useState();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -23,6 +24,13 @@ const RecoverPasswordModal = () => {
 
     const handleSave = () => {
         setOpen(false);
+        console.log(email)
+    }
+    const emailSubmit = e => {
+        const {value} = e.target;
+        setEmail(() => ({
+            email: value
+        }));
     }
 
     return (
@@ -49,6 +57,7 @@ const RecoverPasswordModal = () => {
                         type="email"
                         fullWidth
                         variant="standard"
+                        onChange={emailSubmit}
                     />
                 </DialogContent>
                 <DialogActions>
