@@ -155,7 +155,7 @@ const Register = () => {
                     email: data.get('email'),
                     password: data.get('password')
                 })
-                .then(response => {
+                .then( () => {
                         setIsRegistrationInProgress(false);
                 })
                 .catch((error) => {
