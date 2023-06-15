@@ -32,9 +32,10 @@ const RecoverPasswordModal = () => {
             },
         })
             .then(response => {
-                setResponse(response.data);
-                if (response.data === "Email z linkiem do resetowania hasła został wysłany.") {
+                if (response.data !== "Użytkownik o takim adresie email nie istnieje.") {
                     setOpen(false);
+                } else {
+                    setResponse(response.data);
                 }
                 console.log(response)
             })
