@@ -97,7 +97,7 @@ const Login = () => {
                             <RecoverPasswordModal />
                         </Grid>
                         <Grid item xs >
-                            <Button onClick={() =>navigate("/register/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
+                            <Button onClick={() => navigate("/register")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
                                 Nie masz konta? Zapisz się!
                             </Button>
                         </Grid>

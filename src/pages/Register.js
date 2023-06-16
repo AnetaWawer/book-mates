@@ -10,6 +10,7 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[^\s'"`&<>*]{8,24}$/;
 
 const USERNAME_RESTRICTIONS = 'Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -';
 const PASSWORD_RESTRICTIONS = 'Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę i jedną cyfrę. Nie może zwierać znaków " ` \' & < > * '
+
 const Register = () => {
 
     const navigate = useNavigate();
@@ -256,7 +257,7 @@ const Register = () => {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Button onClick={() =>navigate("/login/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
+                                <Button onClick={() => navigate("/login/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
                                     Masz już konto? Zaloguj się!
                                 </Button>
                             </Grid>
