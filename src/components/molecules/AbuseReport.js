@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import {Popover, Typography} from "@mui/material";
-import {CommentData} from "./Comments.styles";
-import axios from "axios";
+import {Box, Popover, Typography} from "@mui/material";
+import AbuseReportModal from "./AbuseReportModal";
 
-const AbuseReport = ({commentId}) => {
+const AbuseReport = ({ item }) => {
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const openPopover = Boolean(anchorEl);
+    const [openForm, setOpenForm] = useState(false);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     }
@@ -14,36 +16,41 @@ const AbuseReport = ({commentId}) => {
     const handleClose = () => {
         setAnchorEl(null);
     }
-    const open = Boolean(anchorEl);
 
-    function reportAbuse() {
-        axios.get(`http://localhost:8080/api/comments/${commentId}/report-abuse`)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
+    const getAbuseReportForm = () => {
+        setOpenForm(true);
+        setAnchorEl(null);
     }
 
-    return (
-        <CommentData align="right">
-            <ErrorOutlineOutlinedIcon color="primary" onClick={handleClick}/>
-            <Popover
-                // id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'center',
-                    horizontal: 'left',
-                }}
-                transformOrigin={{
-                    vertical: 'center',
-                    horizontal: 'right'
-                }}
-                onClick={reportAbuse}
-            >
-                <Typography sx={{ p: 2, bgcolor: '#F3F2EC'}}>Zgłoś nadużycie</Typography>
-            </Popover>
-        </CommentData>
-    );
+    const closeForm = () => {
+        setOpenForm(false);
+    }
+
+    if (item.status !== 'ACCEPTED') {
+        return (
+            <Box align="center">
+                <ErrorOutlineOutlinedIcon color="primary" onClick={handleClick}/>
+                <Popover
+                    // id={id}
+                    open={openPopover}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'center',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'center',
+                        horizontal: 'right'
+                    }}
+                    onClick={getAbuseReportForm}
+                >
+                    <Typography sx={{p: 2, bgcolor: '#F3F2EC'}}>Zgłoś nadużycie</Typography>
+                </Popover>
+                <AbuseReportModal open={openForm} onClose={closeForm} item={item}/>
+            </Box>
+        );
+    }
 };
 
 export default AbuseReport;

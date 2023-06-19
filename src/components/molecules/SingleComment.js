@@ -23,7 +23,7 @@ const SingleComment = ({ comment }) => {
                     <CommentData>
                         {moment(comment.creationTime).format('DD.MM.YYYY  HH:mm')}
                     </CommentData>
-                    <AbuseReport commentId={comment.id}/>
+                    <AbuseReport item={comment}/>
                 </Grid>
             </Grid>
         </CommentBox>
