@@ -10,7 +10,7 @@ const CardsBar = ( {elements} ) => {
             </Box>
         )
     }
-    if (elements.length>=1) {
+    if (elements.length >= 1) {
         return (
             <Grid container direction={'row'} spacing={4}>
                 {elements.map((element) => (

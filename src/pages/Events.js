@@ -79,11 +79,6 @@ const Events = () => {
                 }
         });
         setEvents(searchedEvent);
-        // if (search.length!==0){
-        //     setEvents(searchedEvent);
-        // } else {
-        //     handlePageChange(1,0)
-        // }
     };
 
     return (
@@ -131,9 +126,7 @@ const Events = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 labelRowsPerPage='Ilość wydarzeń na stronie'
             />}
-
         </MainContainer>
-
     );
 };
 

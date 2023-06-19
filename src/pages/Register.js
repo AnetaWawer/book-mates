@@ -5,8 +5,11 @@ import Grid from "@mui/material/Grid";
 import {useNavigate} from "react-router-dom";
 
 const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[^\s'"`&<>*]{8,24}$/;
+
+const USERNAME_RESTRICTIONS = 'Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -';
+const PASSWORD_RESTRICTIONS = 'Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę i jedną cyfrę. Nie może zwierać znaków " ` \' & < > * '
 
 const Register = () => {
 
@@ -65,11 +68,11 @@ const Register = () => {
 
     useEffect (() => {
         if (isNameFocused && !isNameEdited) {
-            setUsernameHelperText('Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -');
+            setUsernameHelperText(USERNAME_RESTRICTIONS);
         } else if (!isNameValid && isNameOmitted && isNameEdited) {
             setUsernameHelperText('Należy podać nazwę użytkownika');
         } else if (!isNameValid && isNameEdited) {
-            setUsernameHelperText('Błędna nazwa użytkownika. Nazwa użytkownika musi zawierać od 4 do 24 znaków, zaczynać od litery i składać się wyłącznie z liter, cyfr, znaków _ lub -');
+            setUsernameHelperText('Błędna nazwa użytkownika. ' + USERNAME_RESTRICTIONS);
         } else {
             setUsernameHelperText('');
         }
@@ -113,11 +116,11 @@ const Register = () => {
 
     useEffect(() => {
         if (isPasswordFocused && !isPasswordEdited) {
-            setPasswordHelperText('Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę i jedną cyfrę. Nie może zwierać znaków \"\`\'&<>* ');
+            setPasswordHelperText(PASSWORD_RESTRICTIONS);
         } else if (isPasswordOmitted) {
             setPasswordHelperText('Należy podać hasło');
         } else if (!isPasswordValid && isPasswordEdited) {
-            setPasswordHelperText('Niepoprawne hasło. Hasło musi zawierać od 8 do 24 znaków i musi zawierać co najmniej: jedną małą literę, jedną wielką literę i jedną cyfrę. Nie może zwierać znaków \"\`\'&<>*');
+            setPasswordHelperText('Niepoprawne hasło. ' + PASSWORD_RESTRICTIONS);
         } else {
             setPasswordHelperText('');
         }
@@ -254,7 +257,7 @@ const Register = () => {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Button onClick={() =>navigate("/login/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
+                                <Button onClick={() => navigate("/login/")} style={{textDecoration: 'underline', fontSize:'11px'}} variant="subtitle1">
                                     Masz już konto? Zaloguj się!
                                 </Button>
                             </Grid>
