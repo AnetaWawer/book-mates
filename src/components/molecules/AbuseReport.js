@@ -2,12 +2,18 @@ import React, {useState} from 'react';
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import {Box, Popover, Typography} from "@mui/material";
 import AbuseReportModal from "./AbuseReportModal";
+import checkIfUserLogged from "../../services/JwtToken";
+import {useNavigate} from "react-router-dom";
 
 const AbuseReport = ({ item }) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const openPopover = Boolean(anchorEl);
     const [openForm, setOpenForm] = useState(false);
+
+    const popoverText = checkIfUserLogged() ? 'Zgłoś nadużycie' : 'Aby zgłosić nadużycie musisz być zalogowany';
+
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -17,9 +23,13 @@ const AbuseReport = ({ item }) => {
         setAnchorEl(null);
     }
 
-    const getAbuseReportForm = () => {
-        setOpenForm(true);
-        setAnchorEl(null);
+    const handlePopoverClick = () => {
+        if (checkIfUserLogged()) {
+            setOpenForm(true);
+            setAnchorEl(null);
+        } else {
+            navigate("/login/");
+        }
     }
 
     const closeForm = () => {
@@ -43,9 +53,9 @@ const AbuseReport = ({ item }) => {
                         vertical: 'center',
                         horizontal: 'right'
                     }}
-                    onClick={getAbuseReportForm}
+                    onClick={handlePopoverClick}
                 >
-                    <Typography sx={{p: 2, bgcolor: '#F3F2EC'}}>Zgłoś nadużycie</Typography>
+                    <Typography sx={{p: 2, bgcolor: '#F3F2EC'}}>{popoverText}</Typography>
                 </Popover>
                 <AbuseReportModal open={openForm} onClose={closeForm} item={item}/>
             </Box>
