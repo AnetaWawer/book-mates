@@ -18,6 +18,7 @@ import BooksDb from "./pages/BooksDb";
 import About from "./pages/About";
 import EventResignation from "./pages/EventResignation";
 import ConfirmAccount from "./pages/ConfirmAccount";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="topics/:topicId" element={<Topic/>} />
             <Route path="confirm-account" element={<ConfirmAccount/>} />
+            <Route path="dashboard" element={<Dashboard/>} />
           </Route>
         </Routes>
       </BrowserRouter>
