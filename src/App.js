@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -19,6 +19,7 @@ import About from "./pages/About";
 import EventResignation from "./pages/EventResignation";
 import ConfirmAccount from "./pages/ConfirmAccount";
 import Dashboard from "./pages/Dashboard";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
             <Route path="topics/:topicId" element={<Topic/>} />
             <Route path="confirm-account" element={<ConfirmAccount/>} />
             <Route path="dashboard" element={<Dashboard/>} />
+            <Route path="/reset_password" element={<ResetPassword />} />
           </Route>
         </Routes>
       </BrowserRouter>
