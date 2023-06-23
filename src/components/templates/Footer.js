@@ -18,7 +18,7 @@ function Footer() {
                 <Grid item xs={5} md={4} lg={3}>
                     <Logo alt="main-logo" src={logo} />
                     <Typography variant="subtitle1" component="div">
-                        Miejsce w którym można dyskutować o książkach.
+                        Miejsce, w którym można dyskutować o książkach.
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm container>

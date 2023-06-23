@@ -9,6 +9,7 @@ import {useWindowSize} from "../hooks/useWindowSize";
 import {useParams} from "react-router-dom";
 import TopicsList from "../components/organisms/TopicsList";
 import TabsBar from "../components/atoms/TabsBar";
+import moment from "moment";
 
 export default function Account() {
 
@@ -24,6 +25,10 @@ export default function Account() {
 
     const [events, setEvents] = useState([]);
     const [eventsSequences, setEventsSequences] = useState([]);
+    const [eventOrganizer, setEventOrganizer] = useState([]);
+    const [eventParticipant, setEventParticipant] = useState([]);
+    const [eventWaitingList, setEventWaitingList] = useState([]);
+    const [eventsInPast, setEventsInPast] = useState([]);
 
     const [topics, setTopics] = useState([]);
 
@@ -31,10 +36,15 @@ export default function Account() {
 
     const size = useWindowSize();
 
-    const [value, setValue] = React.useState(0);
+    const [bookValue, setBookValue] = React.useState(0);
+    const [eventValue, setEventValue] = React.useState(0);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
+    const handleShelfChange = (event, newValue) => {
+        setBookValue(newValue);
+    };
+
+    const handleEventChange = (event, newValue) => {
+        setEventValue(newValue);
     };
 
     function setIndex(index) {
@@ -59,7 +69,11 @@ export default function Account() {
                 // fetch events
                 const userEvents = user.events;
                 setEvents(userEvents);
-                setEventsSequences(divideSequence(userEvents, numberOfCardsOnPage));
+                setEventsInPast(divideSequence(userEvents.filter(e => moment(moment()).isAfter(e.eventDate)), numberOfCardsOnPage))
+                setEventParticipant(divideSequence(userEvents.filter(e => e.participantType === "PARTICIPANT" && moment(moment()).isBefore(e.eventDate)), numberOfCardsOnPage));
+                setEventWaitingList(divideSequence(userEvents.filter(e => e.participantType === "WAITING_LIST" && moment(moment()).isBefore(e.eventDate)), numberOfCardsOnPage));
+                setEventOrganizer(divideSequence(userEvents.filter(e => e.participantType === "ORGANIZER" && moment(moment()).isBefore(e.eventDate)), numberOfCardsOnPage));
+
                 // fetch topics
                 setTopics(user.topics);
             })
@@ -88,12 +102,13 @@ export default function Account() {
         setSavedBooksSequences(divideSequence(savedBooks, numberOfCardsOnPage));
         setEventsSequences(divideSequence(events, numberOfCardsOnPage));
     }, [size]);
+
     return (
         <MainContainer >
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje książki"} />
                 <Box display="flex" justifyContent="center" width="100%">
-                    <Tabs value={value} onChange={handleChange} >
+                    <Tabs value={bookValue} onChange={handleShelfChange} sx={{'& .MuiTabs-flexContainer': {flexWrap: 'wrap',},}}>
                         <Tab label="Ulubione" {...setIndex(0)} />
                         <Tab label="Przeczytane" {...setIndex(1)} />
                         <Tab label="Chcę przeczytać" {...setIndex(2)} />
@@ -101,25 +116,44 @@ export default function Account() {
                         <Tab label="Pozostałe" {...setIndex(4)} />
                     </Tabs>
                 </Box>
-                <TabsBar value={value} index={0}>
+                <TabsBar value={bookValue} index={0}>
                     <Shelf  booksSequences={favoriteBooksSequences}/>
                 </TabsBar>
-                <TabsBar value={value} index={1}>
+                <TabsBar value={bookValue} index={1}>
                     <Shelf booksSequences={readBooksSequences}/>
                 </TabsBar>
-                <TabsBar value={value} index={2}>
+                <TabsBar value={bookValue} index={2}>
                     <Shelf  booksSequences={toReadBooksSequences}/>
                 </TabsBar>
-                <TabsBar value={value} index={3}>
+                <TabsBar value={bookValue} index={3}>
                     <Shelf booksSequences={giftBooksSequences}/>
                 </TabsBar>
-                <TabsBar value={value} index={4}>
+                <TabsBar value={bookValue} index={4}>
                     <Shelf booksSequences={savedBooksSequences}/>
                 </TabsBar>
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header={"Moje wydarzenia"} />
-                <SubscribedEvents events={eventsSequences}/>
+                <Box display="flex" justifyContent="center" width="100%">
+                    <Tabs value={eventValue} onChange={handleEventChange} sx={{'& .MuiTabs-flexContainer': {flexWrap: 'wrap',},}}>
+                        <Tab label="Uczestniczę" {...setIndex(0)} />
+                        <Tab label="Na liście rezerwowych" {...setIndex(1)} />
+                        <Tab label="Organizuję" {...setIndex(2)} />
+                        <Tab label="Odbyły się" {...setIndex(3)} />
+                    </Tabs>
+                </Box>
+                <TabsBar value={eventValue} index={0}>
+                    <SubscribedEvents events={eventParticipant}/>
+                </TabsBar>
+                <TabsBar value={eventValue} index={1}>
+                    <SubscribedEvents events={eventWaitingList}/>
+                </TabsBar>
+                <TabsBar value={eventValue} index={2}>
+                    <SubscribedEvents  events={eventOrganizer}/>
+                </TabsBar>
+                <TabsBar value={eventValue} index={3}>
+                    <SubscribedEvents  events={eventsInPast}/>
+                </TabsBar>
             </Box>
             <Box sx={{mt: 8}}>
                 <SectionHeader header="Moje wątki" />
@@ -134,6 +168,8 @@ const getInitNumberOfCardsInCarousel = () => {
     if (width > 900 && width <= 1200) return 2;
     else return 1;
 }
+
+// this method divides a sequence of books or events in to smaller sequences to print them on the page
 const divideSequence = (sequence, maxSubsequenceLength) => {
     let sequenceOfSubsequences = []
     for (let i = 0; i < sequence.length; i = i + maxSubsequenceLength) {

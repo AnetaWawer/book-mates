@@ -8,8 +8,8 @@ function EventResignationDetails({resignFromEvent}) {
     return (
         <Box textAlign="center">
             <Typography variant="h6" textAlign="center">Czy na pewno chcesz zrezygnować z udziału w wydarzeniu ?</Typography>
-                <Button color="error" variant="contained" sx={{marginRight:"100px", marginTop:"30px"}} onClick={() => navigate("/")}> NIE </Button>
-                <Button color="success" variant="contained" sx={{ marginTop:"30px"}} onClick={resignFromEvent}> TAK </Button>
+                <Button variant="outlined" sx={{marginRight:"100px", marginTop:"30px"}} onClick={() => navigate("/")}> NIE </Button>
+                <Button variant="outlined" sx={{ marginTop:"30px"}} onClick={resignFromEvent}> TAK </Button>
         </Box>
     )
 }

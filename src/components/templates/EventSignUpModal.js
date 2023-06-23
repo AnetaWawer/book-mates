@@ -3,13 +3,14 @@ import {Box, Modal,Divider,} from "@mui/material";
 import {ModalBox} from "./NewEventModal.styles";
 import moment from "moment/moment";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {EventButton, Text} from "../organisms/EventDetials.styles";
 
 const EventSignUpModal = ({event, getParticipants}) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleOpen = () => setOpen(true);
+    const navigate = useNavigate();
 
     let { eventId } = useParams();
     let currentWaitingListNumber = event.waitingList +1;
@@ -21,6 +22,7 @@ const EventSignUpModal = ({event, getParticipants}) => {
                 handleClose();
                 getParticipants()
             })
+            .then(navigate("/users/profile"))
             .catch(error => {
                 console.log(error);
             })
