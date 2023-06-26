@@ -13,12 +13,19 @@ const SearchPanel = ({ searchCriteriaItems, onSearch }) => {
         onSearch(searchInput, searchCriteria);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key ==="Enter") {
+            handleSearch()
+        }
+    }
+
     return (
         <Grid container
               direction={'row'}
               spacing={1}
               justifyContent="flex-end"
               sx ={{ mt : 1, mb: 7}}
+              onKeyDown={handleKeyPress}
         >
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} >
                 <TextField
