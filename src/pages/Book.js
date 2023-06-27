@@ -10,6 +10,8 @@ import {MainContainer, Panel} from "../components/Container.styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import ForumPanel from "../components/templates/ForumPanel";
 import NewTopicForm from "../components/molecules/NewTopicForm";
+import Grid from "@mui/material/Grid";
+import NewEventModal from "../components/templates/NewEventModal";
 
 
 const Book = () => {
@@ -71,7 +73,10 @@ const Book = () => {
                     {loading ? <CircularProgress /> : <BookDetails book={book} fetchEvent={fetchEvent}/>}
                 </div>
                 <Description description={book.description} />
-                <CardsPanel elements={events} header={eventsHeader}  />
+                <CardsPanel elements={events} header={eventsHeader} book={book} fetchEvent={fetchEvent} />
+                <Grid item xs={12} sx={{ display: "flex", justifyContent: "right" }}>
+                    <NewEventModal book={book} fetchEvent={fetchEvent} />
+                </Grid>
                <Panel>
                    <ForumPanel topics={topics} header={forumHeader} />
                    <NewTopicForm fetchTopic={fetchTopic} />

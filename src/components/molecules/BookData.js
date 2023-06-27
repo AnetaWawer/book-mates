@@ -1,5 +1,4 @@
 import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
 import React from "react";
 import {BookDataContainer} from "./BookData.styles";
 
@@ -13,8 +12,9 @@ const BookData = ( {book} ) => {
             <p className="book-author">{book.author}</p>
             <p className="book-year">Data wydania: {book.year}</p>
             <p className="number-pages">Liczba stron: {book.pages}</p>
-            <Typography component="legend">Ocena</Typography>
-            <Rating value={book.rating !== undefined ? book.rating : 0} max={5} />
+            {book.rating !== undefined && book.rating !== 0 && (
+                    <Typography component="legend">Ocena: {book.rating}</Typography>
+                )}
         </BookDataContainer>
     )
 }
