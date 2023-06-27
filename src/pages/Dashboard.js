@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import AbuseReportTableRow from "../components/organisms/AbuseReportTableRow";
+import {MainContainer} from "../components/Container.styles";
 
 const Dashboard = () => {
 
@@ -28,7 +29,8 @@ const Dashboard = () => {
     }, [reports])
 
     return (
-        <TableContainer component={Paper}>
+        <MainContainer >
+        <TableContainer component={Paper} sx={{mb: 8, bgcolor: '#F6F5EF'}}>
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
@@ -38,6 +40,7 @@ const Dashboard = () => {
                         <TableCell align="right">Typ wpisu</TableCell>
                         <TableCell align="right">Id wpisu</TableCell>
                         <TableCell align="right">Typ problemu</TableCell>
+                        <TableCell align="right">Status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -47,6 +50,7 @@ const Dashboard = () => {
                 </TableBody>
             </Table>
         </TableContainer>
+        </MainContainer>
     );
 };
 
